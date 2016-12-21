@@ -1,0 +1,48 @@
+<!--Main forum page that lists all the threads on the forum -->
+<template name="forum">
+
+  <div class="row">
+    <div class="colum-md-12">
+      <h1 class="text-center">Welcome to the Forum!!</h1>
+     <h3 class="text-center">Share your story, ask for advice or chat away. You can also ask for resources and recommendations for materials or other in your quest to a new skill, a new path or a new hobby. Anything along the rails out of QLC!!</h3>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class ="row">
+    <div class="col-md-12">
+      <div class="list-group forum-threads">
+        <li class="list-group-item active">
+          <div class="row">
+            <div class="col-md-8">
+              QLC
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-default add-thread pull-right">
+                New Post
+              </button>
+            </div>
+          </div>
+
+      </li>
+        {{#each threads}}
+
+        {{> forumThread}}
+
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+
+  <!--TODO: Implement scrolling load more!-->
+  <div class ="row">
+    <div class="col-md-12">
+      <button class="btn btn-block btn-primary" id="addMoreThreads">Load More</button>
+    </div>
+  </div>
+
+
+
+</template>

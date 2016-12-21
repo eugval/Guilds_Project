@@ -1,0 +1,46 @@
+* {
+  border-radius:0px !important;
+}
+
+.forum-threads .list-group-item{
+  border-left: 0 none;
+  border-right:0 none;
+  padding: 20px 10px;
+
+}
+
+.forum-threads .list-group-item.active{
+  font-size: 20px;
+
+}
+
+.forum-threads .list-group-item:first-child{
+  border-top: 0 none !important;
+}
+
+.nav-rtl {
+    padding-left:40px;
+    padding-right:0px;
+
+ }
+
+.nav-rtl li {
+ float:right;
+ }
+
+ .nav-right-text{
+   float:left !important;
+ }
+
+
+
+
+ /*.forum-threads .list-group-item:first-child{
+   border-top-right-radius: 0px !important;
+   border-top-left-radius: 0px !important;
+ }
+
+ .forum-threads .list-group-item:last-child {
+   border-bottom-right-radius: 0px !important;
+   border-bottom-left-radius: 0px !important;
+ }*/

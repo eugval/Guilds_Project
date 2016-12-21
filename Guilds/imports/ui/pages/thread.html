@@ -1,0 +1,80 @@
+<!--Individual thread page-->
+<Template name="thread">
+  {{#with threadContext}}
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <h1>{{title}}</h1>
+      <h5>Author: {{authorName}}, Posted: {{date}}</h5>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class ="col-md-8 col-md-offset-2">
+      <p>
+        {{message}}
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <hr />
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <ul class="nav nav-tabs nav-rtl ">
+        <li class ="nav-right-text" >
+          <div class="tab-content">
+            <div class="tab-pane active" id="answers_title">
+              <h4> {{replies}} Answers</h4>
+            </div>
+            <div class="tab-pane" id ="reply_title">
+              <h4>Reply</h4>
+            </div>
+          </div>
+        </li>
+
+        <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Answers</a></li>
+        <li><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="answers" class="tab-pane active">
+          <div class ="row">
+            <div class="col-md-12">
+              <div class="list-group forum-threads">
+
+                {{#each repliesContext}}
+
+                {{> reply}}
+
+                {{/each}}
+              </div>
+            </div>
+          </div>
+
+          <!--TODO: Implement scrolling load more!-->
+          <div class ="row">
+            <div class="col-md-12">
+              <button class="btn btn-block btn-primary" id="addMoreReplies">Load More</button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div id="reply" class="tab-pane ">
+          <h3>Im gonna a text editor that its gonna make your head spin</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  {{/with}}
+</Template>

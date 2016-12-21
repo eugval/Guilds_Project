@@ -1,0 +1,14 @@
+<template name="forumThread">
+          <a href={{IDLink}} class="list-group-item">
+            {{title}} <br />
+            {{#if locked}}
+            locked! <br />
+            {{/if}}
+            {{#if pinned}}
+            pinned! <br />
+            {{/if}}
+            {{authorName}}<br />
+            {{replyNb}}<br />
+            {{dateInserted}}<br  />
+          </a>
+</template>
