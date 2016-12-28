@@ -1,45 +1,60 @@
 <!--Individual thread page-->
 <Template name="thread">
   {{#with threadContext}}
+
+
   <div class="row">
     <div class ="col-md-10 col-md-offset-1">
       <h1>{{title}}</h1>
       <h5>Author: {{authorName}}, Posted: {{date}}</h5>
-      <hr />
-    </div>
-  </div>
 
-  <div class="row">
-    <div class ="col-md-8 col-md-offset-2">
-      <p>
-        {{message}}
-      </p>
     </div>
   </div>
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <hr class="forumOPTitleSeparator"/>
+    </div>
+  </div>
+  {{#if isAuthorOrAdmin}}
+    <div class="row">
+      <div class ="col-md-8 col-md-offset-2 post-commands">
+              <a href="#" title="Edit" id="edit-thread"><i class="fa fa-pencil" aria-hidden="true"></i> </a>
+      </div>
+    </div>
+  {{/if}}
+
+    <div class="row">
+      <div class ="col-md-8 col-md-offset-2">
+        <p>
+          {{{message}}}
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+
 
   <div class="row">
     <div class ="col-md-10 col-md-offset-1">
       <hr />
     </div>
   </div>
+
+
+
 
 
   <div class="row">
     <div class ="col-md-10 col-md-offset-1">
       <ul class="nav nav-tabs nav-rtl ">
-        <li class ="nav-right-text" >
-          <div class="tab-content">
-            <div class="tab-pane active" id="answers_title">
-              <h4> {{replies}} Answers</h4>
-            </div>
-            <div class="tab-pane" id ="reply_title">
-              <h4>Reply</h4>
-            </div>
-          </div>
+        <li class ="nav-left-text" >
+          <h4>{{replies}} Comments</h4>
         </li>
-
-        <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Answers</a></li>
-        <li><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
+        <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Comments</a></li>
+        <li ><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
       </ul>
 
       <div class="tab-content">
@@ -53,12 +68,20 @@
                 {{> reply}}
 
                 {{/each}}
+                {{#if noReplies}}
+
+                <h4 class ="text-center text-muted">
+                  No Replies
+                </h4>
+
+                {{/if}}
+
               </div>
             </div>
           </div>
 
           <!--TODO: Implement scrolling load more!-->
-          <div class ="row">
+          <div class ="row ">
             <div class="col-md-12">
               <button class="btn btn-block btn-primary" id="addMoreReplies">Load More</button>
             </div>
@@ -67,8 +90,13 @@
 
 
 
-        <div id="reply" class="tab-pane ">
-          <h3>Im gonna a text editor that its gonna make your head spin</h3>
+        <div id="reply" class="tab-pane margin-top-sm ">
+          <div class ="row">
+            <div class ="col-md-10 col-md-offset-1">
+              {{> addReply}}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

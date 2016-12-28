@@ -1,6 +1,10 @@
 import './newThread.html';
 import {insertThread} from '/imports/api/forum/methods.js';
 
+Template.newThread.onRendered(function(){
+  CKEDITOR.replace( 'addThreadDescription' );
+});
+
 Template.newThread.events({
   'submit .newThreadForm'(event){
     event.preventDefault();
@@ -18,7 +22,7 @@ Template.newThread.events({
         /* Clean up form and redirect to forum on success */
         console.log("success");
         event.target.addThreadTitle.value="";
-        event.target.addThreadDescription.value="";
+        CKEDITOR.instances.addThreadDescription.setData('');
         FlowRouter.go('/forum');
       }
     });

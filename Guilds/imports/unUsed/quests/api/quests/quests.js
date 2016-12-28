@@ -11,7 +11,7 @@ Schemas.Quests = new SimpleSchema({
   description:{
     type:String,
   },
-  createdDate: {
+  createdAt: {
     type:Date,
     defaultValue: new Date(),
   },

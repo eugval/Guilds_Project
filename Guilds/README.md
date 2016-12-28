@@ -27,6 +27,6 @@ This project is using the import file structure as mentioned above. More precise
 * [Dynamic templates by meteor chef](https://themeteorchef.com/snippets/using-dynamic-templates/)
 * [Meteor Chef](https://themeteorchef.com)
 * [Text editor](http://ckeditor.com/pricing)
-
+* [On Route Restrictions](https://medium.com/@satyavh/using-flow-router-for-authentication-ba7bb2644f42#.86e18hqwt)
 ##Notebook
 LOGIC: London Order of Gentlemen In Computing

@@ -1,8 +1,32 @@
 <template name ="reply">
   <li class="list-group-item">
-    {{message}} <br />
-{{authorName}} <br />
-{{dateCreated}}
+    <div class=row>
+      <div class="col-md-5 col-md-offset-1">
+        <p>
+          {{authorName}}, {{dateCreated}}
+        </p>
+      </div>
+      {{#if isAuthorOrAdmin}}
+      {{#if displayingComment}}
+      <div class ="col-md-5 text-right">
+            <a href="#" title="Edit" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+      </div>
+      {{/if}}
+      {{#if editingComment}}
+      <div class ="col-md-5 text-right">
+            <a href="#" title="Edit" id="saveCommentEdit">save</a>
+      </div>
+      {{/if}}
+          {{/if}}
+    </div>
+
+
+    <div class=row>
+      <div class ="col-md-10 col-md-offset-1 ">
+        {{> Template.dynamic template = state }}
+      </div>
+    </div>
+
   </li>
 
 </template>

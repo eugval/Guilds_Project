@@ -51,13 +51,13 @@ Schemas.Threads.clientSupplied = new SimpleSchema({
 
 
 Schemas.Threads.automatic=new SimpleSchema({
-  createdDate: {
+  createdAt: {
     type:Date,
-    autoValue:function(){
+    autoValue: function() {
       if (this.isInsert) {
-        return new Date();
+        return new Date;
       } else if (this.isUpsert) {
-        return {$setOnInsert: new Date()};
+        return {$setOnInsert: new Date};
       } else {
         this.unset();
       }

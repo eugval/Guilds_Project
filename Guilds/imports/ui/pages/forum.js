@@ -15,7 +15,7 @@ Template.forum.onCreated(function(){
 Template.forum.helpers({
   /*Serve the thread context to use with Blaze*/
   threads(){
-    return Threads.find({},{sort:{createdDate:-1}});
+    return Threads.find({},{sort:{createdAt:-1}});
   },
   });
 

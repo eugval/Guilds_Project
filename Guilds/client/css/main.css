@@ -19,7 +19,7 @@
 }
 
 .nav-rtl {
-    padding-left:40px;
+    padding-left:30px;
     padding-right:0px;
 
  }
@@ -28,13 +28,33 @@
  float:right;
  }
 
- .nav-right-text{
+ .nav-left-text{
    float:left !important;
  }
 
+.margin-top-sm{
+  margin-top: 10px;
+}
 
+.post-commands{
 
+  text-align: right;
+}
 
+.editForumOPTitle{
+  font-size:25px !important;
+  font-weight: 500 !important;
+  height:auto !important;
+}
+
+.forumOPTitleSeparator{
+  margin-top:10px;
+  margin-bottom:5px;
+}
+.forumEditOPTitleSeparator{
+  margin-top:10px;
+  margin-bottom:15px;
+}
  /*.forum-threads .list-group-item:first-child{
    border-top-right-radius: 0px !important;
    border-top-left-radius: 0px !important;

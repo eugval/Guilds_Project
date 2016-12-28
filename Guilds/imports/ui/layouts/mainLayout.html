@@ -1,6 +1,8 @@
 <!--The main layout includes the navbar and a container for pages -->
 
+
 <template name="mainLayout">
+
     <nav class="navbar  navbar-default navbar-static-top">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,7 +19,6 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/questBoard">Quest Board</a></li>
             <li><a href="/forum">Forum</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -30,6 +31,9 @@
 
   <div class="container">
 {{> Template.dynamic template = mainPage }}
+  </div>
+
+  <div style="margin-bottom:50px">
   </div>
 
 </template>

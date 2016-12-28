@@ -1,9 +1,11 @@
+import {Threads} from '../forum/threads.js';
+
 export function adminOrAutoInsertNoUpdate(autoVal , self){
+  const isAdmin = Meteor.users.findOne({_id:self.userId}).isAdmin;
   if(self.isInsert){
     if(self.isSet){
       if(Meteor.isServer){
-        const adminFound = Admins.findOne({ID:self.userId});
-        if(!adminFound){
+        if(!isAdmin){
           return autoVal;
         }
       }
@@ -12,10 +14,15 @@ export function adminOrAutoInsertNoUpdate(autoVal , self){
     }
   }else{
     if(Meteor.isServer){
-      const adminFound = Admins.findOne({ID:self.userId});
-      if(!adminFound){
+      if(!isAdmin){
         self.unset();
       }
     }
   }
+}
+
+export function isThreadAuthorOrAdmin(threadID){
+  const author = Threads.findOne(threadID).author;
+  const user = Meteor.user();
+  return user.isAdmin || author === user._id;
 }

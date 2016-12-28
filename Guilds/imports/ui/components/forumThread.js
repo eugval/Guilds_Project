@@ -6,8 +6,8 @@ Template.forumThread.helpers({
     return `forum/${this._id}`;
   },
   dateInserted(){
-    let createdDate = this.createdDate;
-    createdDate = createdDate.toISOString().substring(0,10);
-    return createdDate;
+    let createdAt = this.createdAt;
+    createdAt = createdAt.toISOString().substring(0,10);
+    return createdAt;
   }
 });

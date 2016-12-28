@@ -1,4 +1,5 @@
 /* Defines all the routes, corresponding pages are imported in the route defintion */
+import {isThreadAuthorOrAdmin} from '/imports/api/helpers/adminFunctions.js';
 
 FlowRouter.route('/', {
   action: function() {
@@ -8,17 +9,6 @@ FlowRouter.route('/', {
   }
 });
 
-
-FlowRouter.route('/questBoard', {
-  action: function() {
-    import '/imports/ui/pages/questBoard.js';
-
-    BlazeLayout.render("mainLayout", {mainPage: "questBoard"});
-  }
-});
-
-
-
 FlowRouter.route('/forum', {
   action: function() {
     import '/imports/ui/pages/forum.js';
@@ -26,7 +16,6 @@ FlowRouter.route('/forum', {
     BlazeLayout.render("mainLayout", {mainPage: "forum"});
   }
 });
-
 
 
 FlowRouter.route('/forum/newthread', {
@@ -42,5 +31,18 @@ FlowRouter.route('/forum/:threadID', {
     import '/imports/ui/pages/thread.js';
 
     BlazeLayout.render("mainLayout", {mainPage: "thread"});
+  }
+});
+
+FlowRouter.route('/forum/:threadID/editOP', {
+  action: function() {
+    import '/imports/ui/pages/originalPostEdit.js';
+    /*TODO: Implement restricions based on user status */
+  //  if(isThreadAuthorOrAdmin(FlowRouter.getParam('threadID'))){
+          BlazeLayout.render("mainLayout", {mainPage: "originalPostEdit"});
+  //  }else{
+      //  BlazeLayout.render("mainLayout", {mainPage: "unAuthorisedAccess"});
+  //  }
+
   }
 });

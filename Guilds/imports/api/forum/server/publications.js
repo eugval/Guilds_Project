@@ -5,7 +5,7 @@ import {Threads} from '../threads.js';
 Meteor.publish('Threads.List',function(options,limit){
   check(options,{});
   check(limit,Number);
-  return Threads.find(options,{fields:{message:0},sort:{createdDate:-1},limit:limit});
+  return Threads.find(options,{fields:{message:0},sort:{createdAt:-1},limit:limit});
 
 });
 
@@ -24,6 +24,6 @@ Meteor.publish('Replies.List',function(options, limit){
     thread:String,
   });
     check(limit,Number);
-  return Replies.find(options,{fields:{author:0},sort:{createdDate:-1},limit:limit});
+  return Replies.find(options,{sort:{createdAt:-1},limit:limit});
 
 });

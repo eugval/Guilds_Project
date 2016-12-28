@@ -1,0 +1,42 @@
+<template name= "originalPostEdit">
+
+{{#with thread}}
+
+<form id='editForumOP'>
+
+
+    <div class="row">
+      <div class ="col-md-8 col-md-offset-1">
+        <div class="form-group">
+            <input type= "text" class="form-control editForumOPTitle" id="editThreadTitle" name="editThreadTitle"  value= {{title}} />
+        </div>
+        <h5>Author: {{authorName}}, Posted: {{date}}</h5>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class ="col-md-10 col-md-offset-1">
+        <hr class="forumEditOPTitleSeparator"/>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class ="col-md-8 col-md-offset-2">
+        <div class="form-group">
+          {{> ckEditorBugFix}}
+
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class ="col-md-10 col-md-offset-1">
+        <hr />
+      </div>
+    </div>
+</form>
+{{/with}}
+</template>
