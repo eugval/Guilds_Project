@@ -1,4 +1,4 @@
-import {Threads} from '../forum/threads.js';
+import {Threads} from '/imports/api/forum/threads.js';
 
 export function adminOrAutoInsertNoUpdate(autoVal , self){
   const isAdmin = Meteor.users.findOne({_id:self.userId}).isAdmin;

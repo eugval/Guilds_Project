@@ -1,0 +1,21 @@
+<template name="adminList">
+  <div class="list-group forum-threads">
+    <!--<li class="list-group-item active">
+      <div class="row">
+        <div class="col-md-8">
+          QLC
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-default add-thread pull-right">
+            New Post
+          </button>
+        </div>
+      </div>-->
+    </li>
+    {{#each admins}}
+
+    {{> adminListItem}}
+
+    {{/each}}
+  </div>
+</template>

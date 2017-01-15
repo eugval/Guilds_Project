@@ -1,7 +1,7 @@
 import {Threads} from './threads.js'
-import {Schemas} from '../helpers/schemas.js';
+import {Schemas} from '/imports/api/helpers/schemas.js';
 import {Replies} from './replies.js';
-import {isThreadAuthorOrAdmin} from '../helpers/adminFunctions.js';
+import {isThreadAuthorOrAdmin} from '/imports/api/helpers/adminFunctions.js';
 
 
 export const insertThread = new ValidatedMethod({

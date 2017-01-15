@@ -1,4 +1,4 @@
-import {Schemas} from '../helpers/schemas.js';
+import {Schemas} from '/imports/api/helpers/schemas.js';
 
 export const Quests = new Mongo.Collection('Quests');
 

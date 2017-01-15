@@ -1,5 +1,5 @@
 import './adminDashboard.html';
-import '../helperPages/unAuthorisedAccess.js';
+import '/impors/ui/pages/helperPages/unAuthorisedAccess.js';
 
 
 Template.adminDashboard.helpers({

@@ -1,5 +1,5 @@
-import {Schemas} from '../helpers/schemas.js';
-import {adminOrAutoInsertNoUpdate} from '../helpers/adminFunctions.js';
+import {Schemas} from '/imports/api/helpers/schemas.js';
+import {adminOrAutoInsertNoUpdate} from '/imports/api/helpers/adminFunctions.js';
 
 export const Replies = new Mongo.Collection('Replies');
 Schemas.Replies ={};

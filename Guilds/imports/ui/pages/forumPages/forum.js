@@ -1,6 +1,6 @@
 import './forum.html';
-import '../components/forumComponents/forumThread.js'; //the forumThread template is used hence loaded
-import {Threads} from '../../api/forum/threads.js';
+import '/imports/ui/components/forumComponents/forumThread.js'; //the forumThread template is used hence loaded
+import {Threads} from '/imports/api/forum/threads.js';
 
 /*Subscribe to the threads collections to display them in the forum template */
 Template.forum.onCreated(function(){

@@ -1,6 +1,6 @@
 import './thread.html';
-import '../components/forumComponents/reply.js';
-import '../components/forumComponents/addReply.js';
+import '/imports/ui/components/forumComponents/reply.js';
+import '/imports/ui/components/forumComponents/addReply.js';
 import {Threads} from '/imports/api/forum/threads.js';
 import {Replies} from '/imports/api/forum/replies.js';
 
