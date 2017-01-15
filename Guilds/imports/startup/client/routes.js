@@ -11,15 +11,14 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/admin',{
   action:function(){
-    import '/imports/ui/layouts/adminLayout.js';
     import '/imports/ui/pages/adminPages/adminDashboard.js';
-      BlazeLayout.render("adminLayout",{mainPage:"adminDashboard"});
+      BlazeLayout.render("mainLayout",{mainPage:"adminDashboard"});
   }
 });
 
 FlowRouter.route('/forum', {
   action: function() {
-    import '/imports/ui/pages/forum.js';
+    import '/imports/ui/pages/forumPages/forum.js';
 
     BlazeLayout.render("mainLayout", {mainPage: "forum"});
   }
@@ -28,7 +27,7 @@ FlowRouter.route('/forum', {
 
 FlowRouter.route('/forum/newthread', {
   action: function() {
-    import '/imports/ui/pages/newThread.js';
+    import '/imports/ui/pages/forumPages/newThread.js';
 
     BlazeLayout.render("mainLayout", {mainPage: "newThread"});
   }
@@ -36,7 +35,7 @@ FlowRouter.route('/forum/newthread', {
 
 FlowRouter.route('/forum/:threadID', {
   action: function() {
-    import '/imports/ui/pages/thread.js';
+    import '/imports/ui/pages/forumPages/thread.js';
 
     BlazeLayout.render("mainLayout", {mainPage: "thread"});
   }
@@ -44,7 +43,7 @@ FlowRouter.route('/forum/:threadID', {
 
 FlowRouter.route('/forum/:threadID/editOP', {
   action: function() {
-    import '/imports/ui/pages/originalPostEdit.js';
+    import '/imports/ui/pages/forumPages/originalPostEdit.js';
     /*TODO: Implement restricions based on user status */
   //  if(isThreadAuthorOrAdmin(FlowRouter.getParam('threadID'))){
           BlazeLayout.render("mainLayout", {mainPage: "originalPostEdit"});

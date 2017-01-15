@@ -22,6 +22,9 @@
             <li><a href="/forum">Forum</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            {{#if isAdmin}}
+            <li><a href="/admin" >Admin Dashboard</a></li>
+            {{/if}}
             {{> loginButtons}}
           </ul>
         </div><!-- /.navbar-collapse -->

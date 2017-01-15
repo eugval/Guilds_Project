@@ -6,3 +6,9 @@ Template.mainLayout.onCreated(function(){
     this.subscribe('Meteor.users.isAdminField');
   });
 });
+
+Template.mainLayout.helpers({
+  isAdmin(){
+    return Meteor.user().isAdmin;
+  }
+});

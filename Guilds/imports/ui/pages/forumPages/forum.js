@@ -1,5 +1,5 @@
 import './forum.html';
-import '../components/forumThread.js'; //the forumThread template is used hence loaded
+import '../components/forumComponents/forumThread.js'; //the forumThread template is used hence loaded
 import {Threads} from '../../api/forum/threads.js';
 
 /*Subscribe to the threads collections to display them in the forum template */

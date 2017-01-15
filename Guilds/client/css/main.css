@@ -62,3 +62,13 @@
 .inline{
   display:inline;
 }
+
+.short-list-container{
+  height:250px;
+  overflow:auto;
+}
+
+.long-list-container{
+  height:500px;
+  overflow:auto;
+}
