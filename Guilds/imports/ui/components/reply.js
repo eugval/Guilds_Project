@@ -1,6 +1,5 @@
 import './reply.html';
-import './commentDisplay.js';
-import './commentEdit.js';
+import {editReply} from '/imports/api/forum/methods.js';
 
 Template.reply.onCreated(function(){
   this.commentState=new ReactiveVar('commentDisplay');
@@ -34,7 +33,38 @@ Template.reply.events({
   },
   'click #saveCommentEdit': function(event){
     event.preventDefault();
-    Template.instance().commentState.set('commentDisplay');
+    const _id= this._id;
+    const message = $('.editComment').summernote('code');
 
+    console.log(message);
+
+    Template.instance().commentState.set('commentDisplay');
+    editReply.call({_id,message},(err)=>{
+      if(err){
+        /*handle error*/
+        console.log("error");
+      }else{
+        console.log("success");
+      }
+
+    });
   }
-})
+});
+
+Template.commentEdit.onRendered(function(){
+  $('.editComment').summernote({
+    height: 150,
+    minHeight: 100,
+    maxHeight: 400,
+    focus: true
+  });
+
+  $('.editComment').summernote('code',this.data.message);
+
+});
+
+
+Template.commentEdit.onDestroyed(function(){
+  console.log("here");
+  $('.editComment').summernote('destroy');
+});

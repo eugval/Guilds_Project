@@ -1,6 +1,9 @@
+
 * {
   border-radius:0px !important;
 }
+
+
 
 .forum-threads .list-group-item{
   border-left: 0 none;
@@ -55,12 +58,7 @@
   margin-top:10px;
   margin-bottom:15px;
 }
- /*.forum-threads .list-group-item:first-child{
-   border-top-right-radius: 0px !important;
-   border-top-left-radius: 0px !important;
- }
 
- .forum-threads .list-group-item:last-child {
-   border-bottom-right-radius: 0px !important;
-   border-bottom-left-radius: 0px !important;
- }*/
+.inline{
+  display:inline;
+}

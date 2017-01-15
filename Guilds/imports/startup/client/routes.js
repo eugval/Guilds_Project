@@ -9,6 +9,14 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/admin',{
+  action:function(){
+    import '/imports/ui/layouts/adminLayout.js';
+    import '/imports/ui/pages/adminPages/adminDashboard.js';
+      BlazeLayout.render("adminLayout",{mainPage:"adminDashboard"});
+  }
+});
+
 FlowRouter.route('/forum', {
   action: function() {
     import '/imports/ui/pages/forum.js';
@@ -46,3 +54,10 @@ FlowRouter.route('/forum/:threadID/editOP', {
 
   }
 });
+
+FlowRouter.route('/unAuthorisedAccess',{
+  action:function(){
+    import '/imports/ui/pages/helperPages/unAuthorisedAccess.js';
+    BlazeLayout.render("mainLayout", {mainPage: "unAuthorisedAccess"});
+  }
+})

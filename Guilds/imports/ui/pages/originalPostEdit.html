@@ -1,17 +1,24 @@
 <template name= "originalPostEdit">
 
-{{#with thread}}
+  {{#with thread}}
 
-<form id='editForumOP'>
+  <form id='editForumOP'>
 
 
     <div class="row">
       <div class ="col-md-8 col-md-offset-1">
         <div class="form-group">
-            <input type= "text" class="form-control editForumOPTitle" id="editThreadTitle" name="editThreadTitle"  value= {{title}} />
+          <input type= "text" class="form-control editForumOPTitle" id="editThreadTitle" name="editThreadTitle"  value= {{title}} />
         </div>
-        <h5>Author: {{authorName}}, Posted: {{date}}</h5>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class ="col-md-9 col-md-offset-1">
+        <h5 class="inline">Author: {{authorName}}, Posted: {{date}}</h5>
+        <a href="#" class="pull-right cancelEdit">
+          cancel
+        </a>
       </div>
     </div>
 
@@ -26,8 +33,7 @@
     <div class="row">
       <div class ="col-md-8 col-md-offset-2">
         <div class="form-group">
-          {{> ckEditorBugFix}}
-
+          {{> descriptionEditor}}
         </div>
         <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
       </div>
@@ -37,6 +43,12 @@
         <hr />
       </div>
     </div>
-</form>
-{{/with}}
+  </form>
+  {{/with}}
+</template>
+
+
+<template name="descriptionEditor">
+  <div id="editThreadDescription">
+  </div>
 </template>

@@ -1,5 +1,4 @@
 import './originalPostEdit.html';
-import '/imports/ui/components/ckEditorBugFix.js';
 import {Threads} from '/imports/api/forum/threads.js';
 import {updateThread} from '/imports/api/forum/methods.js';
 
@@ -8,13 +7,13 @@ Template.originalPostEdit.onCreated(function(){
   this.autorun(()=>{
     this.subscribe('Thread.One',{_id:threadID});
   });
-});
 
+});
 
 
 Template.originalPostEdit.helpers({
   thread(){
-  return Threads.findOne();
+    return Threads.findOne();
   },
   date(){
     let createdAt = this.createdAt;
@@ -30,8 +29,7 @@ Template.originalPostEdit.events({
     event.preventDefault();
     const _id = FlowRouter.getParam('threadID');
     const title = event.target.editThreadTitle.value;
-    const message = event.target.editThreadDescription.value;
-
+    const message = $('#editThreadDescription').summernote('code');
 
     updateThread.call({_id,title,message},(err)=>{
       if(err){
@@ -43,12 +41,26 @@ Template.originalPostEdit.events({
         /* Clean up form and redirect to forum on success */
         console.log("success");
         event.target.editThreadTitle.value="";
-        CKEDITOR.instances.editThreadDescription.setData('');
+        $('#editThreadDescription').summernote('code','');
         FlowRouter.go(`/forum/${_id}`);
       }
     });
-
-
-
+  },
+  'click .cancelEdit':function(){
+    const threadID = FlowRouter.getParam('threadID');
+    FlowRouter.go(`/forum/${threadID}`);
   }
+});
+
+
+
+
+Template.descriptionEditor.onRendered(function(){
+  $('#editThreadDescription').summernote({
+    height: 150,
+    minHeight: 100,
+    maxHeight: 400,
+    focus: true
+  });
+  $('#editThreadDescription').summernote('code',this.data.message);
 });

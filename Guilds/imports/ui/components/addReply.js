@@ -2,8 +2,13 @@ import './addReply.html';
 import {insertReply} from '/imports/api/forum/methods.js';
 
 Template.addReply.onRendered(function(){
-CKEDITOR.replace( 'replyMessage' );
 
+$('#replyMessage').summernote({
+  height: 150,
+  minHeight: 100,
+  maxHeight: 400,
+  focus: true
+});
 });
 
 
@@ -13,13 +18,12 @@ Template.addReply.events({
   'submit #addReply':function(event){
     event.preventDefault();
     const obj={};
-    obj.message = $('#addReply textarea[name=replyMessage]').val();
+    obj.message = $('#replyMessage').summernote('code');
+    console.log(obj.message);
     obj.thread = FlowRouter.getParam('threadID');
 
-    // data = CKEDITOR.instances.replyMessage.getData();
-    //console.log(data);
     insertReply.call(obj);
-    CKEDITOR.instances.replyMessage.setData('');
+$('#replyMessage').summernote('code','');
     $('a[data-target="#answers"][data-toggle="tab"]').tab('show');
   }
 })

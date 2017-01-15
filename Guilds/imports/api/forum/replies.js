@@ -46,6 +46,15 @@ Schemas.Replies.automatic = new SimpleSchema({
   },
 });
 
+Schemas.Replies.editReply = new SimpleSchema({
+  _id:{
+    type:String,
+  },
+  message:{
+    type:String,
+  }
+});
+
 
 Replies.attachSchema(Schemas.Replies.clientSupplied);
 Replies.attachSchema(Schemas.Replies.automatic);

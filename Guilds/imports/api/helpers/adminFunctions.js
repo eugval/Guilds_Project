@@ -26,3 +26,8 @@ export function isThreadAuthorOrAdmin(threadID){
   const user = Meteor.user();
   return user.isAdmin || author === user._id;
 }
+
+
+export function isAdmin(){
+  return Meteor.user().isAdmin;
+}

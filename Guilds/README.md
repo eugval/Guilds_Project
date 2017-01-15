@@ -5,7 +5,7 @@ Guilds is being built using Meteor. The following are the packages/tools you nee
 * An understanding on Meteor. We use the import file structure described [here](https://themeteorchef.com/snippets/understanding-the-imports-directory/)
 * We use the ES2015 Standard as much as possible, see [here](https://babeljs.io/learn-es2015/) , [here](http://info.meteor.com/blog/es2015-get-started) and [here](http://eslint.org).
 * Bootstrap is our CSS framework, [see here](http://getbootstrap.com).
-* Notable packages used where familiarity needs to be gained:
+* Notable packages used where familiarity is needed:
   * [Flow Router](https://kadira.io/academy/meteor-routing-guide/content/introduction-to-flow-router)
   * [Collection 2](https://github.com/aldeed/meteor-collection2)
   * [Simple Schema](https://github.com/aldeed/meteor-simple-schema)

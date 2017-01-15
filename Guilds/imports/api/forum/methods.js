@@ -31,7 +31,7 @@ export const updateThread = new ValidatedMethod({
       throw new Meteor.Error('Threads.methods.insertThread.notLoggedIn',
       'Must be logged in to submit threads.');
     }
-    
+
     if(!isThreadAuthorOrAdmin(options._id) ){
       throw new Meteor.Error('Threads.methods.insertThread.notAllowed',
       'You are not allowed to take this action.');
@@ -58,4 +58,28 @@ export const insertReply =  new ValidatedMethod({
     Threads.update({_id:reply.thread},{$inc:{replyNb:1}});
   }
 
+});
+
+
+export const editReply = new ValidatedMethod({
+  name:'Replies.methods.editReply',
+  validate: new SimpleSchema([
+    Schemas.Replies.editReply,
+  ]).validator(),
+  run(edit){
+    if(!this.userId){
+      throw new Meteor.Error('Replies.methods.editReply.notLoggedIn',
+      'Must be logged in to submit threads.');
+    }
+
+    if(Meteor.isServer){
+      if(!Replies.findOne({_id:edit._id, author:this.userId}) && !Meteor.user().isAdmin){
+        throw new Meteor.Error('Replies.methods.editReply.notAuthorised','You are not Authorised to take this action');
+      }
+    }
+
+    Replies.update({_id:edit._id},{$set:{message:edit.message}});
+
+
+  }
 });
