@@ -1,5 +1,7 @@
 import './newThread.html';
 import {insertThread} from '/imports/api/forum/methods.js';
+import {inCommunity} from '/imports/api/helpers/communityHelpers.js';
+import '/imports/ui/components/helperComponents/communityButton.js';
 
 Template.newThread.onRendered(function(){
   $('#addThreadDescription').summernote({
@@ -11,6 +13,11 @@ Template.newThread.onRendered(function(){
 });
 
 
+Template.newThread.helpers({
+  inCommunity(){
+    return inCommunity();
+  }
+})
 
 Template.newThread.events({
   'submit .newThreadForm'(event){
@@ -18,8 +25,9 @@ Template.newThread.events({
     /* Grab form values */
     const title = event.target.addThreadTitle.value;
     const message =$('#addThreadDescription').summernote('code');
-    console.log(message);
-    insertThread.call({title,message},(err)=>{
+    const community= FlowRouter.getParam('community');
+
+    insertThread.call({title,message,community},(err)=>{
       if(err){
         /*handle error*/
         /*TODO: Display error messages on the form*/
@@ -30,8 +38,8 @@ Template.newThread.events({
         console.log("success");
         event.target.addThreadTitle.value="";
       $('#addThreadDescription').summernote('code','');
-
-        FlowRouter.go('/forum');
+        const community=FlowRouter.getParam('community');
+        FlowRouter.go(`/${community}/forum`);
       }
     });
   }

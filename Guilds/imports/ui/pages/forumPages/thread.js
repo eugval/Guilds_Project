@@ -37,6 +37,12 @@ Template.thread.helpers({
     createdAt = createdAt.toISOString().substring(0,10);
     return createdAt;
   },
+  pathForEditThread(){
+    const threadID = FlowRouter.getParam('threadID');
+    const community = FlowRouter.getParam('community')
+    const params={community,threadID};
+    return FlowRouter.path('/:community/forum/:threadID/editOP',params);
+  }
 });
 
 
@@ -46,9 +52,11 @@ Template.thread.events({
     let limit = Template.instance().replyLimit.get();
     Template.instance().replyLimit.set(limit+10);
   },
-  'click #edit-thread':function(event){
+  /*'click #edit-thread':function(event){
     event.preventDefault();
     const threadID = FlowRouter.getParam('threadID');
-    FlowRouter.go(`/forum/${threadID}/editOP`);
-  }
-})
+    const community = FlowRouter.getParam('community')
+    console.log("here");
+    FlowRouter.go(`${community}/forum/${threadID}/editOP`);
+  }*/
+});

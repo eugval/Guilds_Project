@@ -26,8 +26,13 @@
           </div>
         </div>
 
-
+        
+        {{#if inCommunity}}
         <button type="submit" class="btn btn-primary" > Submit</button>
+        {{else}}
+        <button type="submit" class="btn btn-primary" disabled> Submit</button>
+        <a href="#">Please Join the community first</a>
+        {{/if}}
 
       </form>
 

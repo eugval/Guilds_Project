@@ -43,6 +43,7 @@ Template.reply.events({
       if(err){
         /*handle error*/
         console.log("error");
+        console.log(err);
       }else{
         console.log("success");
       }

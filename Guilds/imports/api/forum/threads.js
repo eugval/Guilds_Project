@@ -1,11 +1,16 @@
 import {Schemas} from '/imports/api/helpers/schemas.js';
 import {adminOrAutoInsertNoUpdate} from '/imports/api/helpers/adminFunctions.js'
-
-
+import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js';
+import {adminOrInsertNoUpdate} from '/imports/api/helpers/adminFunctions.js'
 export const Threads = new Mongo.Collection('Threads');
 
 Schemas.Threads ={};
-Schemas.Threads.clientSupplied = new SimpleSchema({
+/*
+*The collection schema is the overall schema of the collection.
+*An update from a logged out user is possible from this schema
+*Does not protect agains banned user
+*/
+Schemas.Threads.collectionSchema = new SimpleSchema({
   title:{
     type:String,
     max:80,
@@ -16,21 +21,18 @@ Schemas.Threads.clientSupplied = new SimpleSchema({
   },
   pinned:{
     type:Boolean,
-    optional:true,
     autoValue:function(){
-      return adminOrAutoInsertNoUpdate(false, this);
-    }
+        return adminOrAutoInsertNoUpdate(false, this);
+      }
   },
   locked:{
     type:Boolean,
-    optional:true,
     autoValue:function(){
       return adminOrAutoInsertNoUpdate(false, this);
     }
   },
   replyNb:{
     type:Number,
-    optional:true,
     autoValue:function(){
       if(this.isInsert){
         return 0;
@@ -39,18 +41,24 @@ Schemas.Threads.clientSupplied = new SimpleSchema({
   },
   authorName:{
     type:String,
-    optional:true,
     autoValue:function(){
-      const user = Meteor.users.findOne({_id:this.userId});
-      return adminOrAutoInsertNoUpdate(user.username,this);
+      const user= Meteor.user();
+      let username ="";
+      if(!!user){
+        username = user.username;
+      }
+      return adminOrAutoInsertNoUpdate(username,this);
     },
   },
-
-});
-
-
-
-Schemas.Threads.automatic=new SimpleSchema({
+  community:{
+    type:String,
+    custom:function(){
+      if(COMMUNITIES.indexOf(this.value)===-1){
+        return "inexistentCommunity";
+      }
+      return adminOrInsertNoUpdate(this);
+    }
+  },
   createdAt: {
     type:Date,
     autoValue: function() {
@@ -74,6 +82,52 @@ Schemas.Threads.automatic=new SimpleSchema({
   },
 });
 
+Threads.attachSchema(Schemas.Threads.collectionSchema);
 
-Threads.attachSchema(Schemas.Threads.clientSupplied);
-Threads.attachSchema(Schemas.Threads.automatic);
+Schemas.Threads.insertThread= new SimpleSchema({
+  title:{
+    type:String,
+    max:80,
+    min:10
+  },
+  message:{
+    type:String,
+  },
+  community:{
+    type:String,
+  },
+
+})
+
+Schemas.Threads.updateThread= new SimpleSchema({
+  _id:{
+    type:String,
+  },
+  title:{
+    type:String,
+    max:80,
+    min:10
+  },
+  message:{
+    type:String,
+  },
+});
+
+
+Schemas.Threads.threadPinUpdate = new SimpleSchema({
+  _id:{
+    type:String,
+  },
+  pinValue:{
+    type:Boolean,
+  }
+});
+
+Schemas.Threads.threadLockUpdate =new SimpleSchema({
+  _id:{
+    type:String,
+  },
+  lockValue:{
+    type:Boolean,
+  }
+});

@@ -1,10 +1,12 @@
 import {Replies} from '../replies.js';
 import {Threads} from '../threads.js';
 
-
 Meteor.publish('Threads.List',function(options,limit){
-  check(options,{});
+  check(options,{
+    community:String
+  });
   check(limit,Number);
+
   return Threads.find(options,{fields:{message:0},sort:{createdAt:-1},limit:limit});
 
 });

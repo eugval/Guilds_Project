@@ -1,14 +1,31 @@
 <template name="forumThread">
-          <a href={{IDLink}} class="list-group-item">
-            {{title}} <br />
-            {{#if locked}}
-            locked! <br />
+
+  <a href={{IDLink}} class="list-group-item">
+    {{title}} <br />
+    {{#if locked}}
+    locked! <br />
+    {{/if}}
+    {{#if pinned}}
+    pinned! <br />
+    {{/if}}
+    {{authorName}}<br />
+    {{replyNb}}<br />
+    {{dateInserted}}<br  />
+    {{#if isAdmin}}
+    {{#if pinned}}
+      <button class="btn btn-warning thread-pin" >Unpin</button>
+
+        {{else}}
+        <button class="btn btn-default thread-pin" >Pin</button>
+        {{/if}}
+        {{#if locked}}
+          <button class="btn btn-warning thread-lock" >Unlock</button>
+
+            {{else}}
+            <button class="btn btn-default thread-lock" >Lock</button>
             {{/if}}
-            {{#if pinned}}
-            pinned! <br />
-            {{/if}}
-            {{authorName}}<br />
-            {{replyNb}}<br />
-            {{dateInserted}}<br  />
-          </a>
+    {{else}}
+    {{/if}}
+  </a>
+
 </template>

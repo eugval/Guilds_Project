@@ -5,22 +5,34 @@ import {Replies} from '/imports/api/forum/replies.js';
 
 
 if(Meteor.users.find().count()===0){
-  Accounts.createUser({username:'testuser1',password:'password'});
-  Accounts.createUser({username:'Admin1',password:'password',isAdmin:true});
+  let username ='testuser';
+
+  for (let i=1; i<9; i++){
+    username =username+i;
+    console.log(username)
+    Accounts.createUser({username,password:'password'});
+  }
+  for(let i=1; i<4;i++){
+    const adminName='Admin'+i;
+    console.log(adminName);
+      Accounts.createUser({username:adminName,password:'password',isAdmin:true});
+  }
+
 
 
 }
 
 if(Threads.find().count()===0){
   Threads.insert({
-    title: "First thread",
+    title: "First thread Lifeplan",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
     locked:false,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
-    replyNb:4
+    replyNb:4,
+    community:"LifePlan"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -28,14 +40,15 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Second thread",
+    title: "Second thread Lifeplan",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
-    replyNb:4
+    replyNb:4,
+    community:"LifePlan"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -43,31 +56,123 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Third thread",
+    title: "Third thread Lifeplan",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:true,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
-    replyNb:4
+    replyNb:4,
+    community:"LifePlan"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
     }
   });
+
+  Threads.insert({
+    title: "First thread Yolo",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:false,
+    locked:false,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Yolo"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Second thread Yolo",
+    message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
+    pinned:false,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Yolo"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Third thread Yolo",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:true,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Yolo"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+
+
+  Threads.insert({
+    title: "First thread PersonalDev",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:false,
+    locked:false,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"PersonalDev"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Second thread PersonalDev",
+    message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
+    pinned:false,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"PersonalDev"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Third thread PersonalDev",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:true,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"PersonalDev"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
 }
 
 
-/*
-while(Replies.find().count()<=0){
-if(Threads.find().count()>0){
-addFixtureReplies();
-}else{
-setTimeout(100);
-}
-}
-*/
+
 if(Replies.find().count()===0){
   const threadArray = Threads.find().fetch();
 

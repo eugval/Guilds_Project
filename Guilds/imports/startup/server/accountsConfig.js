@@ -7,5 +7,14 @@ if(options.isAdmin===true){
   user.isAdmin = false;
 }
 
+if(options.isBanned===true){
+  user.isBanned =options.isBanned;
+}else{
+  user.isBanned=false;
+}
+
+if(!options.communities){
+  user.communities ={};
+}
   return user;
 });

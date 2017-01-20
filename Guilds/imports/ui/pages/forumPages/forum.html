@@ -3,10 +3,16 @@
 
   <div class="row">
     <div class="colum-md-12">
-      <h1 class="text-center">Welcome to the Forum!!</h1>
-     <h3 class="text-center">Share your story, ask for advice or chat away. You can also ask for resources and recommendations for materials or other in your quest to a new skill, a new path or a new hobby. Anything along the rails out of QLC!!</h3>
+      <h1 class="text-center">{{welcomeMessage}}</h1>
     </div>
   </div>
+
+  <div class="row">
+    <div class="colum-md-12">
+      {{> communityButton}}
+    </div>
+  </div>
+
 
   <hr />
 
@@ -19,14 +25,26 @@
               QLC
             </div>
             <div class="col-md-4">
+              {{#if inCommunity}}
               <button class="btn btn-default add-thread pull-right">
                 New Post
               </button>
+              {{else}}
+              <button class="btn btn-default add-thread pull-right" disabled>
+                New Post
+              </button>
+              {{/if}}
             </div>
           </div>
 
-      </li>
-        {{#each threads}}
+        </li>
+        {{#each pinnedThreads}}
+
+        {{> forumThread}}
+
+        {{/each}}
+
+        {{#each unpinnedThreads}}
 
         {{> forumThread}}
 
