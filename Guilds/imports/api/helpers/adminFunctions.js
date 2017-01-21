@@ -27,10 +27,7 @@ function isAuthorOrAdmin(CollectionObj){
 */
 function isAdmin(){
   const user = Meteor.user();
-  if(!user){
-    return false
-  }
-  return user.isAdmin;
+  return !!user && user.isAdmin;
 }
 
 

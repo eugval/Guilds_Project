@@ -9,13 +9,27 @@ if(Meteor.users.find().count()===0){
 
   for (let i=1; i<9; i++){
     username =username+i;
-    console.log(username)
-    Accounts.createUser({username,password:'password'});
+    const userObj= {
+      username,
+      password:'password',
+    }
+    console.log(userObj)
+    Accounts.createUser(userObj);
   }
+  
   for(let i=1; i<4;i++){
     const adminName='Admin'+i;
-    console.log(adminName);
-      Accounts.createUser({username:adminName,password:'password',isAdmin:true});
+    let adminObj ={
+      username:adminName,
+      password:'password',
+      isAdmin:true,
+      communities:{},
+    }
+    for (let i=0;i<COMMUNITIES.length;++i){
+      adminObj.communities[COMMUNITIES[i]]=true;
+    }
+    console.log(adminObj);
+      Accounts.createUser(adminObj);
   }
 
 
