@@ -14,6 +14,11 @@ Meteor.publish('Meteor.users.Admins',function(){
   const options={
     fields:{username:1,isBanned:1,isAdmin:1,communities:1}
   }
+
+  if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
+    return null;
+  }
+  
   return Meteor.users.find({isAdmin:true},options);
 });
 
@@ -26,7 +31,7 @@ Meteor.publish("Meteor.users.userSearch",function(searchValue){
   if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
     return null;
   }
-  
+
   if(!searchValue){
     return Meteor.users.find({},options);
   }

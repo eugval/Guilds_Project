@@ -20,6 +20,7 @@ Schemas.Threads.collectionSchema = new SimpleSchema({
   message:{
     type:String,
     label:"Post",
+    min:10,
   },
   community:{
     type:String,
@@ -34,12 +35,10 @@ Schemas.Threads.collectionSchema = new SimpleSchema({
   pinned:{
     type:Boolean,
     label:"Pinned",
-
   },
   locked:{
     type:Boolean,
     label:"Locked",
-
   },
   replyNb:{
     type:Number,
@@ -99,19 +98,39 @@ Schemas.Threads.insertThread= new SimpleSchema({
   message:{
     type:String,
     label:"Message",
+    min:10,
   },
   community:{
     type:String,
     label:"Community",
   },
 
-})
+});
 
 Schemas.Threads.updateThread= new SimpleSchema({
   _id:{
     type:String,
     label:"ID",
   },
+  update:{
+    type:Object,
+  },
+  "update.title":{
+    type:String,
+    optional:true,
+    label:"Title",
+    max:80,
+    min:10,
+  },
+  "update.message":{
+    type:String,
+    optional:true,
+    label:"Message",
+    min:10,
+  },
+});
+
+Schemas.Threads.adminInsertThread =new SimpleSchema({
   title:{
     type:String,
     label:"Title",
@@ -121,8 +140,71 @@ Schemas.Threads.updateThread= new SimpleSchema({
   message:{
     type:String,
     label:"Message",
+    min:10,
+  },
+  community:{
+    type:String,
+    label:"Community",
+  },
+  pinned:{
+    type:Boolean,
+    label:"Pinned",
+  },
+  locked:{
+    type:Boolean,
+    label:"Locked",
+  },
+  author:{
+    type:String,
+    label:"Author",
   },
 });
+
+
+
+Schemas.Threads.adminUpdateThread =new SimpleSchema({
+  _id:{
+    type:String,
+    label:"ID",
+  },
+  update:{
+    type:Object,
+  },
+  "update.title":{
+    type:String,
+    label:"Title",
+    optional:true,
+    max:80,
+    min:10,
+  },
+  "update.message":{
+    type:String,
+    label:"Message",
+    optional:true,
+    min:10,
+  },
+  "update.community":{
+    type:String,
+    optional:true,
+    label:"Community",
+  },
+  "update.pinned":{
+    type:Boolean,
+    optional:true,
+    label:"Pinned",
+  },
+  "update.locked":{
+    type:Boolean,
+    optional:true,
+    label:"Locked",
+  },
+  "update.author":{
+    type:String,
+    optional:true,
+    label:"Author",
+  },
+});
+
 
 
 Schemas.Threads.threadPinUpdate = new SimpleSchema({

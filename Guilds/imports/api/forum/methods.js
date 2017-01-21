@@ -70,12 +70,90 @@ export const updateThread = new ValidatedMethod({
       'This thread is locked and cannot be updated');
     }
 
-    Threads.update(options._id,{$set:options});
+    Threads.update(options._id,{$set:options.update});
   }
 });
 
 
 /*Admin only methods*/
+
+export const adminInsertThread =new ValidatedMethod({
+  name:'Threads.methods.adminInsertThread',
+  validate: new SimpleSchema([
+    Schemas.Threads.adminInsertThread,
+  ]).validator(),
+  run(thread){
+    /*User must be logged in and not banned*/
+    if(userBannedorOut()){
+      throw new Meteor.Error('Threads.methods.adminInsertThread.BannedOrOut',
+      'A banned or logged out user cannot take this action');
+    }
+
+    /*only admins can use this function*/
+    if(!isAdmin()){
+      throw new Meteor.Error('Threads.methods.adminInsertThread.notAuthorised',
+      'You are not Authorised to take this action');
+    }
+
+    /*If author provided is not a user abort*/
+    const authorUser = Meteor.users.findOne({_id:thread.author});
+    if(!authorUser){
+      throw new Meteor.Error('Threads.methods.adminInsertThread.userNotFound',
+      'The user was not found in the database.');
+    }
+
+    /*Complete the thread object*/
+    thread.aurhorName = authorUser.username;
+    thread.createdAt = new Date();
+
+    /*Insert the thread to the database*/
+    Threads.insert(thread);
+
+  }
+});
+
+export const adminUpdateThread =new ValidatedMethod({
+  name:'Threads.methods.adminUpdateThread',
+  validate: new SimpleSchema([
+    Schemas.Threads.adminUpdateThread,
+  ]).validator(),
+  run(options){
+
+    /*User must be logged in and not banned*/
+    if(userBannedorOut()){
+      throw new Meteor.Error('Threads.methods.adminUpdateThread.BannedOrOut',
+      'A banned or logged out user cannot take this action');
+    }
+
+    /*only admins can use this function*/
+    if(!isAdmin()){
+      throw new Meteor.Error('Threads.methods.adminUpdateThread.notAuthorised',
+      'You are not Authorised to take this action');
+    }
+
+    /*Thread must exist*/
+    const Thread = Threads.findOne({_id:options._id});
+    if(!Thread){
+      throw new Meteor.Error('Threads.methods.adminUpdateThread.notFound',
+      'The thread was not found.');
+    }
+
+    /*If author is provided also update the author's name*/
+    if(!!options.update.author){
+      /*If author provided is not a user abort*/
+      const authorUser = Meteor.users.findOne({_id:options.update.author});
+      if(!authorUser){
+        throw new Meteor.Error('Threads.methods.adminUpdateThread.userNotFound',
+        'The user was not found in the database.');
+      }
+      options.update.authorName =aurhorUser.username;
+    }
+
+    Threads.update(options._id,{$set:options.update});
+  },
+});
+
+
 export const threadPinUpdate = new ValidatedMethod({
   name:'Threads.methods.threadPinUpdate',
   validate: new SimpleSchema([
