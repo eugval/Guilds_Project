@@ -1,6 +1,7 @@
 import './thread.html';
 import '/imports/ui/components/forumComponents/reply.js';
 import '/imports/ui/components/forumComponents/addReply.js';
+import '/imports/ui/pages/helperPages/pageNotFound.js';
 import {Threads} from '/imports/api/forum/threads.js';
 import {Replies} from '/imports/api/forum/replies.js';
 
@@ -8,8 +9,9 @@ import {Replies} from '/imports/api/forum/replies.js';
 Template.thread.onCreated(function(){
   this.replyLimit = new ReactiveVar(10);
   const threadID = FlowRouter.getParam('threadID');
+  const community = FlowRouter.getParam('community');
   this.autorun(()=>{
-    this.subscribe('Thread.One',{_id:threadID});
+    this.subscribe('Thread.One',{_id:threadID, community});
     this.subscribe('Replies.List',{thread:threadID},this.replyLimit.get());
   });
 
@@ -17,6 +19,9 @@ Template.thread.onCreated(function(){
 
 
 Template.thread.helpers({
+  threadExists(){
+    return !!Threads.findOne();
+  },
   threadContext(){
     return Threads.findOne();
   },

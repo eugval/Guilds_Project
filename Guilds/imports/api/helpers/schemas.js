@@ -1,8 +1,8 @@
 SimpleSchema.messages({
-  "onlyAdmin": "Only an Administrator can take this action.",
-  "userNotFound":"The user was not found in the Database",
-  "loggedOut":"Must be Logged in to perform this operation",
+  "notFound":"[label] was not found in the Database",
+  "userInconsistency":"There was an inconsitency in user Data",
   "inexistentCommunity":"This community does not exist",
+  "0OnInsert":"[label] must be 0 on insert.",
 });
 
 

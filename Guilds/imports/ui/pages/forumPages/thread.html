@@ -1,33 +1,45 @@
 <!--Individual thread page-->
 <Template name="thread">
-  {{#with threadContext}}
-
-
-  <div class="row">
-    <div class ="col-md-10 col-md-offset-1">
-      <h1>{{title}}</h1>
-      <h5>Author: {{authorName}}, Posted: {{date}}</h5>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class ="col-md-10 col-md-offset-1">
-      <hr class="forumOPTitleSeparator"/>
-    </div>
-  </div>
-  {{#if isAuthorOrAdmin}}
-    <div class="row">
-      <div class ="col-md-8 col-md-offset-2 post-commands">
-              <a href={{pathForEditThread}} title="Edit" ><i class="fa fa-pencil" aria-hidden="true"></i> </a>
-      </div>
-    </div>
-  {{/if}}
+  {{#if threadExists}}
+    {{#with threadContext}}
 
     <div class="row">
-      <div class ="col-md-8 col-md-offset-2">
-        <p>
-          {{{message}}}
-        </p>
+      <div class ="col-md-10 col-md-offset-1">
+        <h1>{{title}}</h1>
+        <h5>Author: {{authorName}}, Posted: {{date}}</h5>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class ="col-md-10 col-md-offset-1">
+        <hr class="forumOPTitleSeparator"/>
+      </div>
+    </div>
+    {{#if isAuthorOrAdmin}}
+      <div class="row">
+        <div class ="col-md-8 col-md-offset-2 post-commands">
+                <a href={{pathForEditThread}} title="Edit" ><i class="fa fa-pencil" aria-hidden="true"></i> </a>
+        </div>
+      </div>
+    {{/if}}
+
+      <div class="row">
+        <div class ="col-md-8 col-md-offset-2">
+          <p>
+            {{{message}}}
+          </p>
+        </div>
+      </div>
+
+
+
+
+
+
+
+    <div class="row">
+      <div class ="col-md-10 col-md-offset-1">
+        <hr />
       </div>
     </div>
 
@@ -35,74 +47,65 @@
 
 
 
+    <div class="row">
+      <div class ="col-md-10 col-md-offset-1">
+        <ul class="nav nav-tabs nav-rtl ">
+          <li class ="nav-left-text" >
+            <h4>{{replies}} Comments</h4>
+          </li>
+          <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Comments</a></li>
+          <li ><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
+        </ul>
 
+        <div class="tab-content">
+          <div id="answers" class="tab-pane active">
+            <div class ="row">
+              <div class="col-md-12">
+                <div class="list-group forum-threads">
 
-  <div class="row">
-    <div class ="col-md-10 col-md-offset-1">
-      <hr />
-    </div>
-  </div>
+                  {{#each repliesContext}}
 
+                  {{> reply}}
 
+                  {{/each}}
+                  {{#if noReplies}}
 
+                  <h4 class ="text-center text-muted">
+                    No Replies
+                  </h4>
 
+                  {{/if}}
 
-  <div class="row">
-    <div class ="col-md-10 col-md-offset-1">
-      <ul class="nav nav-tabs nav-rtl ">
-        <li class ="nav-left-text" >
-          <h4>{{replies}} Comments</h4>
-        </li>
-        <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Comments</a></li>
-        <li ><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
-      </ul>
+                </div>
+              </div>
+            </div>
 
-      <div class="tab-content">
-        <div id="answers" class="tab-pane active">
-          <div class ="row">
-            <div class="col-md-12">
-              <div class="list-group forum-threads">
-
-                {{#each repliesContext}}
-
-                {{> reply}}
-
-                {{/each}}
-                {{#if noReplies}}
-
-                <h4 class ="text-center text-muted">
-                  No Replies
-                </h4>
-
-                {{/if}}
-
+            <!--TODO: Implement scrolling load more!-->
+            <div class ="row ">
+              <div class="col-md-12">
+                <button class="btn btn-block btn-primary" id="addMoreReplies">Load More</button>
               </div>
             </div>
           </div>
 
-          <!--TODO: Implement scrolling load more!-->
-          <div class ="row ">
-            <div class="col-md-12">
-              <button class="btn btn-block btn-primary" id="addMoreReplies">Load More</button>
+
+
+          <div id="reply" class="tab-pane margin-top-sm ">
+            <div class ="row">
+              <div class ="col-md-10 col-md-offset-1">
+                {{> addReply}}
+              </div>
             </div>
+
           </div>
-        </div>
-
-
-
-        <div id="reply" class="tab-pane margin-top-sm ">
-          <div class ="row">
-            <div class ="col-md-10 col-md-offset-1">
-              {{> addReply}}
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  {{/with}}
+    {{/with}}
+  {{else}}
+  {{> pageNotFound}}
+  {{/if}}
 </Template>

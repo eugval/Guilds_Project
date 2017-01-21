@@ -14,6 +14,7 @@ Meteor.publish('Threads.List',function(options,limit){
 Meteor.publish('Thread.One',function(options){
   check(options,{
     _id:String,
+    community:String,
   });
 
   return Threads.find(options);

@@ -1,5 +1,5 @@
 /* Defines all the routes, corresponding pages are imported in the route defintion */
-import {isThreadAuthorOrAdmin} from '/imports/api/helpers/adminFunctions.js';
+import {isAuthorOrAdmin} from '/imports/api/helpers/adminFunctions.js';
 import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js'
 
 FlowRouter.route('/', {
@@ -13,7 +13,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/admin',{
   action:function(){
     import '/imports/ui/pages/adminPages/adminDashboard.js';
-      BlazeLayout.render("mainLayout",{mainPage:"adminDashboard"});
+    BlazeLayout.render("mainLayout",{mainPage:"adminDashboard"});
   }
 });
 
@@ -53,14 +53,10 @@ FlowRouter.route('/:community/forum/:threadID/editOP', {
     import '/imports/ui/pages/forumPages/originalPostEdit.js';
     console.log("hereeeeeeeeeFRE");
     /*TODO: Implement restricions based on user status */
-  //  if(isThreadAuthorOrAdmin(FlowRouter.getParam('threadID'))){
-          BlazeLayout.render("mainLayout", {mainPage: "originalPostEdit"});
-  //  }else{
-      //  BlazeLayout.render("mainLayout", {mainPage: "unAuthorisedAccess"});
-  //  }
-
+    BlazeLayout.render("mainLayout", {mainPage: "originalPostEdit"});
   }
-});
+}
+);
 
 FlowRouter.route('/unAuthorisedAccess',{
   action:function(){
