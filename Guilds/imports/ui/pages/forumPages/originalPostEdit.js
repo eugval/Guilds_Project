@@ -4,8 +4,9 @@ import {updateThread} from '/imports/api/forum/methods.js';
 
 Template.originalPostEdit.onCreated(function(){
   const threadID = FlowRouter.getParam('threadID');
+  const community = FlowRouter.getParam('community');
   this.autorun(()=>{
-    this.subscribe('Thread.One',{_id:threadID});
+    this.subscribe('Thread.One',{_id:threadID, community});
   });
 
 });
@@ -46,11 +47,16 @@ Template.originalPostEdit.helpers({
 Template.originalPostEdit.events({
   'submit #editForumOP':function(event){
     event.preventDefault();
-    const _id = FlowRouter.getParam('threadID');
-    const title = event.target.editThreadTitle.value;
-    const message = $('#editThreadDescription').summernote('code');
+    const threadID = FlowRouter.getParam('threadID');
+    const updateObj = {};
+     updateObj._id = threadID;
+     updateObj.update = {
+       title: event.target.editThreadTitle.value,
+       message: $('#editThreadDescription').summernote('code'),
+     }
+     console.log(updateObj);
 
-    updateThread.call({_id,title,message},(err)=>{
+    updateThread.call(updateObj,(err)=>{
       if(err){
         /*handle error*/
         /*TODO: Display error messages on the form*/
@@ -62,7 +68,8 @@ Template.originalPostEdit.events({
         event.target.editThreadTitle.value="";
         $('#editThreadDescription').summernote('code','');
         const community=FlowRouter.getParam('community');
-        FlowRouter.go(`/${community}/forum/${_id}`);
+        const params = {community, threadID};
+        FlowRouter.go(`/:community/forum/:threadID`,params);
       }
     });
   },

@@ -57,11 +57,4 @@ Template.thread.events({
     let limit = Template.instance().replyLimit.get();
     Template.instance().replyLimit.set(limit+10);
   },
-  /*'click #edit-thread':function(event){
-    event.preventDefault();
-    const threadID = FlowRouter.getParam('threadID');
-    const community = FlowRouter.getParam('community')
-    console.log("here");
-    FlowRouter.go(`${community}/forum/${threadID}/editOP`);
-  }*/
 });

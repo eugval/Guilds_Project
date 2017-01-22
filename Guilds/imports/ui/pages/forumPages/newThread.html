@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-md-8">
 
-      <form class="newThreadForm">
+      <form id="insertThreadForm">
 
         <div class="form-group">
           <label for="addThreadTitle">Title</label>
@@ -22,11 +22,11 @@
 
         <div class="form-group">
           <label for="addThreadDescription">Post</label>
-          <div id="addThreadDescription">
+          <div class="addThreadDescription">
           </div>
         </div>
 
-        
+
         {{#if inCommunity}}
         <button type="submit" class="btn btn-primary" > Submit</button>
         {{else}}

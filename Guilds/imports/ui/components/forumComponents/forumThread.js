@@ -6,7 +6,7 @@ Template.forumThread.helpers({
   IDLink(){
     const community = FlowRouter.getParam('community');
     const threadID = this._id;
-    const params ={community,threadID}
+    const params ={community,threadID};
     return FlowRouter.path('/:community/forum/:threadID',params);
   },
   dateInserted(){

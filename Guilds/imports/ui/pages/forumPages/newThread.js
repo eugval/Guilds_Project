@@ -4,7 +4,7 @@ import {inCommunity} from '/imports/api/helpers/communityHelpers.js';
 import '/imports/ui/components/helperComponents/communityButton.js';
 
 Template.newThread.onRendered(function(){
-  $('#addThreadDescription').summernote({
+  $('.addThreadDescription').summernote({
     height: 200,                 // set editor height
     minHeight: 100,             // set minimum height of editor
     maxHeight: 500,             // set maximum height of editor
@@ -20,11 +20,11 @@ Template.newThread.helpers({
 })
 
 Template.newThread.events({
-  'submit .newThreadForm'(event){
+  'submit #insertThreadForm'(event){
     event.preventDefault();
     /* Grab form values */
     const title = event.target.addThreadTitle.value;
-    const message =$('#addThreadDescription').summernote('code');
+    const message =$('.addThreadDescription').summernote('code');
     const community= FlowRouter.getParam('community');
 
     insertThread.call({title,message,community},(err)=>{
@@ -37,9 +37,10 @@ Template.newThread.events({
         /* Clean up form and redirect to forum on success */
         console.log("success");
         event.target.addThreadTitle.value="";
-      $('#addThreadDescription').summernote('code','');
+      $('.addThreadDescription').summernote('code','');
         const community=FlowRouter.getParam('community');
-        FlowRouter.go(`/${community}/forum`);
+        const params ={community};
+        FlowRouter.go(`/:community/forum`,params);
       }
     });
   }

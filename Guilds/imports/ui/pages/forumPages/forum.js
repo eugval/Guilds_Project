@@ -53,6 +53,7 @@ Template.forum.helpers({
     'click .add-thread':function(e){
       e.preventDefault();
       const community=FlowRouter.getParam('community');
-      FlowRouter.go(`/${community}/forum/newthread`);
+      const params ={community};
+      FlowRouter.go('/:community/forum/newthread',params);
     }
   });

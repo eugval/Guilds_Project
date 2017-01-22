@@ -17,6 +17,13 @@ FlowRouter.route('/admin',{
   }
 });
 
+FlowRouter.route('/admin/adminThreadInsert',{
+  action:function(){
+    import '/imports/ui/pages/adminPages/adminThreadInsert.js';
+    BlazeLayout.render("mainLayout",{mainPage:"adminThreadInsert"});
+  }
+})
+
 FlowRouter.route('/:community/forum', {
   action: function() {
     import '/imports/ui/pages/forumPages/forum.js';

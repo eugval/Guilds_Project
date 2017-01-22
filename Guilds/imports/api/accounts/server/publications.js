@@ -18,7 +18,7 @@ Meteor.publish('Meteor.users.Admins',function(){
   if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
     return null;
   }
-  
+
   return Meteor.users.find({isAdmin:true},options);
 });
 
@@ -41,6 +41,20 @@ Meteor.publish("Meteor.users.userSearch",function(searchValue){
 });
 
 
+
+Meteor.publish("Meteor.users.OneUser",function(username){
+  const options={
+        fields:{username:1}
+        }
+  if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
+    return null;
+  }
+  if(!username){
+    return null;
+  }
+  return Meteor.users.find({username});
+
+  });
 
 /*Meteor.publish('Meteor.users.isAdminField',function(){
 
