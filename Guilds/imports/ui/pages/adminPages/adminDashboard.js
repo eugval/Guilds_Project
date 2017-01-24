@@ -12,3 +12,9 @@ Template.adminDashboard.helpers({
     return Meteor.loggingIn();
   }
 });
+
+Template.adminDashboard.events({
+  'click #adminInsertThreadButton':function(event){
+    FlowRouter.go('/admin/adminThreadInsert');
+  }
+})

@@ -18,14 +18,17 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Forum</a></li>
-          </ul>
           <ul class="nav navbar-nav navbar-right">
             {{#if isAdmin}}
             <li><a href="/admin" >Admin Dashboard</a></li>
             {{/if}}
-            {{> loginButtons}}
+            <li>
+              {{#if currentUser}}
+              <a href="#" id="logOut">LogOut</a>
+              {{else}}
+              <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+              {{/if}}
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -37,6 +40,36 @@
   </div>
 
   <div style="margin-bottom:50px">
+  </div>
+
+
+  <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class ="row">
+            <div class="col-md-6">
+              <form class="text-center" id="signInForm">
+                <input type="text" placeholder="Username"/>
+                <input type ="password" placeholder ="Password" />
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="col-md-6" >
+              <form class="text-center" id="signUpForm">
+                <input type="text" placeholder="Username"/>
+                <input type ="password" name ="password" placeholder ="Password" />
+                <input type ="password" name ="confirmPassword" placeholder ="Confirm Password" />
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>

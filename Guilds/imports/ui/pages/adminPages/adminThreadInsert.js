@@ -23,53 +23,69 @@ Template.adminThreadInsert.helpers({
 
 
 Template.adminThreadInsert.events({
-  'submit .adminThreadInsertForm':function(event){
+  'submit #adminThreadInsertForm':function(event){
     event.preventDefault();
+    console.log("starting insert");
     let insertObj ={};
 
     insertObj.title= $('#adminThreadInsertForm input[name=addThreadTitle]').val();
     insertObj.message =$('.addThreadDescription').summernote('code');
     insertObj.community =$('#adminThreadInsertForm input[name=threadCommunity]:checked').val();
-    insertObj.pinned = $('#adminThreadInsertForm checkbox[name=pinned]').is(':checked');
-    insertObj.locked = $('#adminThreadInsertForm checkbox[name=locked]').is(':checked');
-
+    insertObj.pinned = $('#adminThreadInsertForm input[name=pinned]').is(':checked');
+    insertObj.locked = $('#adminThreadInsertForm input[name=locked]').is(':checked');
 
     const givenUserName=$('#adminThreadInsertForm input[name=existingUserName]').val();
-    if($('#adminThreadInsertForm checkbox[name=selfAuthor]').is(':checked')|| givenUserName===''){
-      insertObj.author=Meteor.userId();
+    if($('#adminThreadInsertForm input[name=selfAuthor]').is(':checked')|| givenUserName===''){
+      console.log("me");
+      insertObj.authorName=Meteor.user().username;
 
-      adminInsertThread.call(insertObj,(err)=>{
+
+      /*adminInsertThread.call(insertObj,(err)=>{
         if(err){
-          /*handle error*/
-          /*TODO: Display error messages on the form*/
           console.log("error while inserting thread");
           console.log(err);
         }else{
-          /* Clean up form and redirect to forum on success */
+
           console.log("success");
+          location.reload();
         }
-      });
+      });*/
 
     }else{
+      insertObj.authorName=givenUserName;
+      /*
       Template.instance().insertObj.set(insertObj);
-      Meteor.subscribe('Meteor.users.OneUser', givenUserName,{ /*TODO: see what happens with stopping the subscription and if I need to do it*/
+      Meteor.subscribe('Meteor.users.OneUser', givenUserName,{
         onReady:function(){
+                    console.log("OnReady Callback");
           const targetUser = Meteor.users.findOne({username:givenUserName});
+          console.log(insertObj);
+          console.log(Template.instance());
           let insertObj=Template.instance().insertObj.get();
           insertObj.author = !!targetUser ? targetUser._id : "" ; // if the target user is not found let the method generate the error.
           adminInsertThread.call(insertObj,(err)=>{
             if(err){
-              /*handle error*/
-              /*TODO: Display error messages on the form*/
               console.log("error while inserting thread");
               console.log(err);
             }else{
-              /* Clean up form and redirect to forum on success */
               console.log("success");
             }
           });
         }
-      });
+      });*/
     }
+    console.log(insertObj);
+    adminInsertThread.call(insertObj,(err)=>{
+      if(err){
+        console.log("error while inserting thread");
+        console.log(err);
+      }else{
+
+        console.log("success");
+        FlowRouter.go('/admin');
+      //  location.reload();
+      }
+    });
+
   }
 });

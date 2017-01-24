@@ -154,7 +154,7 @@ Schemas.Threads.adminInsertThread =new SimpleSchema({
     type:Boolean,
     label:"Locked",
   },
-  author:{
+  authorName:{
     type:String,
     label:"Author",
   },
@@ -198,7 +198,7 @@ Schemas.Threads.adminUpdateThread =new SimpleSchema({
     optional:true,
     label:"Locked",
   },
-  "update.author":{
+  "update.authorName":{
     type:String,
     optional:true,
     label:"Author",

@@ -9,7 +9,8 @@ Template.forum.onCreated(function(){
   this.threadLimit = new ReactiveVar(10);
   const community= FlowRouter.getParam('community');
   this.autorun(()=>{
-    this.subscribe('Threads.List',{community},this.threadLimit.get());
+    this.subscribe('Threads.List',{community,pinned:true},-1);
+    this.subscribe('Threads.List',{community,pinned:false},this.threadLimit.get());
   });
 
 });

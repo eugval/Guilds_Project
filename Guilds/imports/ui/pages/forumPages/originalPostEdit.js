@@ -20,7 +20,12 @@ Template.descriptionEditor.onRendered(function(){
     maxHeight: 400,
     focus: true
   });
+
   $('#editThreadDescription').summernote('code',this.data.message);
+});
+
+Template.descriptionEditor.onDestroyed(function(){
+  $('#editThreadDescription').summernote('destroy');
 });
 
 

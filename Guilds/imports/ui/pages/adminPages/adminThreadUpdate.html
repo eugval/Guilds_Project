@@ -1,0 +1,62 @@
+<template name="adminThreadUpdate">
+  {{#with thread}}
+
+  <form id='adminThreadUpdateForm'>
+
+
+
+    <div class="form-group">
+      <label for ="editThreadTitle">Title</label>
+      <input type= "text" class="form-control " name="editThreadTitle"  value= {{title}} />
+    </div>
+
+    <div class="form-group">
+      <label for ="editThreadTitle">Community</label>
+      <input type= "text" class="form-control " name="editThreadCommunity"  value= {{community}} />
+    </div>
+
+
+    <div class="form-group">
+      <label for ="editThreadAuthor">Author</label>
+      <input type= "text" class="form-control " name="editThreadAuthor"  value= {{authorName}} />
+    </div>
+
+    {{#if Template.subscriptionsReady}}
+    {{> attrAdminThreadUpdate}}
+    {{else}}
+    {{> spinner}}
+    {{/if}}
+
+    <div class="row">
+      <div class ="col-md-12">
+        <div class="form-group">
+          {{#if Template.subscriptionsReady}}
+          {{> descEditor}}
+          {{else}}
+          {{> spinner}}
+          {{/if}}
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+      </div>
+    </div>
+  </form>
+  {{/with}}
+</template>
+
+
+<template name="descEditor">
+  <div id="editThreadDescription">
+  </div>
+</template>
+
+<template name="attrAdminThreadUpdate">
+  <label>Attributes</label>
+  <div class="form-group">
+    <label class="checkbox-inline">
+      <input type="checkbox" name="pinned"> Pinned?
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="locked"> Locked?
+    </label>
+  </div>
+</template>

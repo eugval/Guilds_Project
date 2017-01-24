@@ -22,7 +22,13 @@ FlowRouter.route('/admin/adminThreadInsert',{
     import '/imports/ui/pages/adminPages/adminThreadInsert.js';
     BlazeLayout.render("mainLayout",{mainPage:"adminThreadInsert"});
   }
-})
+});
+FlowRouter.route('/admin/:threadID/adminThreadUpdate',{
+  action:function(){
+    import '/imports/ui/pages/adminPages/adminThreadUpdate.js';
+    BlazeLayout.render("mainLayout",{mainPage:"adminThreadUpdate"});
+  }
+});
 
 FlowRouter.route('/:community/forum', {
   action: function() {
@@ -69,5 +75,12 @@ FlowRouter.route('/unAuthorisedAccess',{
   action:function(){
     import '/imports/ui/pages/helperPages/unAuthorisedAccess.js';
     BlazeLayout.render("mainLayout", {mainPage: "unAuthorisedAccess"});
+  }
+})
+
+FlowRouter.route('/test',{
+  action:function(){
+    import '/imports/ui/pages/helperPages/test.html';
+    BlazeLayout.render("mainLayout", {mainPage: "test"});
   }
 })

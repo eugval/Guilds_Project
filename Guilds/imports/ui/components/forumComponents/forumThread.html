@@ -8,7 +8,9 @@
     {{#if pinned}}
     pinned! <br />
     {{/if}}
+    <img src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
     {{authorName}}<br />
+
     {{replyNb}}<br />
     {{dateInserted}}<br  />
     {{#if isAdmin}}
@@ -24,8 +26,10 @@
             {{else}}
             <button class="btn btn-default thread-lock" >Lock</button>
             {{/if}}
+    <button class="btn btn-info thread-adminUpdate" >Update</button>
     {{else}}
     {{/if}}
+
   </a>
 
 </template>

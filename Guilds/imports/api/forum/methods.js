@@ -96,15 +96,19 @@ export const adminInsertThread =new ValidatedMethod({
     }
 
     /*If author provided is not a user abort*/
-    const authorUser = Meteor.users.findOne({_id:thread.author});
-    if(!authorUser){
-      throw new Meteor.Error('Threads.methods.adminInsertThread.userNotFound',
-      'The user was not found in the database.');
+    if(Meteor.isServer){
+      const authorUser = Meteor.users.findOne({username:thread.authorName});
+      if(!authorUser){
+        throw new Meteor.Error('Threads.methods.adminInsertThread.userNotFound',
+        'The user was not found in the database.');
+      }
+      thread.author = authorUser._id;
     }
 
+
     /*Complete the thread object*/
-    thread.aurhorName = authorUser.username;
     thread.createdAt = new Date();
+    thread.replyNb =0;
 
     /*Insert the thread to the database*/
     Threads.insert(thread);
@@ -138,15 +142,17 @@ export const adminUpdateThread =new ValidatedMethod({
       'The thread was not found.');
     }
 
-    /*If author is provided also update the author's name*/
-    if(!!options.update.author){
+if(Meteor.isServer){
+    /*If author name is provided also update the author*/
+    if(!!options.update.authorName){
       /*If author provided is not a user abort*/
-      const authorUser = Meteor.users.findOne({_id:options.update.author});
+      const authorUser = Meteor.users.findOne({username:options.update.authorName});
       if(!authorUser){
         throw new Meteor.Error('Threads.methods.adminUpdateThread.userNotFound',
         'The user was not found in the database.');
       }
-      options.update.authorName =aurhorUser.username;
+      options.update.author =authorUser._id;
+    }
     }
 
     Threads.update(options._id,{$set:options.update});

@@ -53,7 +53,7 @@ Meteor.publish("Meteor.users.OneUser",function(username){
     return null;
   }
   return Meteor.users.find({username});
-
+//return Accounts.findUserByUsername(username);
   });
 
 /*Meteor.publish('Meteor.users.isAdminField',function(){

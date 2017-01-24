@@ -10,6 +10,7 @@ Template.forumThread.helpers({
     return FlowRouter.path('/:community/forum/:threadID',params);
   },
   dateInserted(){
+    console.log(this.author);
     let createdAt = this.createdAt;
     createdAt = createdAt.toISOString().substring(0,10);
     return createdAt;
@@ -30,12 +31,16 @@ Template.forumThread.events({
   },
   'click .thread-lock':function(event){
     event.preventDefault();
-    event.preventDefault();
     const options={
       _id:this._id,
       lockValue:!this.locked,
     }
     threadLockUpdate.call(options);
+  },
+  'click .thread-adminUpdate':function(event){
+    event.preventDefault();
+        const params = {threadID:this._id};
+        FlowRouter.go('/admin/:threadID/adminThreadUpdate',params);
   },
 
 })
