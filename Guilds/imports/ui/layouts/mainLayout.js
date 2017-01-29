@@ -5,7 +5,11 @@ Template.mainLayout.helpers({
   isAdmin(){
   return Meteor.user().isAdmin;
 
-  }
+},
+homePath(){
+  const path =FlowRouter.path("/");
+return path;
+}
 });
 
 

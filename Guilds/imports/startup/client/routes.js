@@ -4,9 +4,8 @@ import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js'
 
 FlowRouter.route('/', {
   action: function() {
-    import '/imports/ui/pages/homePage.js';
-    BlazeLayout.render("mainLayout", {mainPage: "homePage"});
-
+    import '/imports/ui/layouts/homePageLayout.js';
+    BlazeLayout.render("homePageLayout");
   }
 });
 
@@ -80,7 +79,8 @@ FlowRouter.route('/unAuthorisedAccess',{
 
 FlowRouter.route('/test',{
   action:function(){
-    import '/imports/ui/pages/helperPages/test.html';
-    BlazeLayout.render("mainLayout", {mainPage: "test"});
+  /*  import '/imports/ui/pages/helperPages/test.html';
+    import '/imports/ui/layouts/homePageLayout.js';
+    BlazeLayout.render("homePageLayout");*/
   }
 })
