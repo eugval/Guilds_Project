@@ -1,0 +1,50 @@
+<template name="signInUpForm">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      {{#if signIn}}
+
+      <h5>Sign In</h5>
+      <form id={{signInFormID}} >
+        <div class="form-group">
+          <input type="text" name="username" id="username" value="" placeholder="Username" />
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" id="password" value="" placeholder="Password" />
+        </div>
+
+        <div class="form-group">
+          <button class="button submitSignInForm">Sign In</button> <br />
+          <p>
+            Already a member?<span><a href="#" class="changeCredentials"> Sign Up</a></span>
+          </p>
+
+        </div>
+      </form>
+      {{else}}
+
+      <h5>Sign Up</h5>
+      <form id={{signUpFormID}}>
+        <div class="form-group">
+          <input type="text" name="username" id="username" value="" placeholder="Username" />
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" id="password" value="" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <input type="password" name="confirmPassword" id="confirmPassword" value="" placeholder="Confirm Password" />
+        </div>
+        <div class="form-group">
+          <button class="button submitSignUpForm">Sign Up</button> <br />
+          <p>
+            Already a member? <span><a href="#" class="changeCredentials">Sign In</a></span>
+          </p>
+
+        </div>
+      </form>
+
+      {{/if}}
+    </div>
+  </div>
+</template>

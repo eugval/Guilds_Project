@@ -2,74 +2,356 @@
 
 
 <template name="mainLayout">
+  <div class="greyBackground">
 
-    <nav class="navbar  navbar-default navbar-static-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href={{homePath}}>Guilds</a>
+    <!--
+    <div style="background-color:white;">
+
+      <div class="row">
+        <div class="colum-md-12">
+          <h1 class="text-center"> Passions Community</h1>
         </div>
+      </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            {{#if isAdmin}}
-            <li><a href="/admin" >Admin Dashboard</a></li>
-            {{/if}}
-            <li>
-              {{#if currentUser}}
-              <a href="#" id="logOut">LogOut</a>
-              {{else}}
-              <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
-              {{/if}}
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <p style="margin:0px;">
+            blah blah blha blah blah blah blha blahblah blah blha blahblah blah blha blah
+            blah blah blha blahblah blah blha blahblah blah blha blah blah blah blha blah
+            blah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blah
+          </p>
+          <hr />
+        </div>
+      </div>
 
-    </nav>
 
-  <div class="container">
+    </div>-->
+<div class="body-padding"></div>
+
+<div class="extra-body-padding hidden-sm hidden-md hidden-lg">
+</div>
+
+
+
+
+
+
+
+<!--TODO: Completelly disable navbar collapse-->
+    <nav class="navbar  navbar-fixed-top navbar-default" style="background: white;">
+    <div class="container">
+
+    <div class="navbar-header">
+     <a class="navbar-brand" href={{homePath}}>MEDIAC</a>
+
+     </div>
+
+<!--
+<ul class="nav navbar-nav navbar-left">
+<li>
+     <a class="navbar-brand" href={{homePath}}>MEDIAC</a>
+</li>
+
+</ul>-->
+
+
+
+
+     <ul class="nav navbar-nav navbar-right">
+       <li class="dropdown">
+         <a style="color:black;" id="navDropdown" href="#" class="dropdown-toggle center-on-xs"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bars" aria-hidden="true"></i> Menu
+         </a>
+
+       <ul class="dropdown-menu no-collapse" aria-labelledby="navDropdown">
+         <li><a href="#section-2" class="scrolly">About</a></li>
+         <li><a href="#section-1" class="scrolly">Join the Effort</a></li>
+         {{#if isAdmin}}
+         <li><a href="/admin" >Admin Dashboard</a></li>
+         {{/if}}
+         <li>
+           {{#if currentUser}}
+           <a href="#" id="logOut">LogOut</a>
+           {{else}}
+           <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+           {{/if}}
+         </li>
+
+       </ul>
+       </li>
+     </ul>
+
+</div>
+
+
+</nav>
+
+    <!--
+<div class="container-fluid">
+
+
+     <div class ="row hidden-md hidden-lg">
+       <div class="col-xs-12 col-sm-12 ">
+         <div class="container">
+
+
+         <div class="navigation horizontal">
+
+           <div class="row">
+             <div class="col-xs-3 text-center vcenter">
+               <a class="text-center active" href="#" >Passions</a>
+             </div><div class="col-xs-3 text-center vcenter">
+               <a class="text-center" href="#">Yolo</a>
+             </div><div class="col-xs-3 text-center vcenter " style="line-height:90%">
+               <a class="text-center" href="#" >Personal<br />Development</a>
+             </div><div class="col-xs-3 text-center vcenter no-border">
+               {{#if currentUser}}
+               <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+               {{else}}
+
+
+
+
+
+               <div class="dropdown">
+                 <a class=" dropdown-toggle" id="horizontalNavigationDropdown" href="#" aria-haspopup="true" aria-expanded="false" type="button" data-toggle="dropdown">Sign In / Sign Up</a>
+                   <ul class="dropdown-menu" aria-labelledby="horizontalNavigationDropdown">
+                     <li><a href="#">HTML</a></li>
+                     <li><a href="#">CSS</a></li>
+                     <li><a href="#">JavaScript</a></li>
+                   </ul>
+                 </div>
+
+
+               {{/if}}
+             </div>
+           </div>
+                </div>
+         </div>
+       </div>
+     </div>
+     </div>
+
+
+
+
+<nav class="navbar  navbar-fixed-top navbar-default" style="background: rgba(0, 0, 0, 0.75);">
+<div class="container-fluid">
+
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href={{homePath}}>MEDIAC</a>
+</div>
+
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+<ul class="nav navbar-nav tabs-centered">
+<li class="active">
+<a href="#tab_default_1" data-toggle="tab">
+Tab 1
+</a>
+</li>
+<li>
+<a href="#tab_default_2" data-toggle="tab">
+Tab 2
+</a>
+</li>
+<li>
+<a href="#tab_default_3" data-toggle="tab">
+Tab 3
+</a>
+</li>
+</ul>
+
+
+<ul class="nav navbar-nav navbar-right">
+
+<li>
+<a href="#menu" style="margin-right:5px;"> <i class="fa fa-bars" aria-hidden="true"></i> Menu</a>
+</li>
+</ul>
+
+</div>
+</div>
+
+</nav>
+
+
+-->
+
+<!--
+<div style="background-color:white;">
+
+<div class="row">
+<div class="colum-md-12">
+<h1 class="text-center"> Passions Community</h1>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-8 col-md-offset-2 text-center">
+<p style="margin:0px;">
+blah blah blha blah blah blah blha blahblah blah blha blahblah blah blha blah
+blah blah blha blahblah blah blha blahblah blah blha blah blah blah blha blah
+blah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blah
+</p>
+<hr />
+</div>
+</div>
+
+
+</div>
+-->
+
+
+<!--
+<div id="headerAnchor"></div>
+<header id="header"  class="white-header">
+
+
+    <div class="logo"  ><a href="/" ><span style="color:black;">MEDIAC</span></a></div>
+
+
+    <a style="color:black;" id="fuckyou" href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+     <i class="fa fa-bars" aria-hidden="true"></i> Menu
+    </a>
+    <ul class="dropdown-menu pull-right" aria-labelledby="fuckyou">
+      <li><a href="#section-2" class="scrolly">About</a></li>
+      <li><a href="#section-1" class="scrolly">Join the Effort</a></li>
+      {{#if isAdmin}}
+      <li><a href="/admin" >Admin Dashboard</a></li>
+      {{/if}}
+      <li>
+        {{#if currentUser}}
+        <a href="#" id="logOut">LogOut</a>
+        {{else}}
+        <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+        {{/if}}
+      </li>
+
+    </ul>
+
+</header>
+
+
+<nav id="menu">
+<ul class="links">
+<li><a href="#">Discussions</a></li>
+<li><a href="#section-2" class="scrolly">About</a></li>
+<li><a href="#section-1" class="scrolly">Join the Effort</a></li>
+<li><a href="#section-5" class="scrolly">Sign Up / Sign In</a></li>
+{{#if isAdmin}}
+<li><a href="/admin" >Admin Dashboard</a></li>
+{{/if}}
+<li>
+{{#if currentUser}}
+<a href="#" id="logOut">LogOut</a>
+{{else}}
+<a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+{{/if}}
+</li>
+</ul>
+</nav>
+
+
+-->
+
+
+<!-- <header id="header" style="background-color:white; border-bottom:solid 1px lightgrey;">
+<div class="logo"  style="color:black;"><a href="/"><span>MEDIAC</span></a></div>
+
+
+<a href="#menu" style="color:black;">Menu</a>
+</header>
+
+
+<nav id="menu">
+<ul class="links">
+<li><a href="#">Discussions</a></li>
+<li><a href="#section-2" class="scrolly">About</a></li>
+<li><a href="#section-1" class="scrolly">Join the Effort</a></li>
+<li><a href="#section-5" class="scrolly">Sign Up / Sign In</a></li>
+{{#if isAdmin}}
+<li><a href="/admin" >Admin Dashboard</a></li>
+{{/if}}
+<li>
+{{#if currentUser}}
+<a href="#" id="logOut">LogOut</a>
+{{else}}
+<a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+{{/if}}
+</li>
+</ul>
+</nav>-->
+
+<div class="container">
+  <!--
+  <ul class="actions fit small">
+  <li><a href="#" class="button special fit small">Passions</a></li>
+  <li><a href="#" class="button fit small">Yolo</a></li>
+  <li><a href="#" class="button fit small">Personal Development</a></li>
+</ul>
+-->
+
 {{> Template.dynamic template = mainPage }}
+</div>
+
+
+<hr class ="footer-separator" />
+<footer id="footer" class="small-footer">
+  <div class="copyright small-footer-element">
+    <ul class="icons small-footer-element">
+      <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+      <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+    </ul>
+    <p class="small-footer-element">&copy; MEDIAC. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>.</p>
   </div>
+</footer>
+</div>
 
-  <div style="margin-bottom:50px">
-  </div>
 
-
-  <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <div class ="row">
-            <div class="col-md-6">
-              <form class="text-center" id="signInForm">
-                <input type="text" placeholder="Username"/>
-                <input type ="password" placeholder ="Password" />
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-            <div class="col-md-6" >
-              <form class="text-center" id="signUpForm">
-                <input type="text" placeholder="Username"/>
-                <input type ="password" name ="password" placeholder ="Password" />
-                <input type ="password" name ="confirmPassword" placeholder ="Confirm Password" />
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>-->
+      <div class="modal-body">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+{{> signInUpForm "modal"}}
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class ="row">
+          <div class="col-md-6">
+            <form class="text-center" id="signInForm">
+              <input type="text" placeholder="Username"/>
+              <input type ="password" placeholder ="Password" />
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
+          <div class="col-md-6" >
+            <form class="text-center" id="signUpForm">
+              <input type="text" placeholder="Username"/>
+              <input type ="password" name ="password" placeholder ="Password" />
+              <input type ="password" name ="confirmPassword" placeholder ="Confirm Password" />
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+-->
       </div>
     </div>
   </div>
+</div>
 
 </template>

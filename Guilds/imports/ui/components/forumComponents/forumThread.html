@@ -1,19 +1,49 @@
 <template name="forumThread">
 
   <a href={{IDLink}} class="list-group-item">
-    {{title}} <br />
-    {{#if locked}}
-    locked! <br />
-    {{/if}}
-    {{#if pinned}}
-    pinned! <br />
-    {{/if}}
-    <img src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
-    {{authorName}}<br />
 
-    {{replyNb}}<br />
-    {{dateInserted}}<br  />
+{{#if pins}}
+    <div class="list-item-element pins">
+      {{#if pinned}}
+      <i class="fa fa-tag" aria-hidden="true"></i><br />
+      {{/if}}
+      {{#if locked}}
+    <i class="fa fa-lock" aria-hidden="true"></i>
+      {{/if}}
+    </div>
+{{else}}
+    <div class="list-item-element list-item-padding-element">
+    </div>
+{{/if}}
+    <div class="list-item-element">
+          <img src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
+    </div>
+
+
+    <div class="list-item-element text">
+          {{title}} <br />
+                <span class="author-name " >{{authorName}}
+                   <span class=" hidden-sm hidden-md hidden-lg">
+                     | {{dateInserted}} ago | <i class="fa fa-comment-o" aria-hidden="true"></i>{{replyNb}}
+                   </span>
+                 </span>
+    </div>
+
+    <div class="list-item-element comments hidden-xs">
+        <i class="fa fa-comment-o" aria-hidden="true"></i> {{replyNb}}
+
+
+      </div>
+
+
+      <div class="list-item-element date hidden-xs">
+        {{dateInserted}}
+        </div>
+
+
+
     {{#if isAdmin}}
+    <br  />
     {{#if pinned}}
       <button class="btn btn-warning thread-pin" >Unpin</button>
 

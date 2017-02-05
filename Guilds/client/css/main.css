@@ -1,31 +1,317 @@
+
+.body-padding{
+  padding-top:60px;
+
+}
+
+.extra-body-padding{
+  padding-top:60px;
+}
+
+.forum-topic-navigation h4{
+  margin: 0 !important;
+  color: #555;
+}
+
+.forum-topic-navigation hr{
+  margin: 0 0 1.8em 0 !important;
+  border-bottom-color: rgb(240, 240, 240) !important;
+}
+
+.forum-topic-navigation .breadcrumb{
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+  font-size: 17px;
+}
+.forum-topic-navigation .breadcrumb .active{
+color: rgb(0, 0, 151);
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle !important;
+    float:none;
+}
+
+.navigation.horizontal{
+margin: 0 0 0.5em 0;
+padding: 1em 0;
+border-top: solid 1px lightgrey;
+border-bottom: solid 1px lightgrey;
+}
+
+
+@media only screen and (max-width : 992px) {
+  .navigation.horizontal{
+      margin: 1em 0 0.5em 0;
+  }
+}
+
 /*
-* {
-  border-radius:0px !important;
-}*/
+margin: 0 0 0.5em 0;
+padding: 1em 0;
+border-top: solid 1px lightgrey;
+border-bottom: solid 1px lightgrey;
+
+*/
+
+.navigation.horizontal .row div:first-child{
+border:0 none !important;
+}
+
+.navigation.horizontal .col-xs-3{
+  border-left: solid 1px grey;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.overflow-visible{
+    overflow:visible !important;
+}
+
+.dropdown-menu.right-justified{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left:auto;
+}
+
+
+.greyBackground{
+  	background-color: #fafafa;
+      	/*background-color: #fbfbfb;
+        background-color: #fcfcfc;*/
+}
+
+
+.userOptions .list-group{
+  margin:0px;
+}
+
+.userOptions p{
+  margin:0;
+}
+.userOptions  .list-group-item{
+  text-align: center !important;
+  background-color: transparent !important;
+  border-left:0;
+  border-right:0;
+  border-bottom:0;
+  border-radius:0 !important;
+}
+
+ .navigation a.active{
+  color:black;
+  font-weight:600;
+}
+
+
+
+
+.sidebar .editors-pics h5{
+  margin:0;
+}
+
+
+
+.sidebar .editors-pics p{
+  margin : 0;
+}
+
+.sidebar .editors-pics .list-group{
+  margin-bottom:0px;
+
+}
+
+.sidebar .editors-pics .list-group:last-child{
+padding-bottom: 1em;
+}
+.sidebar .editors-pics .list-group-item{
+  border:0 none;
+  background-color: transparent;
+box-shadow: 2px 2px 3px #e3e3e3;
+
+}
+.sidebar .editors-pics  a.list-group-item:hover{
+    background-color: rgb(244, 244, 244);
+}
+
+.sidebar .editors-pics .list-group-item p{
+  /* padding-left: 1em;*/
+  font-size:13px;
+}
+
+.sidebar .editors-pics .list-item-element{
+  display:table-cell;
+  vertical-align: top;
+}
+.forum-threads .list-group-item .author-name{
+  color:  rgb(183, 183, 183);
+}
+
+.sidebar .editors-pics hr{
+  margin : 0 0 0.4em 0 !important;
+  border-bottom-color:rgba(0, 0, 0, 0.05);
+
+}
+
+.box.sidebar hr{
+  margin: 1em 0;
+
+}
+
+.sidebar form{
+  font-size:11px;
+  margin:0;
+}
+
+.sidebar .form-group{
+  margin-bottom:9px;
+}
+
+.changeCredentials {
+  color:#337ab7;
+  font-size:1.2em;
+}
+
+.sidebar input{
+  font-size:11px;
+}
+@media only screen and (max-width : 768px) {
+  .center-on-xs{
+    text-align: center;
+  }
+}
+
+
+
+/*
+background-color: rgb(244, 244, 244);
+
+box-shadow: 2px 2px 3px #e0e0e0;
+
+
+*/
+/*
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:10px !important; padding-bottom:10px !important;
+    height: 40px;
+}
+.navbar {min-height:30px !important;}
+*/
+.fixed-on-top{
+  position:fixed;
+  top:0px;
+}
+
+.relative{
+  position:relative !important;
+}
+
+.white-header{
+  background-color:white !important;
+  border-bottom:solid 1px lightgrey !important;
+}
+.navbar-nav>li{
+  padding:0px;
+}
+
+.small-footer{
+  padding: 2em 2em 0.1em 2em !important;
+}
+
+
+.small-footer-element{
+  margin:0em 0em 1em 0em !important;
+
+}
+  .footer-separator{
+  margin-bottom:0px !important;
+  margin-top:60px !important;
+}
+
+
+/*
+.tabs-centered{
+
+}
+.tabs-centered > li {
+  display: inline-block !important;
+
+
+}
+*/
 
 
 
 .forum-threads .list-group-item{
   border-left: 0 none;
   border-right:0 none;
+  border-top: 0 none;
   padding: 20px 10px;
+  margin-bottom:5px;
+  box-shadow: 2px 2px 3px #e0e0e0;
+  border-radius: 0px;
 
 }
 
-.forum-threads .list-group-item.active{
-  font-size: 20px;
 
+/*color: rgb(236, 170, 22);
+ rgb(236, 164, 30);
+ #ffa500;
+ #f0ad4e;*/
+.forum-threads .pins{
+margin:0 !important;
+padding-right:0.6em !important;
+padding-left:0em !important;
+color: #ffa500;
 }
 
-.forum-threads .list-group-item:first-child{
-  border-top: 0 none !important;
+.forum-threads .list-group-item .list-item-element{
+  display:table-cell;
+  vertical-align:top;
+  padding-right:1em;
+}
+
+.forum-threads .list-group-item .list-item-padding-element{
+  padding-left:0.4em !important;
+  padding-right: 0;
+}
+
+.forum-threads .list-group-item .list-item-element.text{
+  width:70%;
+}
+.forum-threads .list-group-item .list-item-element.comments{
+  width:12%;
+    vertical-align:middle;
+    text-align:center;
+}
+.forum-threads .list-group-item .list-item-element.date{
+  width:18%;
+      vertical-align:middle;
+      text-align:center;
+}
+
+@media only screen and (max-width: 768px) {
+  .forum-threads .list-group-item .list-item-element.text{
+    width:100%;
+  }
+}
+
+
+
+
+.no-break{
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
 
 .admin-list{
   height:100%;
   overflow-y:auto;
   overflow-x:hidden;
-
   padding:5px;
 }
 
@@ -53,6 +339,13 @@
     border-bottom: solid 1px;
     border-color: lightgrey;
 }
+
+.post-container{
+    height:300px;
+    margin-bottom:30px;
+}
+
+
 
 .nav-rtl {
     padding-left:30px;
@@ -109,6 +402,47 @@
 
 .vertical-middle{
   vertical-align: middle !important;
+}
+
+
+
+
+.modal-content{
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+border-radius: 2px;
+border: none;
+}
+
+.modal-backdrop{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-content button.close{
+  height:auto;
+}
+
+.modal-content button.close:hover{
+  box-shadow: none;
+}
+
+.modal-content h5{
+  font-size:1.1em;
+  margin-bottom:0.5em;
+}
+
+.modal-content .button{
+  font-size:12px;
+}
+
+.modal-content form p{
+  margin: 0.4em 0 0 0;
+}
+.modal-content form{
+  margin:0;
+}
+
+.modal-content form .form-group:last-child{
+  margin-bottom:0px;
 }
 /*
 .short-list-container{

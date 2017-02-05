@@ -1,6 +1,27 @@
 <!--Main forum page that lists all the threads on the forum -->
 <template name="forum">
 
+
+
+
+  <div class="row">
+    <div class="colum-md-12">
+      <h1 class="text-center">Meet. Discuss. Act</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 text-center">
+      <p style="margin:0px;">
+        Providing a platform for us young generation to work together on our passions.
+  We aim to cut through all the noise and over-information clouding today's digital era
+  to provide truly useful environment to all those who feel like they should be doing more
+  than they are, while being stuck in a system that take over their lives and careers.
+      </p>
+    </div>
+  </div>
+
+<!--
   <div class="row">
     <div class="colum-md-12">
       <h1 class="text-center">{{welcomeMessage}}</h1>
@@ -8,59 +29,437 @@
   </div>
 
   <div class="row">
-    <div class="colum-md-12">
-      {{> communityButton}}
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <p style="margin:0px;">
+        blah blah blha blah blah blah blha blahblah blah blha blahblah blah blha blah
+        blah blah blha blahblah blah blha blahblah blah blha blah blah blah blha blah
+        blah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blah
+      </p>
     </div>
   </div>
+-->
 
 
-  <hr />
 
-  <div class ="row">
-    <div class="col-md-12">
-      <div class="list-group forum-threads">
-        <li class="list-group-item active">
-          <div class="row">
-            <div class="col-md-8">
-              QLC
-            </div>
-            <div class="col-md-4">
-              {{#if inCommunity}}
-              <button class="btn btn-default add-thread pull-right">
-                New Post
-              </button>
-              {{else}}
-              <button class="btn btn-default add-thread pull-right" disabled>
-                New Post
-              </button>
-              {{/if}}
+
+
+
+  <hr class="hidden-xs hidden-sm"/>
+
+
+
+  <div class="row">
+    <div class="col-md-8">
+
+
+      <div class ="row ">
+        <div class="col-xs-12 col-sm-12 ">
+          <div class="navigation horizontal">
+
+
+            <div class="row">
+              <div class="col-xs-3 col-md-4 text-center vcenter ">
+                <a class="text-center active" href="#" >Passions</a>
+              </div><div class="col-xs-3 col-md-4  text-center vcenter ">
+                <a class="text-center" href="#">Yolo</a>
+              </div><div class="col-xs-3 col-md-4  text-center vcenter " style="line-height:90%">
+                <a class="text-center" href="#" >Personal<br />Development</a>
+              </div><div class="col-xs-3 hidden-md hidden-lg  text-center vcenter " >
+                {{#if currentUser}}
+                <a href ="#" class="logOut " >
+                  <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                </a>
+                {{else}}
+
+                <div style="line-height:90%">
+                  <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In /<br /> Sign Up</a>
+                </div>
+
+
+                {{/if}}
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-        </li>
-        {{#each pinnedThreads}}
 
-        {{> forumThread}}
 
-        {{/each}}
+      <!-- TODO: Implement sections for the forum -> here is html-->
+      <div class ="forum-topic-navigation">
 
-        {{#each unpinnedThreads}}
 
-        {{> forumThread}}
+        <ol class="breadcrumb">
 
-        {{/each}}
+          <li><a href="#">Sections</a></li>
+          <li class="active">Passions Talk</li>
+        </ol>
+      <div class="col-xs-2 col-xs-offset-5">
+        <hr />
+      </div>
+      </div>
+
+<!-- TODO put the welcome to the community message in the sections section-->
+
+
+      <div class="row">
+        <div class=" col-sm-10 col-xs-9 col-md-10 col-lg-10">
+          <input type="text" placeholder="search" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-3 col-md-2 col-lg-2">
+          {{#if currentUser}}
+          <button class="btn btn-default add-thread center-block">
+            New Post
+          </button>
+          {{else}}
+          <button class="btn btn-default add-thread center-block" disabled>
+            New Post
+          </button>
+          {{/if}}
+        </div>
+      </div>
+      <br />
+
+      <div class ="row">
+        <div class="col-md-12">
+          <div class="list-group forum-threads">
+            <div class ="pinned-threads">
+              {{#each pinnedThreads}}
+
+              {{> forumThread}}
+
+              {{/each}}
+            </div>
+
+            <br />
+            {{#each unpinnedThreads}}
+
+            {{> forumThread}}
+
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!--TODO: Implement scrolling load more!-->
+      <div class ="row">
+        <div class="col-md-12">
+          <button class="btn btn-block btn-default" id="addMoreThreads">Load More</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-4 hidden-xs hidden-sm">
+      <div class ="row">
+        <div class="col-md-12">
+          <div class="box sidebar">
+
+
+
+            <div class="userOptions">
+              {{#if currentUser}}
+
+
+              <a href="#" role="button"  data-toggle="collapse" data-target="#userOptions" aria-expanded="false" aria-controls="userOptions">
+                <img class="center-block" src={{identicon userID size='10' scale='5'}} style="border-radius:50% !important" />
+                <p class="text-center ">
+                  {{currentUserName}}
+                </p>
+              </a>
+
+              <div class="collapse" id="userOptions">
+                <div class="row">
+                  <div class ="col-md-6 col-md-offset-3">
+                    <div class="list-group ">
+                      <a href ="#" class="list-group-item logOut " >
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              {{else}}
+           {{> signInUpForm "sidebar"}}
+              {{/if}}
+            </div>
+
+            <hr />
+
+            <!--
+            <div class="navigation">
+
+
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <a class="text-center active" href="#" >Passions </a>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <a class="text-center" href="#">Yolo </a>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <a class="text-center" href="#">Personal Development </a>
+                </div>
+
+              </div>
+            </div>
+        <hr />
+-->
+
+        <div class="editors-pics">
+          <h5>
+            Editor's Pics
+          </h5>
+          <p>
+            Passions
+          </p>
+          <hr />
+          <div class="list-group forum-threads">
+            {{#each pinnedThreads}}
+            <a class="list-group-item" href="#">
+
+              <div class="list-item-element">
+                <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+              </div>
+
+              <div class="list-item-element">
+                <p>
+                  {{title}}<br />
+                  <span class="author-name">{{authorName}}</span>
+                </p>
+              </div>
+
+
+
+
+
+
+
+
+            </a>
+
+            {{/each}}
+          </div>
+
+          <p>
+            Yolo
+          </p>
+          <hr />
+          <div class="list-group forum-threads">
+            {{#each pinnedThreads}}
+            <a class="list-group-item">
+              <div class="list-item-element">
+                <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+              </div>
+
+              <div class="list-item-element">
+                <p>
+                  {{title}}<br />
+                  <span class="author-name">{{authorName}}</span>
+                </p>
+              </div>
+
+
+
+
+            </a>
+
+            {{/each}}
+          </div>
+          <p>
+            Self Improvement
+          </p>
+          <hr />
+          <div class="list-group forum-threads">
+            {{#each pinnedThreads}}
+            <a class="list-group-item">
+              <div class="list-item-element">
+                <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+              </div>
+
+              <div class="list-item-element">
+                <p>
+                  {{title}}<br />
+                  <span class="author-name">{{authorName}}</span>
+                </p>
+              </div>
+
+
+
+            </a>
+
+            {{/each}}
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 
+</div>
 
-  <!--TODO: Implement scrolling load more!-->
-  <div class ="row">
-    <div class="col-md-12">
-      <button class="btn btn-block btn-primary" id="addMoreThreads">Load More</button>
-    </div>
-  </div>
-
-
-
+</div>
 </template>
+
+
+<!-- TODO : make the sidebar sticky
+http://stackoverflow.com/questions/24111765/scroll-event-for-meteor
+http://stackoverflow.com/questions/1216114/how-can-i-make-a-div-stick-to-the-top-of-the-screen-once-its-been-scrolled-to
+http://api.jquery.com/scrollTop/
+http://api.jquery.com/offset/
+
+-->
+<!--  IF I need a dropdown : REMEMBER that the overflow needs to be to visible
+                <div class="dropdown " style="line-height:90%">
+                  <a class=" dropdown-toggle" id="horizontalNavigationDropdown" href="#" aria-haspopup="true" aria-expanded="false" type="button" data-toggle="dropdown">Sign In /<br /> Sign Up</a>
+                    <ul class="dropdown-menu right-justified"  aria-labelledby="horizontalNavigationDropdown">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                  </div>
+-->
+
+<!--
+<div class ="row">
+<div class="col-md-12">
+<div class="post-container">
+<div class="admin-list">
+
+
+<div class="list-group forum-threads">
+<li class="list-group-item " style="background: rgba(0, 0, 0, 0.75);">
+<div class="row">
+<div class="col-md-8">
+QLC
+</div>
+<div class="col-md-4">
+{{#if inCommunity}}
+<button class="btn btn-default add-thread pull-right">
+New Post
+</button>
+{{else}}
+<button class="btn btn-default add-thread pull-right" disabled>
+New Post
+</button>
+{{/if}}
+</div>
+</div>
+
+</li>
+{{#each pinnedThreads}}
+
+{{> forumThread}}
+
+{{/each}}
+
+{{#each unpinnedThreads}}
+
+{{> forumThread}}
+
+{{/each}}
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class ="row">
+<div class="col-md-12">
+<div class="list-group forum-threads">
+<li class="list-group-item " style="background: rgba(0, 0, 0, 0.75);">
+<div class="row">
+<div class="col-md-8">
+QLC
+</div>
+<div class="col-md-4">
+{{#if inCommunity}}
+<button class="btn btn-default add-thread pull-right">
+New Post
+</button>
+{{else}}
+<button class="btn btn-default add-thread pull-right" disabled>
+New Post
+</button>
+{{/if}}
+</div>
+</div>
+
+</li>
+{{#each pinnedThreads}}
+
+{{> forumThread}}
+
+{{/each}}
+
+{{#each unpinnedThreads}}
+
+{{> forumThread}}
+
+{{/each}}
+</div>
+</div>
+</div>
+
+
+-->
+
+
+
+
+
+<!--<div class="row">
+<div class="colum-md-12">
+<h1 class="text-center">{{welcomeMessage}}</h1>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-8 col-md-offset-2 text-center">
+<p style="margin:0px;">
+blah blah blha blah blah blah blha blahblah blah blha blahblah blah blha blah
+blah blah blha blahblah blah blha blahblah blah blha blah blah blah blha blah
+blah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blahblah blah blha blah
+</p>
+</div>
+</div>
+
+<hr /> -->
+
+
+
+<!--
+<hr />
+
+<ul class="fit small actions-vertical">
+<li><a href="#" class="button special fit small" active>Passions </a></li>
+<li><a href="#" class="button fit small">Personal Development </a></li>
+<li><a href="#" class="button fit small">Yolo</a></li>
+</ul>
+
+-->

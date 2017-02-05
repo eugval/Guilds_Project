@@ -14,7 +14,7 @@ Schemas.Threads.collectionSchema = new SimpleSchema({
   title:{
     type:String,
     label:"Title",
-    max:80,
+    max:100,
     min:10
   },
   message:{
@@ -92,7 +92,7 @@ Schemas.Threads.insertThread= new SimpleSchema({
   title:{
     type:String,
     label:"Title",
-    max:80,
+    max:100,
     min:10,
   },
   message:{
@@ -119,7 +119,7 @@ Schemas.Threads.updateThread= new SimpleSchema({
     type:String,
     optional:true,
     label:"Title",
-    max:80,
+    max:100,
     min:10,
   },
   "update.message":{
@@ -134,7 +134,7 @@ Schemas.Threads.adminInsertThread =new SimpleSchema({
   title:{
     type:String,
     label:"Title",
-    max:80,
+    max:100,
     min:10,
   },
   message:{
@@ -174,7 +174,7 @@ Schemas.Threads.adminUpdateThread =new SimpleSchema({
     type:String,
     label:"Title",
     optional:true,
-    max:80,
+    max:100,
     min:10,
   },
   "update.message":{

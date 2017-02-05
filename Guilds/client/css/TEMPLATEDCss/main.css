@@ -1830,7 +1830,8 @@
 	}
 
 	hr {
-		border-bottom-color: rgba(0, 0, 0, 0.1);
+		/*border-bottom-color: rgba(0, 0, 0, 0.1);*/
+		border-bottom-color:rgba(0, 0, 0, 0.15);
 	}
 
 /* Box */
@@ -1962,9 +1963,9 @@
 	input[type="button"],
 	button,
 	.button {
-		background-color: #000; /*CHANGED HERE*/
-		border: 1px white solid;  /*CHANGED HERE*/
-		color: #fff !important;
+		background-color: #fafafa; /*CHANGED HERE*/
+		border: 1px #000 solid;  /*CHANGED HERE*/
+		color: black ;
 	}
 
 		input[type="submit"]:hover,
@@ -1972,8 +1973,10 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-		 box-shadow: 5px 5px 5px #888888;/*CHANGED HERE*/
+		 box-shadow: 3px 3px 4px #888888;/*CHANGED HERE*/
 		}
+
+
 
 		input[type="submit"]:active,
 		input[type="reset"]:active,
@@ -2022,8 +2025,11 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #fafafa;
-			color: #000 !important;
+			/*background-color: #fafafa;
+			color: #000 !important;   CHANGED HERE*/
+			background-color:#000;
+			border: solid 1px white;
+			color:#fafafa;
 		}
 
 			input[type="submit"].special:hover,
@@ -2031,7 +2037,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: white;
+				/*background-color: white; CHANGED HERE*/
 			}
 
 			input[type="submit"].special:active,
@@ -2377,7 +2383,9 @@
 	input[type="email"],
 	select,
 	textarea {
-		background: rgba(0, 0, 0, 0.075);
+		/*background: rgba(0, 0, 0, 0.075);*/
+background: rgba(0, 0, 0, 0.03);
+
 		border-color: rgba(0, 0, 0, 0.1);
 	}
 
@@ -2386,7 +2394,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #fafafa;
+			/*border-color: #fafafa;*/
+			border-color: transparent;
 			box-shadow: 0 0 0 1px #fafafa;
 		}
 
@@ -2556,7 +2565,7 @@
 	}
 
 		ul li {
-			padding-left: 0.5em;
+		/*	padding-left: 0.5em;*/
 		}
 
 		ul.alt {
@@ -3447,7 +3456,7 @@
 			}
 
 				#header > .logo a:hover {
-					color: #3498db;
+					/*color: #3498db; CHANGED HERE*/
 				}
 
 			#header > .logo span {
@@ -3469,7 +3478,7 @@
 		}
 
 			#header > a:hover {
-				color: #3498db;
+			/*	color: #3498db; CHANGED HERE*/
 			}
 
 			#header > a[href="#menu"] {
@@ -3908,6 +3917,7 @@
 				margin: 0 auto 0.7em;
 				text-align: center;
 				width: 3em;
+				text-decoration:none;
 			}
 
 		@media screen and (max-width: 1280px) {
@@ -3954,4 +3964,15 @@ ul.actions-vertical {
 
 a.button{
 	text-decoration: none !important;
+}
+a.button:hover{
+	color:black;
+}
+
+a.button.special:hover{
+	color:white;
+}
+
+#banner .button:hover{
+	 box-shadow: 5px 5px 5px #888888;
 }
