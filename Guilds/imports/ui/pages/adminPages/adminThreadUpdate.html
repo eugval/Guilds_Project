@@ -1,9 +1,23 @@
 <template name="adminThreadUpdate">
+  {{#if authInProcess}}
+    {{> spinner}}
+  {{else}}
+  {{#if isAdmin}}
+
   {{#with thread}}
+  <div class ="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Update a Thread as an Admin</h3>
+    </div>
+  </div>
+
+  <hr style="margin-top:3px;" />
 
   <form id='adminThreadUpdateForm'>
 
-
+    <div class="insertThreadErrorBox hidden">
+          {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+    </div>
 
     <div class="form-group">
       <label for ="editThreadTitle">Title</label>
@@ -36,11 +50,17 @@
           {{> spinner}}
           {{/if}}
         </div>
-        <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
       </div>
     </div>
   </form>
   {{/with}}
+
+  {{else}}
+        {{> unAuthorisedAccess}}
+  {{/if}}
+  {{/if}}
+
 </template>
 
 

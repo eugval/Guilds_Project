@@ -1,111 +1,279 @@
 <!--Individual thread page-->
 <Template name="thread">
+
+  {{#if Template.subscriptionsReady}}
   {{#if threadExists}}
-    {{#with threadContext}}
+  {{#with threadContext}}
 
-    <div class="row">
-      <div class ="col-md-10 col-md-offset-1">
-        <h1>{{title}}</h1>
-        <h5>Author: {{authorName}}, Posted: {{date}}</h5>
 
-      </div>
-    </div>
-    <div class="row">
-      <div class ="col-md-10 col-md-offset-1">
-        <hr class="forumOPTitleSeparator"/>
-      </div>
-    </div>
-    {{#if isAuthorOrAdmin}}
-      <div class="row">
-        <div class ="col-md-8 col-md-offset-2 post-commands">
-                <a href={{pathForEditThread}} title="Edit" ><i class="fa fa-pencil" aria-hidden="true"></i> </a>
-        </div>
-      </div>
-    {{/if}}
 
-      <div class="row">
-        <div class ="col-md-8 col-md-offset-2">
-          <p>
-            {{{message}}}
-          </p>
-        </div>
+
+  <div class="row">
+    <div class ="col-md-8">
+
+
+      <div class="hidden" id="editOPErroBox">
+            {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
       </div>
 
+      {{#if editingOP}}
 
+      <input type="text" id="edit-OP-title" value={{title}} focus="true"/>
 
-
-
-
-
-    <div class="row">
-      <div class ="col-md-10 col-md-offset-1">
-        <hr />
-      </div>
+      {{else}}
+      <h4 class="thread-title">{{title}}</h4>
+      {{/if}}
     </div>
 
+  </div>
 
 
 
 
-    <div class="row">
-      <div class ="col-md-10 col-md-offset-1">
-        <ul class="nav nav-tabs nav-rtl ">
-          <li class ="nav-left-text" >
-            <h4>{{replies}} Comments</h4>
-          </li>
-          <li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Comments</a></li>
-          <li ><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
-        </ul>
+  <div class="row">
+    <div class ="col-md-8">
+      <div class="thread-OP">
+        <div class="row">
+          <div class ="col-xs-12">
+            <div class="OP">
 
-        <div class="tab-content">
-          <div id="answers" class="tab-pane active">
-            <div class ="row">
-              <div class="col-md-12">
-                <div class="list-group forum-threads">
+              <div class="thread-post-top">
+                <h5 >Posted {{date}} ago<br /><i class="fa fa-comment-o" aria-hidden="true"></i> {{replies}} replies  </h5>
+                {{#if isAuthorOrAdmin}}
 
-                  {{#each repliesContext}}
+                {{#unless editingOP}}
 
-                  {{> reply}}
+                <a  href="#" title="Edit"  class="toggleOPEdit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a>
+                {{/unless}}
 
-                  {{/each}}
-                  {{#if noReplies}}
-
-                  <h4 class ="text-center text-muted">
-                    No Replies
-                  </h4>
-
-                  {{/if}}
-
-                </div>
+                {{/if}}
               </div>
+
+
+
+              {{#if editingOP}}
+
+
+              {{> editOPEditor}}
+              <div style="display:block">
+                <button  href="#" class="btn btn-sm thread-button blue" id="saveOPEdit"><i class="fa fa-floppy-o" aria-hidden="true"></i>  Save </button>
+                <a href="#"  class="toggleOPEdit"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+
+              </div>
+
+
+
+              {{else}}
+<div style="color:black;">
+            {{{message}}}
+</div>
+
+
+              {{/if}}
+
+              <div class="thread-footer-left">
+                <button class="btn  btn-sm  thread-button standard"  id="toggleReplyArea" role="button"  data-toggle="collapse" data-target="#replyArea" aria-expanded="false" aria-controls="replyArea">
+                  {{#if replying}}<i class="fa fa-times" aria-hidden="true"></i> Cancel{{else}}<i class="fa fa-reply" aria-hidden="true"></i> Reply{{/if}}
+                </button>
+              </div>
+
+
+              <div class="thread-footer-right " >
+                <img  class="center-block" src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
+                {{authorName}}
+              </div>
+
             </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="collapse" id="replyArea">
+
+          {{> addReply}}
+
+        </div>
+
+
+        <div class="row">
+          <div class ="col-md-12">
+
+
+
+
+            <div class="list-group thread-replies">
+
+              {{#each repliesContext}}
+
+              {{> reply}}
+
+              {{/each}}
+              {{#if noReplies}}
+
+              <h4 class ="text-center text-muted">
+                No Replies
+              </h4>
+
+              {{/if}}
+
+            </div>
+
 
             <!--TODO: Implement scrolling load more!-->
             <div class ="row ">
               <div class="col-md-12">
-                <button class="btn btn-block btn-primary" id="addMoreReplies">Load More</button>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div id="reply" class="tab-pane margin-top-sm ">
-            <div class ="row">
-              <div class ="col-md-10 col-md-offset-1">
-                {{> addReply}}
+                <button class="btn btn-block btn-default" id="addMoreReplies">Load More</button>
               </div>
             </div>
 
+
+
+
           </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4 hidden-xs hidden-sm">
+      <div class="box sidebar ">
+        <div class="navigation">
+
+
+          {{#if currentUser}}
+          {{> verticalUserOptions}}
+          {{else}}
+          {{> signInUpForm "sidebar"}}
+          {{/if}}
+
+
         </div>
       </div>
     </div>
 
+    <div class="col-md-4 hidden-xs hidden-sm">
+      <div class="box sidebar sidebar-last ">
+        <div class="navigation">
+
+          <h5>Related Topics</h5>
+          <p>
+            Make sure to check related posts to avoid duplicates.
+          </p>
 
 
-    {{/with}}
+          <div class="sidebar-container">
+
+
+
+            <div class="list-group forum-threads">
+              {{#each relatedTopics}}
+
+              <a class="list-group-item" href="#">
+
+                <div class="list-item-element">
+                  <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+                </div>
+
+                <div class="list-item-element">
+                  <p>
+                    {{title}}<br />
+                    <span class="author-name">{{authorName}}</span>
+                  </p>
+                </div>
+
+
+              </a>
+
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{/with}}
   {{else}}
   {{> pageNotFound}}
   {{/if}}
+  {{else}}
+  {{> spinner}}
+  {{/if}}
 </Template>
+
+
+
+<Template name="editOPEditor">
+  <div class="thread-OP-editor" >
+    <div class  ="edit-OP-editor">
+
+    </div>
+  </div>
+</Template>
+
+
+<!--
+<div class="row">
+<div class ="col-md-10 col-md-offset-1">
+
+<ul class="nav nav-tabs nav-rtl ">
+<li class ="nav-left-text" >
+<h4>{{replies}} Comments</h4>
+</li>
+<li class="active"><a data-toggle="tab"  data-target="#answers" href="#answers">Comments</a></li>
+<li ><a data-toggle="tab" data-target="#reply"  href="#reply">Reply</a></li>
+</ul>
+
+<div class="tab-content">
+<div id="answers" class="tab-pane active">
+<div class ="row">
+<div class="col-md-12">
+<div class="list-group forum-threads">
+
+{{#each repliesContext}}
+
+{{> reply}}
+
+{{/each}}
+{{#if noReplies}}
+
+<h4 class ="text-center text-muted">
+No Replies
+</h4>
+
+{{/if}}
+
+</div>
+</div>
+</div>
+
+
+<div class ="row ">
+<div class="col-md-12">
+<button class="btn btn-block btn-default" id="addMoreReplies">Load More</button>
+</div>
+</div>
+</div>
+
+
+
+<div id="reply" class="tab-pane margin-top-sm ">
+<div class ="row">
+<div class ="col-md-10 col-md-offset-1">
+{{> addReply}}
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+-->

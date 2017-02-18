@@ -2,6 +2,7 @@ import './forumThread.html';
 import {threadPinUpdate} from '/imports/api/forum/methods.js';
 import {threadLockUpdate} from '/imports/api/forum/methods.js';
 import {timeSince} from '/imports/api/helpers/generalHelpers.js';
+import {isAdmin} from '/imports/api/helpers/adminFunctions.js';
 
 Template.forumThread.helpers({
   pins(){
@@ -24,7 +25,7 @@ Template.forumThread.helpers({
 
   },
   isAdmin(){
-    return Meteor.user().isAdmin;
+    return isAdmin();
   }
 });
 

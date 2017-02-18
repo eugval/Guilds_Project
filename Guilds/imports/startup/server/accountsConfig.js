@@ -18,3 +18,5 @@ if(!options.communities){
 }
   return user;
 });
+
+Accounts.config({forbidClientAccountCreation:true,});

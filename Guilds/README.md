@@ -14,7 +14,7 @@ Guilds is being built using Meteor. The following are the packages/tools you nee
   * [Reactive dict](https://atmospherejs.com/meteor/reactive-dict)
   * [Session](https://docs.meteor.com/api/session.html)
 
-###About the structure of the project:
+##About the structure of the project:
 This project is using the import file structure as mentioned above. More precisely:
 
 * The starting loading points for the client and the server are `/imports/startup/client/index.js` and `/imports/startup/server/index.js` respectively.

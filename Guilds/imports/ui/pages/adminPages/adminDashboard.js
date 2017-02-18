@@ -2,11 +2,11 @@ import './adminDashboard.html';
 import '/imports/ui/pages/helperPages/unAuthorisedAccess.js';
 import '/imports/ui/components/adminComponents/adminList.js';
 import '/imports/ui/components/adminComponents/userList.js';
-
+import {isAdmin} from "/imports/api/helpers/adminFunctions.js";
 
 Template.adminDashboard.helpers({
   isAdmin(){
-    return Meteor.user().isAdmin;
+    return isAdmin();
   },
   authInProcess(){
     return Meteor.loggingIn();

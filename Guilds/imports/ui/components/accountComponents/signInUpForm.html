@@ -1,6 +1,12 @@
 <template name="signInUpForm">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-xs-10 col-xs-offset-1">
+
+      <div id={{signInUpErrorBoxID}} class="hidden">
+            {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+      </div>
+
+
       {{#if signIn}}
 
       <h5>Sign In</h5>

@@ -1,6 +1,6 @@
 import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js';
-import {userLoggedIn, isAdmin} from '/imports/api/helpers/userFunctions.js';
-
+import {userLoggedIn} from '/imports/api/helpers/userFunctions.js';
+import {isAdmin} from '/imports/api/helpers/adminFunctions.js';
 /*Methods for all users*/
 
 export const joinCommunity = new ValidatedMethod({
@@ -18,7 +18,7 @@ export const joinCommunity = new ValidatedMethod({
     }
 
     /*Community must exist*/
-    if(COMMUNITIES.indexOf(options.community)===-1){
+    if(!COMMUNITIES[options.community]){
       throw new Meteor.Error('Meteor.users.joinCommunity.communityNotFound',
     'This community does not exist');
     }
@@ -51,7 +51,7 @@ export const leaveCommunity = new ValidatedMethod({
     }
 
     /*Community must exist*/
-    if(COMMUNITIES.indexOf(options.community)===-1){
+    if(!COMMUNITIES[options.community]){
       throw new Meteor.Error('Meteor.users.leaveCommunity.communityNotFound',
     'This community does not exist');
     }
@@ -73,6 +73,7 @@ export const signUp = new ValidatedMethod({
   validate: new SimpleSchema({
     username:{
       type:String,
+      max:22,
     },
     password:{
       type:String,
@@ -80,11 +81,11 @@ export const signUp = new ValidatedMethod({
     },
   }).validator(),
   run(userObj){
-    /*if(userLoggedIn()){
+    if(userLoggedIn()){
       throw new Meteor.Error('Meteor.users.signUp.LoggedIn',
     'Please Log Out before Signing Up');
-  }*/
-    console.log(userObj);
+  }
+
     Accounts.createUser(userObj);
   }
 });
@@ -115,8 +116,8 @@ export const upgradeToAdmin = new ValidatedMethod({
 
     /*prepare updates object : admin must be in all communities*/
     let updates={isAdmin:true, communities:{}}
-    for (let i=0;i<COMMUNITIES.length;++i){
-      updates.communities[COMMUNITIES[i]]=true;
+    for (let i=0;i<Object.keys(COMMUNITIES).length;++i){
+      updates.communities[Object.keys(COMMUNITIES)[i]]=true;
     }
 
 
@@ -199,83 +200,3 @@ export const unBanUser=new ValidatedMethod({
 
   }
 });
-
-
-/*
-export const adminAddUser = new ValidatedMethod({
-  name:'Meteor.users.adminAddUser',
-  validate:new SimpleSchema({
-    username:{
-      type:String,
-    },
-    password:{
-      type:String,
-      optional:true,
-    },
-    communities:{
-      type:Object,
-      optional:true,
-    },
-    "communities.Yolo":{
-      type: Boolean,
-      optional:true,
-    },
-    "communities.LifePlan":{
-      type:Boolean,
-      optional:true,
-    },
-    "communities.PersonalDev":{
-      type:Boolean,
-      optional:true,
-    },
-    isAdmin:{
-      type:Boolean,
-      optional:true,
-    },
-  }).validator(),
-  run(userObj){
-    //TODO: username cannot be in use -> Check to see if auto checked
-    // Test out to see what happens when no password is provided
-
-    //An admin must be logged in
-    if(!isAdmin()){
-      throw new Meteor.Error('Meteor.users.adminAddUser.notAuthorised',
-            'You are not Authorised to take this action');
-    }
-
-
-    Accounts.createUser(userObj);
-
-  }
-});*/
-
-
-
-
-
-
-/*
-export const signIn = new ValidatedMethod({
-  name:'Meteor.users.signIn',
-  validate: new SimpleSchema({
-    username:{
-      type:String,
-    },
-    password:{
-      type:String,
-    },
-  }).validator(),
-  run(userObj){
-    if(userLoggedIn()){
-      throw new Meteor.Error('Meteor.users.signIn.LoggedIn',
-    'Please Log Out before Signing In');
-    }
-
-    console.log(userObj);
-    Meteor.loginWithPassword(userObj.username,userObj.password,(Error)=>{
-      if(Error){
-        console.log(Error);
-      }
-    });
-  }
-});*/

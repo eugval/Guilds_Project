@@ -2,12 +2,16 @@
 
 <template name="addReply">
 
-  <form id="addReply">
-    <div class="form-group">
+  <div id="threadReplyError" class="hidden central">
+        {{> Template.dynamic template='inlineErrorMessage' data=errorMessage}}
+  </div>
+
+  <form id="addReply" style="margin-bottom:1em;">
+    <div class="form-group thread-reply-editor">
       <div id="replyMessage">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" > Submit</button>
+    <button type="submit" class="btn btn-sm thread-button blue block-right" > Submit</button>
   </form>
 
 </template>

@@ -1,8 +1,8 @@
 <!--Create a new  Thread -->
 <Template name="newThread">
   <div class ="row">
-    <div class="col-md-12">
-      <h3>Create a new Post</h3>
+    <div class="col-md-8 col-md-offset-2 text-center new-thread-banner">
+      <h3>{{postingTitle}}</h3>
       <h5> Ask a question, share a thought, ask for or offer an insight, make a comment, anything relating to Quarter Life Crisis that you whish to discuss. This is the place.</h5>
     </div>
 
@@ -10,32 +10,98 @@
 
   <hr style="margin-top:3px;" />
 
+
   <div class="row">
     <div class="col-md-8">
+<div class="insertThreadErrorBox hidden">
+      {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+</div>
 
-      <form id="insertThreadForm">
+
+      <form id="insertThreadForm" class="form-horizontal">
 
         <div class="form-group">
-          <label for="addThreadTitle">Title</label>
-          <input type= "text" class="form-control" id="addThreadTitle" name="addThreadTitle" placeholder= "What is the subject of your thread?" />
-        </div>
+          <label for="addThreadTitle" class="col-sm-1 control-label">Title</label>
+<div class="col-sm-11">
+  <input type= "text" class="form-control" id="addThreadTitle" name="addThreadTitle" placeholder= "What is the subject of your thread?" />
 
-        <div class="form-group">
-          <label for="addThreadDescription">Post</label>
-          <div class="addThreadDescription">
-          </div>
+</div>
         </div>
 
 
-        {{#if inCommunity}}
-        <button type="submit" class="btn btn-primary" > Submit</button>
-        {{else}}
-        <button type="submit" class="btn btn-primary" disabled> Submit</button>
-        <a href="#">Please Join the community first</a>
-        {{/if}}
+<div class="heavy-thread-editor">
+  <div class="addThreadDescription">
+  </div>
+</div>
+
+        <button type="submit" class="btn btn-default" > Submit</button>
+        <button type="button" class= "btn btn-default cancelNewThread"> Cancel</button>
 
       </form>
-
     </div>
+
+
+    <div class="col-md-4 hidden-xs hidden-sm">
+      <div class="box sidebar ">
+        <div class="navigation">
+
+
+            {{#if currentUser}}
+          {{> verticalUserOptions}}
+            {{else}}
+            <p class="text-center" style="transform: translateY(-1em);">
+              <strong class="text-danger" >
+                Join to Post in the Community!
+              </strong>
+            </p>
+
+
+         {{> signInUpForm "sidebar"}}
+            {{/if}}
+
+
+  </div>
+</div>
+</div>
+<div class="col-md-4 hidden-xs hidden-sm">
+  <div class="box sidebar sidebar-last">
+    <div class="navigation">
+
+          <h5>Related Topics</h5>
+          <p>
+            Make sure to check related posts to avoid duplicates.
+          </p>
+
+
+<div class="sidebar-container">
+
+
+
+                        <div class="list-group forum-threads">
+          {{#each relatedTopics}}
+
+          <a class="list-group-item" href="#">
+
+            <div class="list-item-element">
+              <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+            </div>
+
+            <div class="list-item-element">
+              <p>
+                {{title}}<br />
+                <span class="author-name">{{authorName}}</span>
+              </p>
+            </div>
+
+
+          </a>
+
+          {{/each}}
+</div>
+</div>
+</div>
+    </div>
+  </div>
+
   </div>
 </Template>

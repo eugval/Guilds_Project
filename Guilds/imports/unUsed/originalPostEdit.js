@@ -1,4 +1,4 @@
-import './originalPostEdit.html';
+/*import './originalPostEdit.html';
 import {Threads} from '/imports/api/forum/threads.js';
 import {updateThread} from '/imports/api/forum/methods.js';
 
@@ -59,16 +59,16 @@ Template.originalPostEdit.events({
        title: event.target.editThreadTitle.value,
        message: $('#editThreadDescription').summernote('code'),
      }
-     console.log(updateObj);
+
 
     updateThread.call(updateObj,(err)=>{
       if(err){
-        /*handle error*/
-        /*TODO: Display error messages on the form*/
-        console.log("error while inserting thread");
+
+
+        console.log("Error");
         console.log(err);
       }else{
-        /* Clean up form and redirect to forum on success */
+
         console.log("success");
         event.target.editThreadTitle.value="";
         $('#editThreadDescription').summernote('code','');
@@ -79,3 +79,4 @@ Template.originalPostEdit.events({
     });
   },
 });
+*/

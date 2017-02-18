@@ -1,39 +1,58 @@
 <template name ="reply">
   <li class="list-group-item">
-    <div class=row>
-      <div class="col-md-5 col-md-offset-1">
-        <p>
-          {{authorName}}, {{dateCreated}}
-        </p>
+
+    <div class="list-item-element ">
+      <div class="thread-post-top">
+
+        <h5 class="author-name no-margin">Posted {{date}} ago</h5>
+        {{#if isAuthorOrAdmin}}
+        {{#if editing}}
+  <a href="#" title="Edit" id="cancelCommentEdit"><i class="fa fa-times" aria-hidden="true"></i> cancel</a>
+    <a href="#" class="text-primary" title="Edit" id="saveCommentEdit"><i class="fa fa-floppy-o" aria-hidden="true"></i> save</a>
+
+
+        {{else}}
+        {{#if canEdit}}
+              <a href="#" title="Edit" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        {{/if}}
+        {{/if}}
+            {{/if}}
+
+
       </div>
-      {{#if isAuthorOrAdmin}}
-      {{#if displayingComment}}
-      <div class ="col-md-5 text-right">
-            <a href="#" title="Edit" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+
+
+      {{#if editing}}
+      <div id="editReplyError" class="hidden">
+            {{> Template.dynamic template='inlineErrorMessage' data=errorMessage}}
       </div>
-      {{/if}}
-      {{#if editingComment}}
-      <div class ="col-md-5 text-right">
-            <a href="#" title="Edit" id="saveCommentEdit">save</a>
+
+      <div class="comment-editor">
+                {{> commentEdit}}
       </div>
-      {{/if}}
-          {{/if}}
+
+
+
+            {{else}}
+
+                  <div class="no-margin thread-text">
+              {{{message}}}
+            </div>
+        {{/if}}
+
+
     </div>
 
 
-    <div class=row>
-      <div class ="col-md-10 col-md-offset-1 ">
-        {{> Template.dynamic template = state }}
-      </div>
+    <div class="list-item-element author" >
+          <img  class="center-block" src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
+                {{authorName}}
     </div>
+
+
 
   </li>
-</template>
-
-
-
-<template name= "commentDisplay">
-{{{message}}}
 </template>
 
 

@@ -32,7 +32,7 @@ export const insertThread = new ValidatedMethod({
     thread.author = user._id;
     thread.authorName = user.username;
     thread.createdAt = new Date();
-    console.log(thread);
+
 
     /*Insert the thread to the database*/
     Threads.insert(thread);

@@ -1,0 +1,77 @@
+<template name="noBannerLayout">
+
+  <div class="greyBackground">
+
+    <div class="height-extension-wrapper">
+
+
+
+
+      <nav  class="main-navbar " style="">
+
+
+
+        <a class="navbar-brand" href={{homePath}}>MEDIAC</a>
+        <ul class="main-nav ">
+          <li ><a href="#"  id="PassionLink">Passion </a></li>
+          <li><a href="#" id="AdventureLink">Adventure</a></li>
+          <li><a  href="#" id="WisdomLink" >Wisdom</a></li>
+
+
+
+          <li class="dropdown right">
+            <a  id="navDropdown" href="#" class="dropdown-toggle center-on-xs"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i> <div class="hidden-xs" style="display:inline;">Menu</div>
+            </a>
+
+            <ul class="dropdown-menu no-collapse" aria-labelledby="navDropdown">
+              <li><a href="#section-2" class="scrolly">About</a></li>
+              <li><a href="#section-1" class="scrolly">Join the Effort</a></li>
+              {{#if isAdmin}}
+              <li><a href="/admin" >Admin Dashboard</a></li>
+              {{/if}}
+              <li>
+                {{#if currentUser}}
+                <a href="#" id="logOut">LogOut</a>
+                {{else}}
+                <a href="#" data-toggle="modal" data-target="#signInModal"> Sign In / Sign Up</a>
+                {{/if}}
+              </li>
+
+            </ul>
+          </li>
+
+
+        </ul>
+
+
+
+
+      </nav>
+
+      <div class="container footer-separator">
+        {{> Template.dynamic template = mainPage }}
+      </div>
+
+
+  </div>
+
+      <footer id="footer" class="small-footer ">
+        <div class="copyright small-footer-element">
+          <ul class="icons small-footer-element">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+          </ul>
+          <p class="small-footer-element">&copy; MEDIAC. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+
+    {{> signInModal}}
+
+
+
+</template>

@@ -2,7 +2,7 @@
 
 import {Threads} from '/imports/api/forum/threads.js';
 import {Replies} from '/imports/api/forum/replies.js';
-
+import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js';
 
 if(Meteor.users.find().count()===0){
   let username ='testuser';
@@ -13,10 +13,10 @@ if(Meteor.users.find().count()===0){
       username,
       password:'password',
     }
-    console.log(userObj)
+
     Accounts.createUser(userObj);
   }
-  
+
   for(let i=1; i<4;i++){
     const adminName='Admin'+i;
     let adminObj ={
@@ -25,10 +25,10 @@ if(Meteor.users.find().count()===0){
       isAdmin:true,
       communities:{},
     }
-    for (let i=0;i<COMMUNITIES.length;++i){
-      adminObj.communities[COMMUNITIES[i]]=true;
+    for (let i=0;i<Object.keys(COMMUNITIES).length;++i){
+      adminObj.communities[Object.keys(COMMUNITIES)[i]]=true;
     }
-    console.log(adminObj);
+
       Accounts.createUser(adminObj);
   }
 
@@ -38,7 +38,7 @@ if(Meteor.users.find().count()===0){
 
 if(Threads.find().count()===0){
   Threads.insert({
-    title: "First thread Lifeplan",
+    title: "First thread Passion",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
     locked:false,
@@ -46,7 +46,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"LifePlan"
+    community:"Passion"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -54,7 +54,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Second thread Lifeplan",
+    title: "Second thread Passion",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
     locked:true,
@@ -62,7 +62,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"LifePlan"
+    community:"Passion"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -70,7 +70,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Third thread Lifeplan",
+    title: "Third thread Passion",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:true,
     locked:true,
@@ -78,7 +78,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"LifePlan"
+    community:"Passion"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -86,7 +86,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "First thread Yolo",
+    title: "First thread Adventure",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
     locked:false,
@@ -94,7 +94,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"Yolo"
+    community:"Adventure"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -102,7 +102,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Second thread Yolo",
+    title: "Second thread Adventure",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
     locked:true,
@@ -110,7 +110,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"Yolo"
+    community:"Adventure"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -118,7 +118,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Third thread Yolo",
+    title: "Third thread Adventure",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:true,
     locked:true,
@@ -126,7 +126,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"Yolo"
+    community:"Adventure"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -136,7 +136,7 @@ if(Threads.find().count()===0){
 
 
   Threads.insert({
-    title: "First thread PersonalDev",
+    title: "First thread Wisdom",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
     locked:false,
@@ -144,7 +144,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"PersonalDev"
+    community:"Wisdom"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -152,7 +152,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Second thread PersonalDev",
+    title: "Second thread Wisdom",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
     locked:true,
@@ -160,7 +160,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"PersonalDev"
+    community:"Wisdom"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);
@@ -168,7 +168,7 @@ if(Threads.find().count()===0){
   });
 
   Threads.insert({
-    title: "Third thread PersonalDev",
+    title: "Third thread Wisdom",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:true,
     locked:true,
@@ -176,7 +176,7 @@ if(Threads.find().count()===0){
     author: Meteor.users.findOne()._id,
     authorName: Meteor.users.findOne().username,
     replyNb:4,
-    community:"PersonalDev"
+    community:"Wisdom"
   },{bypassCollection2:true},function(error,result){
     if(error){
       console.log(error);

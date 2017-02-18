@@ -1837,7 +1837,7 @@
 /* Box */
 
 	.box {
-		border-radius: 4px;
+		border-radius: 2px;
 		border: solid 1px;
 		margin-bottom: 2em;
 		padding: 1.5em;
@@ -2290,8 +2290,8 @@
 		padding: 0.75em 1em;
 	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
+	.form-type-2 input[type="checkbox"],  /*CHANGED HERE*/
+	.form-type-2 input[type="radio"] {
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
@@ -2304,8 +2304,8 @@
 		z-index: -1;
 	}
 
-		input[type="checkbox"] + label,
-		input[type="radio"] + label {
+		.form-type-2 input[type="checkbox"] + label,     /*CHANGED HERE*/
+		.form-type-2 input[type="radio"] + label {
 			text-decoration: none;
 			cursor: pointer;
 			display: inline-block;
@@ -2316,8 +2316,8 @@
 			position: relative;
 		}
 
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
+			.form-type-2 input[type="checkbox"] + label:before,  /*CHANGED HERE*/
+			.form-type-2 input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
 				font-family: FontAwesome;
@@ -2326,8 +2326,8 @@
 				text-transform: none !important;
 			}
 
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
+			.form-type-2 input[type="checkbox"] + label:before,    /*CHANGED HERE*/
+			.form-type-2 input[type="radio"] + label:before {
 				border-radius: 4px;
 				border: solid 1px;
 				content: '';
@@ -2341,16 +2341,16 @@
 				width: 1.65em;
 			}
 
-		input[type="checkbox"]:checked + label:before,
-		input[type="radio"]:checked + label:before {
+		.form-type-2 input[type="checkbox"]:checked + label:before,       /*CHANGED HERE*/
+		.form-type-2 input[type="radio"]:checked + label:before {
 			content: '\f00c';
 		}
 
-	input[type="checkbox"] + label:before {
+	.form-type-2 input[type="checkbox"] + label:before {     /*CHANGED HERE*/
 		border-radius: 4px;
 	}
 
-	input[type="radio"] + label:before {
+	.form-type-2 input[type="radio"] + label:before {     /*CHANGED HERE*/
 		border-radius: 100%;
 	}
 
@@ -2403,26 +2403,26 @@ background: rgba(0, 0, 0, 0.03);
 		color: rgba(0, 0, 0, 0.1);
 	}
 
-	input[type="checkbox"] + label,
-	input[type="radio"] + label {
+	.form-type-2 input[type="checkbox"] + label,         /*CHANGED HERE*/
+	.form-type-2 input[type="radio"] + label {
 		color: #999999;
 	}
 
-		input[type="checkbox"] + label:before,
-		input[type="radio"] + label:before {
+		.form-type-2  input[type="checkbox"] + label:before,     /*CHANGED HERE*/
+		.form-type-2 input[type="radio"] + label:before {
 			background: rgba(0, 0, 0, 0.075);
 			border-color: rgba(0, 0, 0, 0.1);
 		}
 
-	input[type="checkbox"]:checked + label:before,
-	input[type="radio"]:checked + label:before {
+	.form-type-2 input[type="checkbox"]:checked + label:before,    /*CHANGED HERE*/
+	.form-type-2  input[type=" "]:checked + label:before {
 		background-color: #fafafa;
 		border-color: #fafafa;
 		color: #000;
 	}
 
-	input[type="checkbox"]:focus + label:before,
-	input[type="radio"]:focus + label:before {
+	.form-type-2 input[type="checkbox"]:focus + label:before,      /*CHANGED HERE*/
+	.form-type-2 input[type="radio"]:focus + label:before {
 		border-color: #fafafa;
 		box-shadow: 0 0 0 1px #fafafa;
 	}
@@ -3730,8 +3730,8 @@ background: rgba(0, 0, 0, 0.03);
 		-webkit-justify-content: center;
 		-ms-justify-content: center;
 		justify-content: center;
-		/*background-image: url("../../images/banner.jpg");*/
-		background-color: black; /*CHANGED HERE*/
+		background-image: url("/Images/journey/path2.jpg");
+		 background-color: black;/*CHANGED HERE*/
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -3761,11 +3761,13 @@ background: rgba(0, 0, 0, 0.03);
 			font-size: 4em;
 			margin-bottom: .25em;
 			color: #FFF;
+								text-shadow:1px 1px black; /*CHANGED HERE*/
 		}
 
 		#banner p {
 			color: rgba(255, 255, 255, 0.85);
-			font-size: 1.75 em; /*CHANGED HERE : Was 1.75 EM*/
+			font-size: 1.75em; /*CHANGED HERE : Was 1.75 EM*/
+								text-shadow:1px 1px black; /*CHANGED HERE*/
 		}
 
 	@-moz-keyframes more {
@@ -3822,7 +3824,7 @@ background: rgba(0, 0, 0, 0.03);
 			background-color: #000;
 			height: 100%;
 			left: 0;
-			opacity: 0.65;
+			opacity: 0;/* CHANGED HERE*/
 			position: absolute;
 			top: 0;
 			width: 100%;
@@ -3836,7 +3838,7 @@ background: rgba(0, 0, 0, 0.03);
 			}
 
 				#banner br {
-					display: none;
+					/*display: none; CHANGED HERE*/
 				}
 
 		}
@@ -3856,10 +3858,12 @@ background: rgba(0, 0, 0, 0.03);
 					font-size: 1.75em;
 					margin-bottom: 0.5em;
 					padding-bottom: 0;
+					text-shadow:1px 1px black; /*CHANGED HERE*/
 				}
 
 				#banner p {
 					font-size: 1.25em;
+					text-shadow:1px 1px black;/*CHANGED HERE*/
 				}
 
 				#banner .button {

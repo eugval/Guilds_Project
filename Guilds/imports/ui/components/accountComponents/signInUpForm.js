@@ -1,17 +1,14 @@
 import './signInUpForm.html';
 import {signUp} from '/imports/api/accounts/methods.js';
+import '/imports/ui/components/helperComponents/errorMessageBox.js';
+
 
 Template.signInUpForm.onCreated(function(){
   this.signIn = new ReactiveVar(false);
-console.log("creating");
-console.log("rendering");
-console.log(this.data);
-this.formID = new ReactiveVar(this.data);
+  this.formID = new ReactiveVar(this.data);
+  this.formErrorMessage = new ReactiveVar('');
 });
 
-Template.signInUpForm.onRendered(function(){
-
-});
 
 
 Template.signInUpForm.helpers({
@@ -23,29 +20,50 @@ Template.signInUpForm.helpers({
   },
   signUpFormID(){
     return Template.instance().formID.get()+'SignUpForm';
+  },
+  signInUpErrorBoxID(){
+    return Template.instance().formID.get()+'signInUpErrorBox';
+  },
+  errorMessage(){
+    console.log("hrere")
+    console.log(Template.instance().formErrorMessage.get());
+    return {errorMessage:Template.instance().formErrorMessage.get()};
   }
 });
+
 
 Template.signInUpForm.events({
   'click .changeCredentials': function(event){
     event.preventDefault();
-
+    const errorBoxID = '#'+Template.instance().formID.get()+'signInUpErrorBox';
+    $(errorBoxID).addClass('hidden');
     const current = Template.instance().signIn.get();
     Template.instance().signIn.set(!current);
   },
+
+
   'click .submitSignInForm':function(event){
     event.preventDefault();
-  const formID='#'+Template.instance().formID.get()+'SignInForm';
+    const self = Template.instance();
+    const errorBoxID = '#'+self.formID.get()+'signInUpErrorBox';
+    $(errorBoxID).addClass('hidden');
+
+    const formID='#'+self.formID.get()+'SignInForm';
     const username = $(formID+ ' input[type=text]').val();
     const password = $(formID+' input[type=password]').val();
 
-    Meteor.loginWithPassword(username,password,(Error)=>{
-      if(Error){
-        console.log(Error);
+    Meteor.loginWithPassword(username,password,(error)=>{
+      if(error){
+        console.log(error);
+        if(error.error===400){
+          self.formErrorMessage.set("Wrong Username or Password");
+        }else{
+          self.formErrorMessage.set(error.reason);
+        }
+        $(errorBoxID).removeClass('hidden');
       }else{
         console.log("success");
-        $(formID+' input[type=text]').val('');
-        $(formID+' input[type=password]').val('');
+        $(formID).trigger('reset');
         FlowRouter.reload();
         $('#signInModal').modal('hide');
       }
@@ -56,35 +74,35 @@ Template.signInUpForm.events({
 
   'click .submitSignUpForm':function(event){
     event.preventDefault();
+    const self = Template.instance();
+    const errorBoxID = '#'+self.formID.get()+'signInUpErrorBox';
+    $(errorBoxID).addClass('hidden');
 
-    const formID='#'+Template.instance().formID.get()+'SignUpForm';
+    const formID='#'+self.formID.get()+'SignUpForm';
     const userObj={}
     userObj.username = $(formID +' input[name=username]').val();
     userObj.password = $(formID +' input[name=password]').val();
     const confirmPassword =$(formID +' input[name=confirmPassword]').val();
 
-    console.log(userObj);
-    console.log(userObj.password);
-    console.log(confirmPassword);
     if(userObj.password !== confirmPassword){
-      console.log("no match");
+      self.formErrorMessage.set("Passwords don't match.");
+      $(errorBoxID).removeClass('hidden');
     }else{
       signUp.call(userObj,(error)=>{
         if(error){
           console.log(error);
+          self.formErrorMessage.set(error.reason);
+          $(errorBoxID).removeClass('hidden');
         }else{
           console.log("success");
           Meteor.loginWithPassword(userObj.username,userObj.password,(error)=>{
             if(error){
               console.log(error);
             }else{
-              console.log("success login");
-              $(formID +' input[name=username]').val('');
-              $(formID +' input[name=password]').val('');
-              $(formID +' input[name=confirmPassword]').val('');
+                $(formID).trigger('reset');
               FlowRouter.reload();
 
-                $('#signInModal').modal('hide');
+              $('#signInModal').modal('hide');
 
             }
           });

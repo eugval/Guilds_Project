@@ -27,7 +27,7 @@ Schemas.Threads.collectionSchema = new SimpleSchema({
     label:"Community",
     custom:function(){
       /*The community must be one of the values in COMMUNITIES*/
-      if(COMMUNITIES.indexOf(this.value)===-1){
+      if(!COMMUNITIES[this.value]){
         return "inexistentCommunity";
       }
     }

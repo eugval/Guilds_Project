@@ -1,51 +1,69 @@
 import './reply.html';
 import {editReply} from '/imports/api/forum/methods.js';
+import {timeSince} from '/imports/api/helpers/generalHelpers.js';
+import '/imports/ui/components/helperComponents/inlineErrorMessage.js';
 
 Template.reply.onCreated(function(){
-  this.commentState=new ReactiveVar('commentDisplay');
+  this.editing=new ReactiveVar(false);
+  this.formErrorMessage =new ReactiveVar('');
 });
 
 Template.reply.helpers({
-  dateCreated(){
-    let createdAt = this.createdAt;
-    createdAt = createdAt.toISOString().substring(0,10);
-    return createdAt;
+  date(){
+    return timeSince(this.createdAt);
   },
   isAuthorOrAdmin(){
     return this.author === Meteor.userId()|| Meteor.user().isAdmin;
     return false;
   },
-  state(){
-    return Template.instance().commentState.get();
+  canEdit(){
+    return !Session.get('editingThreadReply');
   },
-  displayingComment(){
-    return Template.instance().commentState.get()==='commentDisplay';
+  editing(){
+    return Template.instance().editing.get();
   },
-  editingComment(){
-    return Template.instance().commentState.get()==='commentEdit';
+  errorMessage(){
+    return {errorMessage:Template.instance().formErrorMessage.get()};
   }
 });
 
 Template.reply.events({
   'click #editComment':function(event){
     event.preventDefault();
-    Template.instance().commentState.set('commentEdit');
+    if(!Session.get('editingThreadReply')){
+      Session.set('editingThreadReply',true);
+      Template.instance().editing.set(true);
+    }
+    //Template.instance().editing.set(true);
+
+  },
+  'click #cancelCommentEdit':function(event){
+    event.preventDefault();
+    Template.instance().editing.set(false);
+    Session.set('editingThreadReply',false);
+          $('#editReplyError').removeClass('hidden');
+
   },
   'click #saveCommentEdit': function(event){
     event.preventDefault();
+
+    const self=Template.instance();
+    $('#editReplyError').addClass('hidden');
     const _id= this._id;
     const message = $('.editComment').summernote('code');
 
-    console.log(message);
 
-    Template.instance().commentState.set('commentDisplay');
-    editReply.call({_id,message},(err)=>{
-      if(err){
+
+    Session.set('editingThreadReply',false);
+    editReply.call({_id,message},(error)=>{
+      if(error){
         /*handle error*/
-        console.log("error");
-        console.log(err);
+        console.log(error);
+        self.formErrorMessage.set(error.reason);
+        $('#editReplyError').removeClass('hidden');
       }else{
         console.log("success");
+            self.editing.set(false);
       }
 
     });
@@ -54,10 +72,17 @@ Template.reply.events({
 
 Template.commentEdit.onRendered(function(){
   $('.editComment').summernote({
-    height: 150,
-    minHeight: 100,
-    maxHeight: 400,
-    focus: true
+    focus: true,
+    disableDragAndDrop: true,
+    height: 200,
+    toolbar:[
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['font', ['strikethrough']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+    ],
+
   });
 
   $('.editComment').summernote('code',this.data.message);
@@ -66,6 +91,5 @@ Template.commentEdit.onRendered(function(){
 
 
 Template.commentEdit.onDestroyed(function(){
-  console.log("here");
   $('.editComment').summernote('destroy');
 });

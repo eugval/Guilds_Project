@@ -3,10 +3,11 @@
     {{> spinner}}
   {{else}}
     {{#if isAdmin}}
-      <div class="row">
-        <div class="col-md-6">
 
-          <div class="bg-primary container-fluid">
+    <button class="btn btn-default center-block" id="adminInsertThreadButton">Add new thread</button>
+    <div class=" margin-md" >
+    </div>
+          <div class="admin-list-heading">
             <h4 class="text-center" >
               Admins
             </h4>
@@ -18,7 +19,7 @@
           <div class=" margin-md" >
           </div>
 
-          <div class="bg-primary container-fluid">
+          <div class="admin-list-heading">
             <h4 class="text-center" >
               Users
             </h4>
@@ -27,12 +28,7 @@
             {{> userList}}
           </div>
 
-        </div>
-        <div class="col-md-6">
-          <button class="btn btn-default" id="adminInsertThreadButton">Add new thread</button>
 
-        </div>
-      </div>
 
     {{else}}
       {{> unAuthorisedAccess}}
