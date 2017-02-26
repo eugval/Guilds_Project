@@ -41,6 +41,7 @@ Template.adminThreadUpdate.events({
     updateObj.update.authorName =$('#adminThreadUpdateForm input[name=editThreadAuthor]').val();
     updateObj.update.pinned =$('#adminThreadUpdateForm input[name=pinned]').is(':checked');
     updateObj.update.locked =$('#adminThreadUpdateForm input[name=locked]').is(':checked');
+    updateObj.update.featured =$('#adminThreadUpdateForm input[name=featured]').is(':checked');
     updateObj.update.message =$('#editThreadDescription').summernote('code');
 
     adminUpdateThread.call(updateObj,(error)=>{
@@ -83,6 +84,10 @@ Template.attrAdminThreadUpdate.onRendered(function(){
     }
     if(this.data.locked){
       $('#adminThreadUpdateForm input[name=locked]').prop('checked', true);
+    }
+
+    if(this.data.featured){
+      $('#adminThreadUpdateForm input[name=featured]').prop('checked', true);
     }
 
 

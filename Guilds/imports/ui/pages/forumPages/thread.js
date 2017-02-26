@@ -11,7 +11,7 @@ import {updateThread} from '/imports/api/forum/methods.js';
 import '/imports/ui/components/helperComponents/errorMessageBox.js';
 
 Template.thread.onCreated(function(){
-  this.replyLimit = new ReactiveVar(10);
+  this.replyLimit = new ReactiveVar(20);
   this.replying = new ReactiveVar(false);
   this.editingOP = new ReactiveVar(false);
   this.formErrorMessage = new ReactiveVar('');
@@ -28,10 +28,12 @@ Template.thread.onCreated(function(){
 
 Template.thread.helpers({
   threadExists(){
-    return !!Threads.findOne();
+      const threadID = FlowRouter.getParam('threadID');
+    return !!Threads.findOne({_id:threadID});
   },
   threadContext(){
-    return Threads.findOne();
+    const threadID = FlowRouter.getParam('threadID');
+    return Threads.findOne({_id:threadID});
   },
   replies(){
     return this.replyNb.toString();
@@ -49,7 +51,8 @@ Template.thread.helpers({
     return timeSince(this.createdAt);
   },
   relatedTopics(){
-    return [{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"},{title:"This is an awesome related title", authorName:"FredericSauvage"}]
+      Meteor.subscribe('Threads.Related',6,this.title);
+     return Threads.find({_id:{$not:this._id}},{sort:{score:-1}})
   },
   replying(){
     return Template.instance().replying.get();

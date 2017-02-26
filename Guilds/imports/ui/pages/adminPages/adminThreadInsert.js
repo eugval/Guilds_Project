@@ -41,6 +41,7 @@ Template.adminThreadInsert.events({
     insertObj.community =$('#adminThreadInsertForm input[name=threadCommunity]:checked').val();
     insertObj.pinned = $('#adminThreadInsertForm input[name=pinned]').is(':checked');
     insertObj.locked = $('#adminThreadInsertForm input[name=locked]').is(':checked');
+    insertObj.featured = $('#adminThreadInsertForm input[name=featured]').is(':checked');
 
     const givenUserName=$('#adminThreadInsertForm input[name=existingUserName]').val();
     if($('#adminThreadInsertForm input[name=selfAuthor]').is(':checked')|| givenUserName===''){

@@ -27,6 +27,7 @@ export const insertThread = new ValidatedMethod({
     /*Construct the full thread object*/
     const user = Meteor.user();
     thread.pinned =false;
+    thread.featured =false;
     thread.locked =false;
     thread.replyNb=0;
     thread.author = user._id;
@@ -197,13 +198,13 @@ export const threadLockUpdate = new ValidatedMethod({
   run(options){
     /*Banned or logged out users are not allowed*/
     if(userBannedorOut()){
-      throw new Meteor.Error('Threads.methods.threadPinUpdate.BannedOrOut',
+      throw new Meteor.Error('Threads.methods.threadLockUpdate.BannedOrOut',
       'A banned or logged out user cannot take this action');
     }
 
     /*only admins can use this function*/
     if(!isAdmin()){
-      throw new Meteor.Error('Threads.methods.threadPinUpdate.notAuthorised',
+      throw new Meteor.Error('Threads.methods.threadLockUpdate.notAuthorised',
       'You are not Authorised to take this action');
     }
 
@@ -216,6 +217,37 @@ export const threadLockUpdate = new ValidatedMethod({
     Threads.update({_id:options._id},{$set:{locked:options.lockValue}});
   }
 });
+
+
+export const threadFeaturedUpdate = new ValidatedMethod({
+  name:'Threads.methods.threadFeaturedUpdate',
+  validate: new SimpleSchema([
+    Schemas.Threads.threadFeaturedUpdate,
+  ]).validator(),
+  run(options){
+    /*Banned or logged out users are not allowed*/
+    if(userBannedorOut()){
+      throw new Meteor.Error('Threads.methods.threadFeaturedUpdate.BannedOrOut',
+      'A banned or logged out user cannot take this action');
+    }
+
+    /*only admins can use this function*/
+    if(!isAdmin()){
+      throw new Meteor.Error('Threads.methods.threadFeaturedUpdate.notAuthorised',
+      'You are not Authorised to take this action');
+    }
+
+    /*Thread must exist*/
+    if(!Threads.findOne({_id:options._id})){
+      throw new Meteor.Error('Threads.methods.updateThread.notFound',
+      'The thread was not found.');
+    }
+
+    Threads.update({_id:options._id},{$set:{featured:options.featuredValue}});
+  }
+});
+
+
 
 
 

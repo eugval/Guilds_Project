@@ -1,12 +1,17 @@
 import './newThread.html';
 import {insertThread} from '/imports/api/forum/methods.js';
 import {inCommunity,COMMUNITIES} from '/imports/api/helpers/communityHelpers.js';
+import {Threads} from '/imports/api/forum/threads.js';
 import '/imports/ui/components/accountComponents/verticalUserOptions.js';
 import '/imports/ui/components/helperComponents/errorMessageBox.js';
 
 Template.newThread.onCreated(function(){
 
   this.formErrorMessage = new ReactiveVar('');
+  this.searchValue = new ReactiveVar();
+  this.autorun(()=>{
+    this.subscribe('Threads.Related',5,this.searchValue.get());
+  });
 
 });
 
@@ -44,8 +49,7 @@ Template.newThread.helpers({
     return 'Post in the ' +COMMUNITIES[community]+' Community';
   },
   relatedTopics(){
-    const obj={title:"This is a related topic thanks to the to search", authorName:"bazouk555"}
-    return [obj,obj,obj,obj];
+    return Threads.find({},{sort:{score:-1}});
   },
   errorMessage(){
     return {errorMessage:Template.instance().formErrorMessage.get()};
@@ -53,8 +57,9 @@ Template.newThread.helpers({
 });
 
 Template.newThread.events({
-  'submit #insertThreadForm'(event){
+  'submit #insertThreadForm':function(event){
     event.preventDefault();
+    const self= Template.instance();
 
     $('.insertThreadErrorBox').addClass('hidden');
 
@@ -73,10 +78,10 @@ return;
       if(error){
         /*handle error*/
         console.log(error);
-                Template.instance().formErrorMessage.set(error.reason);
+                self.formErrorMessage.set(error.reason);
         $('.insertThreadErrorBox').removeClass('hidden');
 
-  
+
       }else{
         /* Clean up form and redirect to forum on success */
         console.log("success");
@@ -93,5 +98,14 @@ return;
     const community=FlowRouter.getParam('community');
 
     FlowRouter.go('/:community/forum',{community});
-  }
+  },
+  'input #addThreadTitle':function(event){
+    console.log("searching");
+
+    const self=Template.instance();
+    console.log(event.currentTarget.value);
+
+    self.searchValue.set(event.currentTarget.value);
+
+  },
 })

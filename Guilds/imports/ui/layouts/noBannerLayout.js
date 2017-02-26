@@ -52,5 +52,16 @@ Template.noBannerLayout.events({
       }
     });
   },
+  'click #homeAboutLink':function(event){
+    event.preventDefault();
+    Session.set('section-2',true);
+    FlowRouter.go('home');
+  },
+  'click #homeJoinLink':function(event){
+    event.preventDefault();
+    Session.set('section-1',true);
+    FlowRouter.go('home');
+  },
+
 
 });

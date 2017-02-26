@@ -1,0 +1,21 @@
+<template name="userMessageList">
+
+  <div class="list-group admin-list">
+
+    {{#each userMessages}}
+
+    <a class="list-group-item unfolding-message" href="#">
+              {{name}} , {{email}} ,
+
+                {{message}}
+
+    </a>
+
+    {{/each}}
+
+  </div>
+
+
+
+
+</template>

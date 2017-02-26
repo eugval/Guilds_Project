@@ -1,6 +1,6 @@
 import './forumThread.html';
-import {threadPinUpdate} from '/imports/api/forum/methods.js';
-import {threadLockUpdate} from '/imports/api/forum/methods.js';
+import {threadPinUpdate,threadLockUpdate, threadFeaturedUpdate} from '/imports/api/forum/methods.js';
+
 import {timeSince} from '/imports/api/helpers/generalHelpers.js';
 import {isAdmin} from '/imports/api/helpers/adminFunctions.js';
 
@@ -15,12 +15,6 @@ Template.forumThread.helpers({
     return FlowRouter.path('/:community/forum/:threadID',params);
   },
   dateInserted(){
-    /*
-    let createdAt = this.createdAt;
-    createdAt = createdAt.toISOString().substring(0,10);
-    return createdAt;
-    */
-
     return timeSince(this.createdAt);
 
   },
@@ -45,6 +39,14 @@ Template.forumThread.events({
       lockValue:!this.locked,
     }
     threadLockUpdate.call(options);
+  },
+  'click .thread-featured':function(event){
+    event.preventDefault();
+    const options={
+      _id:this._id,
+      featuredValue:!this.featured,
+    }
+    threadFeaturedUpdate.call(options);
   },
   'click .thread-adminUpdate':function(event){
     event.preventDefault();

@@ -76,6 +76,7 @@
 <div class="sidebar-container">
 
 
+{{#if relatedTopics.count}}
 
                         <div class="list-group forum-threads">
           {{#each relatedTopics}}
@@ -98,6 +99,12 @@
 
           {{/each}}
 </div>
+{{else}}
+<p class="text-center">
+No Related Posts are found!
+</p>
+{{/if}}
+
 </div>
 </div>
     </div>

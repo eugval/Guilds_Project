@@ -12,15 +12,18 @@ $('body').on('hidden.bs.tooltip', function() {
   }
 });
 
+
+
 /*Subscribe to the threads collections to display them in the forum template */
 Template.forum.onCreated(function(){
-  this.threadLimit = new ReactiveVar(10);
-
+  this.threadLimit = new ReactiveVar(15);
+  this.searchValue = new ReactiveVar();
 
   this.autorun(()=>{
     const community= FlowRouter.getParam('community');
     this.subscribe('Threads.List',{community,pinned:true},-1);
-    this.subscribe('Threads.List',{community,pinned:false},this.threadLimit.get());
+    this.subscribe('Threads.List',{community,pinned:false},this.threadLimit.get(),this.searchValue.get());
+    this.subscribe('Threads.Featured',{});
   });
 
 });
@@ -37,8 +40,20 @@ Template.forum.helpers({
     return Threads.find({pinned:true},{sort:{createdAt:-1}});
   },
   unpinnedThreads(){
-    return Threads.find({pinned:false},{sort:{createdAt:-1}});
+    return Threads.find({pinned:false},{sort:{score:-1,createdAt:-1}});
   },
+  noThreads(){
+    return Threads.find({pinned:false}).count()<1;
+  },
+  passionFeatured(){
+    return Threads.find({featured:true,community:"Passion"});
+  },
+  adventureFeatured(){
+    return Threads.find({featured:true, community:"Adventure"});
+  },
+  wisdomFeatured(){
+    return Threads.find({featured:true,community:"Wisdom"});
+  },/*
   welcomeMessage(){
     const community= FlowRouter.getParam('community');
     let message ="Welcome to the";
@@ -47,7 +62,7 @@ Template.forum.helpers({
   },
   inCommunity(){
     return inCommunity();
-  },
+  }*/
 });
 
 
@@ -85,5 +100,14 @@ Template.forum.events({
     event.preventDefault();
 
     $('#horizontalNavigationDropdown').dropdown('toggle');
+  },
+  'input input[type=text][name=threadSearch]':function(event){
+    console.log("searching");
+
+    const self=Template.instance();
+    console.log(event.currentTarget.value);
+
+    self.searchValue.set(event.currentTarget.value);
+
   },
 });

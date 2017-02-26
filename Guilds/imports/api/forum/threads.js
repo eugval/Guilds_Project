@@ -40,6 +40,10 @@ Schemas.Threads.collectionSchema = new SimpleSchema({
     type:Boolean,
     label:"Locked",
   },
+  featured:{
+    type:Boolean,
+    label:"Featured",
+  },
   replyNb:{
     type:Number,
     label: "Number of Replies",
@@ -154,6 +158,10 @@ Schemas.Threads.adminInsertThread =new SimpleSchema({
     type:Boolean,
     label:"Locked",
   },
+  featured:{
+    type:Boolean,
+    label:"Featured",
+  },
   authorName:{
     type:String,
     label:"Author",
@@ -193,6 +201,11 @@ Schemas.Threads.adminUpdateThread =new SimpleSchema({
     optional:true,
     label:"Pinned",
   },
+  "update.featured":{
+    type:Boolean,
+    optional:true,
+    label:"Featured",
+  },
   "update.locked":{
     type:Boolean,
     optional:true,
@@ -215,6 +228,18 @@ Schemas.Threads.threadPinUpdate = new SimpleSchema({
   pinValue:{
     type:Boolean,
     label:"Pin Value",
+  }
+});
+
+
+Schemas.Threads.threadFeaturedUpdate = new SimpleSchema({
+  _id:{
+    type:String,
+    label:"ID",
+  },
+  featuredValue:{
+    type:Boolean,
+    label:"Featured Value",
   }
 });
 

@@ -53,33 +53,4 @@ Meteor.publish("Meteor.users.OneUser",function(username){
     return null;
   }
   return Meteor.users.find({username});
-//return Accounts.findUserByUsername(username);
   });
-
-/*Meteor.publish('Meteor.users.isAdminField',function(){
-
- if(!this.userId){ return null;}
-
-  const options = {
-    fields: { isAdmin: 1 }
-  };
-
-  return Meteor.users.find({_id:this.userId}, options);
-});
-
-
-
-Meteor.publish('Meteor.users.AllUsers',function(){
-   if(!this.userId){
-     return null;
-   }
-  if(!Meteor.users.findOne({_id:this.userId}).isAdmin){
-    return null;
-  }
-
-  const options={
-    fields:{isBanned:1,isAdmin:1}
-  }
-  return Meteor.users.find({},options);
-});
-*/

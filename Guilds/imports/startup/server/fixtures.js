@@ -38,25 +38,10 @@ if(Meteor.users.find().count()===0){
 
 if(Threads.find().count()===0){
   Threads.insert({
-    title: "First thread Passion",
+    title: "Third thread Passion",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
-    pinned:false,
-    locked:false,
-    createdAt: new Date(),
-    author: Meteor.users.findOne()._id,
-    authorName: Meteor.users.findOne().username,
-    replyNb:4,
-    community:"Passion"
-  },{bypassCollection2:true},function(error,result){
-    if(error){
-      console.log(error);
-    }
-  });
-
-  Threads.insert({
-    title: "Second thread Passion",
-    message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
-    pinned:false,
+    pinned:true,
+    featured:true,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -73,6 +58,136 @@ if(Threads.find().count()===0){
     title: "Third thread Passion",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:true,
+    featured:false,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Passion"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+
+    Threads.insert({
+      title: "Third thread Adventure",
+      message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+      pinned:true,
+      featured:false,
+      locked:true,
+      createdAt: new Date(),
+      author: Meteor.users.findOne()._id,
+      authorName: Meteor.users.findOne().username,
+      replyNb:4,
+      community:"Adventure"
+    },{bypassCollection2:true},function(error,result){
+      if(error){
+        console.log(error);
+      }
+    });
+
+
+      Threads.insert({
+        title: "Third thread Adventure",
+        message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+        pinned:true,
+        featured:true,
+        locked:true,
+        createdAt: new Date(),
+        author: Meteor.users.findOne()._id,
+        authorName: Meteor.users.findOne().username,
+        replyNb:4,
+        community:"Adventure"
+      },{bypassCollection2:true},function(error,result){
+        if(error){
+          console.log(error);
+        }
+      });
+
+
+
+
+        Threads.insert({
+          title: "Third thread Wisdom",
+          message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+          pinned:true,
+          featured:false,
+          locked:true,
+          createdAt: new Date(),
+          author: Meteor.users.findOne()._id,
+          authorName: Meteor.users.findOne().username,
+          replyNb:4,
+          community:"Wisdom"
+        },{bypassCollection2:true},function(error,result){
+          if(error){
+            console.log(error);
+          }
+        });
+
+          Threads.insert({
+            title: "Third thread Wisdom",
+            message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+            pinned:true,
+            featured:true,
+            locked:true,
+            createdAt: new Date(),
+            author: Meteor.users.findOne()._id,
+            authorName: Meteor.users.findOne().username,
+            replyNb:4,
+            community:"Wisdom"
+          },{bypassCollection2:true},function(error,result){
+            if(error){
+              console.log(error);
+            }
+          });
+
+
+
+  for (let i=1; i<40; i++){
+
+
+  Threads.insert({
+    title: "First thread Passion",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:false,
+    featured:false,
+    locked:false,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Passion"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Second thread Passion",
+    message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
+    pinned:false,
+    featured:false,
+    locked:true,
+    createdAt: new Date(),
+    author: Meteor.users.findOne()._id,
+    authorName: Meteor.users.findOne().username,
+    replyNb:4,
+    community:"Passion"
+  },{bypassCollection2:true},function(error,result){
+    if(error){
+      console.log(error);
+    }
+  });
+
+  Threads.insert({
+    title: "Third thread Passion",
+    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
+    pinned:false,
+    featured:false,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -89,6 +204,7 @@ if(Threads.find().count()===0){
     title: "First thread Adventure",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
+    featured:false,
     locked:false,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -105,22 +221,7 @@ if(Threads.find().count()===0){
     title: "Second thread Adventure",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
-    locked:true,
-    createdAt: new Date(),
-    author: Meteor.users.findOne()._id,
-    authorName: Meteor.users.findOne().username,
-    replyNb:4,
-    community:"Adventure"
-  },{bypassCollection2:true},function(error,result){
-    if(error){
-      console.log(error);
-    }
-  });
-
-  Threads.insert({
-    title: "Third thread Adventure",
-    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
-    pinned:true,
+    featured:false,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -139,6 +240,7 @@ if(Threads.find().count()===0){
     title: "First thread Wisdom",
     message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
     pinned:false,
+    featured:false,
     locked:false,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -155,6 +257,7 @@ if(Threads.find().count()===0){
     title: "Second thread Wisdom",
     message:"tests tsts test test test rest s test trs tsete st estets tsets etsets ",
     pinned:false,
+    featured:false,
     locked:true,
     createdAt: new Date(),
     author: Meteor.users.findOne()._id,
@@ -166,22 +269,7 @@ if(Threads.find().count()===0){
       console.log(error);
     }
   });
-
-  Threads.insert({
-    title: "Third thread Wisdom",
-    message:"test test test tes tes tes te etsts tsgd tfbfssd sd f sd fs f sd f s df s df",
-    pinned:true,
-    locked:true,
-    createdAt: new Date(),
-    author: Meteor.users.findOne()._id,
-    authorName: Meteor.users.findOne().username,
-    replyNb:4,
-    community:"Wisdom"
-  },{bypassCollection2:true},function(error,result){
-    if(error){
-      console.log(error);
-    }
-  });
+}
 
 }
 

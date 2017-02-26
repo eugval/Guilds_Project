@@ -1,38 +1,79 @@
 <template name="adminDashboard">
   {{#if authInProcess}}
-    {{> spinner}}
+  {{> spinner}}
   {{else}}
-    {{#if isAdmin}}
+  {{#if isAdmin}}
 
-    <button class="btn btn-default center-block" id="adminInsertThreadButton">Add new thread</button>
-    <div class=" margin-md" >
+  <button class="btn btn-default center-block" id="adminInsertThreadButton">Add new thread</button>
+  <div class=" margin-md" >
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="admin-list-heading">
+        <h4 class="text-center" >
+          Admins
+        </h4>
+      </div>
+      <div class="medium-grey-container">
+        {{> adminList}}
+      </div>
     </div>
-          <div class="admin-list-heading">
-            <h4 class="text-center" >
-              Admins
-            </h4>
-          </div>
-          <div class="small-grey-container">
-            {{> adminList}}
-          </div>
+    <div class="col-md-6">
 
-          <div class=" margin-md" >
-          </div>
+      <div class="admin-list-heading">
+        <h4 class="text-center" >
+          Users
+        </h4>
+      </div>
+      <div class="medium-grey-container">
+        {{> userList}}
+      </div>
+    </div>
+  </div>
 
-          <div class="admin-list-heading">
-            <h4 class="text-center" >
-              Users
-            </h4>
-          </div>
-          <div class="medium-grey-container">
-            {{> userList}}
-          </div>
+  <div class=" margin-md" >
+  </div>
 
 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="admin-list-heading">
+        <h4 class="text-center" >
+          Featured Posts
+        </h4>
+      </div>
+      <div class="medium-grey-container">
+{{> adminFeaturedList}}
 
-    {{else}}
-      {{> unAuthorisedAccess}}
-    {{/if}}
+
+      </div>
+
+
+    </div>
+    <div class="col-md-6">
+      <div class="admin-list-heading">
+        <h4 class="text-center" >
+          User Messages
+        </h4>
+      </div>
+      <div class="medium-grey-container">
+
+{{> userMessageList}}
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  {{else}}
+  {{> unAuthorisedAccess}}
+  {{/if}}
   {{/if}}
 
 </template>

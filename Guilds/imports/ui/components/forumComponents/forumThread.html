@@ -2,64 +2,69 @@
 
   <a href={{IDLink}} class="list-group-item">
 
-{{#if pins}}
+    {{#if pins}}
     <div class="list-item-element pins">
       {{#if pinned}}
       <i class="fa fa-thumb-tack" aria-hidden="true"></i>
       <!--<i class="fa fa-tag" aria-hidden="true"></i><br />-->
       {{/if}}
       {{#if locked}}
-    <i class="fa fa-lock" aria-hidden="true"></i>
+      <i class="fa fa-lock" aria-hidden="true"></i>
       {{/if}}
     </div>
-{{else}}
+    {{else}}
     <div class="list-item-element list-item-padding-element">
     </div>
-{{/if}}
+    {{/if}}
     <div class="list-item-element">
-          <img src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
+      <img src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
     </div>
 
 
     <div class="list-item-element text">
-          <span class="thread-title">{{{title}}}</span> <br />
-                <span class="author-name " >{{authorName}}
-                   <span class=" hidden-sm hidden-md hidden-lg">
-                     | {{dateInserted}} ago | <i class="fa fa-comment-o" aria-hidden="true"></i>{{replyNb}}
-                   </span>
-                 </span>
+      <span class="thread-title">{{{title}}}</span> <br />
+      <span class="author-name " >{{authorName}}
+        <span class=" hidden-sm hidden-md hidden-lg">
+          | {{dateInserted}} ago | <i class="fa fa-comment-o" aria-hidden="true"></i>{{replyNb}}
+        </span>
+      </span>
     </div>
 
     <div class="list-item-element comments hidden-xs">
-        <i class="fa fa-comment-o" aria-hidden="true"></i> {{replyNb}}
+      <i class="fa fa-comment-o" aria-hidden="true"></i> {{replyNb}}
 
 
-      </div>
+    </div>
 
 
-      <div class="list-item-element date hidden-xs">
-        {{dateInserted}}
-        </div>
+    <div class="list-item-element date hidden-xs">
+      {{dateInserted}}
+    </div>
 
 
 
     {{#if isAdmin}}
-    <br  />
-    {{#if pinned}}
-      <button class="btn btn-sm btn-warning thread-pin" >Unpin</button>
-
-        {{else}}
+      <br  />
+      {{#if pinned}}
+        <button class="btn btn-sm btn-warning thread-pin" >Unpin</button>
+      {{else}}
         <button class="btn btn-sm btn-default thread-pin" >Pin</button>
-        {{/if}}
-        {{#if locked}}
-          <button class="btn btn-sm btn-warning thread-lock" >Unlock</button>
+      {{/if}}
 
-            {{else}}
-            <button class="btn btn-sm btn-default thread-lock" >Lock</button>
-            {{/if}}
-    <button class="btn btn-sm btn-info thread-adminUpdate" >Update</button>
-    {{else}}
-    {{/if}}
+      {{#if locked}}
+        <button class="btn btn-sm btn-warning thread-lock" >Unlock</button>
+      {{else}}
+        <button class="btn btn-sm btn-default thread-lock" >Lock</button>
+      {{/if}}
+
+      {{#if featured}}
+        <button class="btn btn-sm btn-warning thread-featured" >UnFeature</button>
+      {{else}}
+        <button class="btn btn-sm btn-default thread-featured" >Feature</button>
+      {{/if}}
+
+      <button class="btn btn-sm btn-info thread-adminUpdate" >Update</button>
+  {{/if}}
 
   </a>
 
