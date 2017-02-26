@@ -2026,8 +2026,11 @@
 		button.special,
 		.button.special {
 			/*background-color: #fafafa;
-			color: #000 !important;   CHANGED HERE*/
-			background-color:#000;
+			color: #000 !important;
+			  CHANGED HERE*/
+			border-radius: 30px;
+			padding: 0 2em 0 2em;
+			background-color: rgba(0, 0, 0, 0.57);
 			border: solid 1px white;
 			color:#fafafa;
 		}
@@ -2503,12 +2506,23 @@ background: rgba(0, 0, 0, 0.03);
 
 		.image.fit {
 			display: block;
-			margin: 0 0 2em 0;
-			width: 100%;
+
+		width: 250px;
+		height: 250px;
+		position: relative;
+		overflow: hidden;
+		border-radius: 50%;
 		}
 
 			.image.fit img {
-				width: 100%;
+				display: inline;
+margin: auto;
+height: 100%;
+width: auto;
+position: absolute;
+left: 50%;
+top: 50%;
+-webkit-transform: translateY(-50%) translateX(-50%);
 			}
 
 		.image.round {
@@ -3436,7 +3450,7 @@ background: rgba(0, 0, 0, 0.03);
 		text-align: right;
 		top: 0;
 		width: 100%;
-		z-index: 10001;
+		z-index: 1001;
 	}
 
 		#header > .logo {
@@ -3767,7 +3781,7 @@ background: rgba(0, 0, 0, 0.03);
 		#banner p {
 			color: rgba(255, 255, 255, 0.85);
 			font-size: 1.75em; /*CHANGED HERE : Was 1.75 EM*/
-								text-shadow:1px 1px black; /*CHANGED HERE*/
+								text-shadow:2px 1px black; /*CHANGED HERE*/
 		}
 
 	@-moz-keyframes more {
@@ -3863,7 +3877,7 @@ background: rgba(0, 0, 0, 0.03);
 
 				#banner p {
 					font-size: 1.25em;
-					text-shadow:1px 1px black;/*CHANGED HERE*/
+					text-shadow:2px 1px black;/*CHANGED HERE*/
 				}
 
 				#banner .button {
@@ -3978,5 +3992,10 @@ a.button.special:hover{
 }
 
 #banner .button:hover{
-	 box-shadow: 5px 5px 5px #888888;
+	box-shadow: 0 2px 3px 0 #ffffff, 0 2px 3px 0 #ffffff;
+background-color: #000;
+}
+
+.small-shadowed{
+	text-shadow:1px 1px black;
 }

@@ -3,7 +3,7 @@
   <!-- Header -->
   <header id="header" class="alt">
     <div class="logo"><a href="/"><span>MEDIAC</span></a></div>
-    <a href="#menu">Menu</a>
+    <a href="#menu" class="small-shadowed">Menu</a>
   </header>
 
   <!-- Nav -->
@@ -30,7 +30,7 @@
   <section id="banner">
     <div class="inner">
       <header>
-        <h1>MEET. DISCUSS. ACT.</h1>
+        <h1><!--MEET. DISCUSS. ACT.-->Passion. Adventure. Wisdom.</h1>
         <p>Providing a platform for us young generation<!--to find and work--> to work together on our Passion. <br />
           We aim to cut through all the noise and over-information clouding today's digital era <br />
           to provide truly useful<!--information--> environment to all those who feel like they should be doing more <br />
@@ -38,8 +38,10 @@
         </header>
         <a href={{forumLink}} class="button special big">Go</a> <br />
 
-        <a href="#section-2" class="scrolly">Learn More</a>
+      <a href="#section-2" class="scrolly down-transition-arrow"> <i class="fa fa-angle-down fa-4x" aria-hidden="true"></i></a>
+
       </div>
+
     </section>
 
     <!-- Main -->
@@ -61,7 +63,7 @@
             </header>
             <div class="rowT 200%">
               <div class="6u 12u$(medium)">
-                <h3>Contact Form</h3>
+                <h3>Contact Form <span class="text-success hidden sent-mark"> - <i class="fa fa-check" aria-hidden="true"></i> Sent</span></h3>
                 <div class="contactFormErrorBox hidden">
                       {{> Template.dynamic template='errorMessageBox' data=contactFormErrorMessage}}
                 </div>
@@ -87,12 +89,13 @@
 
               </div>
               <div class="6u$ 12u$(medium)">
-                <h3>Feature Tracker</h3>
+                <h3>Scheduled Features</h3>
                 <ul class="fit small actions-vertical">
-                  <li><a href="#" class="button special fit small">Discussions Forum</a></li>
-                  <li><a href="#" class="button fit small">Inspirational Story Blog</a></li>
-                  <li><a href="#" class="button fit small">Action Groups Platform</a></li>
-                  <li><a href="#" class="button fit small">Live Chat</a></li>
+                <li><a href="#" class="button fit small featureDescription" data-feature="forum">Discussions Forum</a></li>
+                  <li><a href="#" class="button fit small featureDescription" data-feature="blog">Inspirational Story Blog</a></li>
+                  <li><a href="#" class="button fit small featureDescription" data-feature="groups">Action Groups Platform</a></li>
+                  <li><a href="#" class="button fit small featureDescription" data-feature="chat">Live Chat</a></li>
+
                 </ul>
 
               </div>
@@ -106,14 +109,10 @@
         <section class="wrapper style2">
           <div class="inner">
             <!-- 2 Columns -->
-            <div class="flex flex-2">
-              <div class="col col1">
-                <div class="image round fit">
-                  <img src="homePageTemplateFiles/images/pic10.png" alt="" />
-                </div>
-              </div>
-              <div class="col col2">
-                <h2>MEET</h2>
+            <div class="flex ">
+
+              <div class="col align-center">
+                <h2>About</h2>
                 <p>
                   By browsing the different communities on our platform, you will be able to find people sharing the
                   same interrests and inclinations. Join the Passion, Adventure or Personal development communities and
@@ -121,41 +120,48 @@
                 </p>
 
 
-                <div class="inner nested">
-                  <div class="flex flex-3">
-                    <div class="col align-center">
-                      <p>
-                        <strong>Passion :</strong><br>
-                        It is easy to be taken by the current of life and forget about your Passion, projects,
-                        ideas and aspirations. Have you been holding back your creativity for a while and feel like you are missing a crucial
-                        component of your life?
-                      </p>
-                    </div>
-                    <div class="col align-center">
-                      <p>
-                        <strong>Adventure : </strong><br>
-                        You only live once and life is passing by in fast mode.
-                        Skydiving, Burning Man, Meditation in Nepal, is there anything that
-                        you wish you would do before its too late?
-                      </p>
-                    </div>
-                    <div class="col align-center">
-                      <p>
-                        <strong>Personal Development : </strong><br>
-                        Through our busy lives we often forget to take care of the most important part:
-                        Ourselves. Have you secretly given up on your physical and psychological well being?
-                        Is there still a voice inside you that things should not be this way?
+<div class="row">
+<div class="col-md-4">
+  <div class="image round fit">
+    <div class="txt">
+      <h3>
+      Passion
+    </h3>
+    </div>
+<img src="/Images/Passion/manFire1.jpg" alt="" />
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="image round fit">
+    <div class="txt">
+      <h3>
+      Adventure
+    </h3>
+    </div>
+  <img src="/Images/Adventure/yoga1.jpg" alt="" />
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="image round fit">
+    <div class="txt">
+      <h3>
+      Wisdom
+    </h3>
+    </div>
 
-                      </p>
-
-                    </div>
-                  </div>
-                </div>
-
+  <img src="/Images/Wisdom/guru1.jpg"  alt="" />
+  </div>
+  </div>
+</div>
 
 
 
-                <a href="#section-2" class="button scrolly">Learn More</a>
+
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -288,15 +294,7 @@
       </div>
     </footer>
 
-
-
-
-
-    <!-- Scripts
-    <script src="/homePageTemplateFiles/js/jquery.scrolly.min.js"></script>
-    <script src="/homePageTemplateFiles/js/jquery.scrollex.min.js"></script>
-    <script src="/homePageTemplateFiles/js/skel.min.js"></script>
-    <script src="/homePageTemplateFiles/js/util.js"></script>
-    <script src="/homePageTemplateFiles/js/main.js"></script>-->
-
+{{#with modalText}}
+{{>  featuresModal}}
+{{/with}}
   </template>

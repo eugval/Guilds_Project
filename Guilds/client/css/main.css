@@ -800,7 +800,7 @@ padding: 8em 0 6em 0;
 }
 
 .Adventure .mini-banner{
-  background-image: url("/Images/Adventure/yoga1.jpg")
+  background-image: url("/Images/Adventure/yoga1.jpg");
 }
 
 .Wisdom .mini-banner{
@@ -959,18 +959,34 @@ color:white;
     background-image: url("/Images/Passion/manFire1.jpg");
 }
 
+.Passion #footer.with-image a{
+color:#a665d7;
+}
+
+
 
 
 .Adventure #footer.with-image{
   background-position:bottom;
   background-image:url("/Images/Adventure/yoga1.jpg");
 }
+.Adventure #footer.with-image a{
+color:#dc3225;
+}
+
 
 
 .Wisdom #footer.with-image{
   background-position:bottom;
   background-image: url("/Images/Wisdom/guru1.jpg")
 }
+
+.Wisdom #footer.with-image a{
+color:#337ab7;
+}
+
+
+
 
 .thread-title{
 margin:1.2em 0 0.6em 0;
@@ -1212,4 +1228,81 @@ textarea#contactFormMessage{
 
 .gray-text{
   color: #999999;
+}
+
+.down-transition-arrow{
+  display:block;
+  margin-top:50px;
+ color: rgba(255, 255, 255, 0.7);
+ text-shadow: 1px 1px rgba(66, 66, 66, 0.8);
+ transition: all 0.2s ease-in-out;
+     text-decoration:none !important;
+
+
+}
+
+
+
+.down-transition-arrow:hover{
+  -ms-transform: translate(0, 10px); /* IE 9 */
+-webkit-transform: translate(0, 10px); /* Safari */
+transform: translate(0, 10px);
+color:white !important;
+          text-shadow: 1px 1px black;
+}
+
+/*
+.down-transition-arrow span{
+  display:none;
+
+  font-weight: 600;
+}
+.down-transition-arrow:hover span{
+  display:block;
+
+}
+*/
+
+
+.modal-vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.modal-vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-vertical-alignment-helper  .modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+
+.image .txt{
+  position: absolute;
+left: 50%;
+top: 50%;
+-webkit-transform: translateY(-50%) translateX(-50%);
+
+z-index: 300;
+}
+
+.image .txt h3{
+  color: white;
+  margin:0;
+  text-shadow: 1px 1px black;
+}
+
+.image .txt p{
+  color: white;
+  margin:0;
+  text-shadow: 1px 1px black;
 }

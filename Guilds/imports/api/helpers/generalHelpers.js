@@ -27,4 +27,24 @@ function timeSince(date) {
 }
 
 
-export {timeSince}
+const FEATURES={
+  forum:{
+    title:"Discussions Forum",
+    message:"Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum Discussions Forum ",
+  },
+  blog:{
+    title:"Inspirational Story Blog",
+    message:"Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog Inspirational Story Blog ",
+  },
+  groups:{
+    title:"Action Groups Platform",
+    message:"Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform Action Groups Platform ",
+  },
+  chat:{
+    title:"Live Chat",
+    message:"Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat Live Chat ",
+  }
+}
+
+
+export {timeSince,FEATURES}

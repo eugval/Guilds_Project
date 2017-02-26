@@ -3,12 +3,17 @@ import {insertContactMessage} from '/imports/api/contact/methods.js';
 import '/imports/ui/components/helperComponents/errorMessageBox.js';
 import {signUp} from '/imports/api/accounts/methods.js';
 import {isAdmin} from "/imports/api/helpers/adminFunctions.js";
+import {FEATURES} from '/imports/api/helpers/generalHelpers.js';
+import '/imports/ui/components/homePageComponents/featuresModal.js';
+
+
 
 Template.homePageLayout.onCreated(function(){
     $('body').addClass('is-loading');
     this.contactFormErrorMessage= new ReactiveVar('');
     this.signInFormErrorMessage = new ReactiveVar('');
     this.signUpFormErrorMessage = new ReactiveVar('');
+    this.featureData = new ReactiveVar({});
 });
 
 Template.homePageLayout.onRendered(function(){
@@ -44,6 +49,9 @@ Template.homePageLayout.helpers({
   isAdmin(){
     return isAdmin();
   },
+  modalText(){
+    return Template.instance().featureData.get();
+  }
 });
 
 
@@ -66,6 +74,11 @@ Template.homePageLayout.events({
          $('.contactFormErrorBox').removeClass('hidden');
       }else{
         console.log("success");
+        $(".sent-mark").removeClass("hidden");
+        window.setTimeout(function(){
+        $(".sent-mark").addClass("hidden");
+      },2000);
+
         $("#contactForm").trigger('reset');
       }
     });
@@ -134,5 +147,11 @@ Template.homePageLayout.events({
         });
       }
     },
+    'click .featureDescription':function(event){
+      event.preventDefault();
+      const feature =$(event.target).data("feature");
+      Template.instance().featureData.set(FEATURES[feature]);
+      $('#featuresModal').modal('toggle');
+    }
 
 });
