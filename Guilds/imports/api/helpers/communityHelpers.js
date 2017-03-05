@@ -14,9 +14,9 @@ function inCommunity(){
 
 /*Object including all the communities of the website and a label for the communities
 const COMMUNITIES ={
-  Passion: "Passion",
-  Adventure : "Adventure",
-  Wisdom:"Self Improvement"
+Passion: "Passion",
+Adventure : "Adventure",
+Wisdom:"Self Improvement"
 };
 */
 

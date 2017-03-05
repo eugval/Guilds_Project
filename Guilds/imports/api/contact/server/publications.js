@@ -6,6 +6,6 @@ Meteor.publish('ContactMessages.List',function(){
     return null;
   }
 
-return ContactMessages.find({});
+  return ContactMessages.find({});
 
 });

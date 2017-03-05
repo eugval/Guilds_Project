@@ -7,16 +7,16 @@
         <h5 class="author-name no-margin">Posted {{date}} ago</h5>
         {{#if isAuthorOrAdmin}}
         {{#if editing}}
-  <a href="#" title="Edit" id="cancelCommentEdit"><i class="fa fa-times" aria-hidden="true"></i> cancel</a>
-    <a href="#" class="text-primary" title="Edit" id="saveCommentEdit"><i class="fa fa-floppy-o" aria-hidden="true"></i> save</a>
+        <a href="#" title="Edit" id="cancelCommentEdit"><i class="fa fa-times" aria-hidden="true"></i> cancel</a>
+        <a href="#" class="text-primary" title="Edit" id="saveCommentEdit"><i class="fa fa-floppy-o" aria-hidden="true"></i> save</a>
 
 
         {{else}}
         {{#if canEdit}}
-              <a href="#" title="Edit" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a href="#" title="Edit" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i></a>
         {{/if}}
         {{/if}}
-            {{/if}}
+        {{/if}}
 
 
       </div>
@@ -25,29 +25,29 @@
 
       {{#if editing}}
       <div id="editReplyError" class="hidden">
-            {{> Template.dynamic template='inlineErrorMessage' data=errorMessage}}
+        {{> Template.dynamic template='inlineErrorMessage' data=errorMessage}}
       </div>
 
       <div class="comment-editor">
-                {{> commentEdit}}
+        {{> commentEdit}}
       </div>
 
 
 
-            {{else}}
+      {{else}}
 
-                  <div class="no-margin thread-text">
-              {{{message}}}
-            </div>
-        {{/if}}
+      <div class="no-margin thread-text">
+        {{{message}}}
+      </div>
+      {{/if}}
 
 
     </div>
 
 
     <div class="list-item-element author" >
-          <img  class="center-block" src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
-                {{authorName}}
+      <img  class="center-block" src={{identicon author size='10' scale='3'}} style="border-radius:50% !important" />
+      {{authorName}}
     </div>
 
 

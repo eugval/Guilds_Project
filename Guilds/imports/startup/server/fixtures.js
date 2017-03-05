@@ -4,6 +4,30 @@ import {Threads} from '/imports/api/forum/threads.js';
 import {Replies} from '/imports/api/forum/replies.js';
 import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js';
 
+
+if(Meteor.users.find().count()===0){
+
+
+
+    let adminObj ={
+      username:'first-user',
+      password:'password',
+      isAdmin:true,
+      communities:{},
+    }
+    for (let i=0;i<Object.keys(COMMUNITIES).length;++i){
+      adminObj.communities[Object.keys(COMMUNITIES)[i]]=true;
+    }
+
+      Accounts.createUser(adminObj);
+
+
+
+
+}
+
+
+/*
 if(Meteor.users.find().count()===0){
   let username ='testuser';
 
@@ -330,3 +354,5 @@ if(Replies.find().count()===0){
   }
 
 }
+}
+*/

@@ -23,17 +23,17 @@ Template.newThread.onRendered(function(){
     minHeight: 100,
     maxHeight: 600,
     focus: false ,
-toolbar:[
-   ['style', ['bold', 'italic', 'underline', 'clear']],
-    ['font', ['strikethrough', 'superscript', 'subscript']],
-    ['fontsize', ['fontsize']],
-    ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-       ['table', ['table']],
+    toolbar:[
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      ['font', ['strikethrough', 'superscript', 'subscript']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['table', ['table']],
       ['insert', ['link', 'picture']]
 
-],
-  disableDragAndDrop: true,
+    ],
+    disableDragAndDrop: true,
   });
 
 
@@ -63,11 +63,11 @@ Template.newThread.events({
 
     $('.insertThreadErrorBox').addClass('hidden');
 
-if(!Meteor.user()){
-  $('#signInModal .sign-in-warning').removeClass('hidden');
-$('#signInModal').modal('toggle');
-return;
-}
+    if(!Meteor.user()){
+      $('#signInModal .sign-in-warning').removeClass('hidden');
+      $('#signInModal').modal('toggle');
+      return;
+    }
 
     /* Grab form values */
     const title = event.target.addThreadTitle.value;
@@ -78,7 +78,7 @@ return;
       if(error){
         /*handle error*/
         console.log(error);
-                self.formErrorMessage.set(error.reason);
+        self.formErrorMessage.set(error.reason);
         $('.insertThreadErrorBox').removeClass('hidden');
 
 
@@ -86,7 +86,7 @@ return;
         /* Clean up form and redirect to forum on success */
         console.log("success");
         event.target.addThreadTitle.value="";
-      $('.addThreadDescription').summernote('code','');
+        $('.addThreadDescription').summernote('code','');
         const community=FlowRouter.getParam('community');
         const params ={community};
         FlowRouter.go(`/:community/forum`,params);

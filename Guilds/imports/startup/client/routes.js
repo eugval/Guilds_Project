@@ -3,10 +3,10 @@ import {isAuthorOrAdmin} from '/imports/api/helpers/adminFunctions.js';
 import {COMMUNITIES} from '/imports/api/helpers/communityHelpers.js'
 
 FlowRouter.notFound = {
-    action: function() {
-import '/imports/ui/pages/helperPages/pageNotFound.js';
-      BlazeLayout.render("noBannerLayout", {mainPage: "pageNotFound"});
-    }
+  action: function() {
+    import '/imports/ui/pages/helperPages/pageNotFound.js';
+    BlazeLayout.render("noBannerLayout", {mainPage: "pageNotFound"});
+  }
 };
 
 FlowRouter.route('/', {
@@ -79,10 +79,5 @@ FlowRouter.route('/unAuthorisedAccess',{
   action:function(){
     import '/imports/ui/pages/helperPages/unAuthorisedAccess.js';
     BlazeLayout.render("bannerLayout", {mainPage: "unAuthorisedAccess"});
-  }
-})
-
-FlowRouter.route('/test',{
-  action:function(){
   }
 })

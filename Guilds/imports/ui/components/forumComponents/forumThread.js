@@ -50,8 +50,8 @@ Template.forumThread.events({
   },
   'click .thread-adminUpdate':function(event){
     event.preventDefault();
-        const params = {threadID:this._id};
-        FlowRouter.go('/admin/:threadID/adminThreadUpdate',params);
+    const params = {threadID:this._id};
+    FlowRouter.go('/admin/:threadID/adminThreadUpdate',params);
   },
 
 })

@@ -14,13 +14,13 @@ export const joinCommunity = new ValidatedMethod({
     /*User must be logged in to join a community*/
     if(!userLoggedIn()){
       throw new Meteor.Error('Meteor.users.joinCommunity.notLoggedIn',
-            'Must be logged in to join a Community.');
+      'Must be logged in to join a Community.');
     }
 
     /*Community must exist*/
     if(!COMMUNITIES[options.community]){
       throw new Meteor.Error('Meteor.users.joinCommunity.communityNotFound',
-    'This community does not exist');
+      'This community does not exist');
     }
 
     /*prepare the update object*/
@@ -47,13 +47,13 @@ export const leaveCommunity = new ValidatedMethod({
     /*User must be logged in to leave a community*/
     if(!userLoggedIn()){
       throw new Meteor.Error('Meteor.users.leaveCommunity.notLoggedIn',
-            'Must be logged in to leave a Community.');
+      'Must be logged in to leave a Community.');
     }
 
     /*Community must exist*/
     if(!COMMUNITIES[options.community]){
       throw new Meteor.Error('Meteor.users.leaveCommunity.communityNotFound',
-    'This community does not exist');
+      'This community does not exist');
     }
 
     /*prepare the update object*/
@@ -83,8 +83,8 @@ export const signUp = new ValidatedMethod({
   run(userObj){
     if(userLoggedIn()){
       throw new Meteor.Error('Meteor.users.signUp.LoggedIn',
-    'Please Log Out before Signing Up');
-  }
+      'Please Log Out before Signing Up');
+    }
 
     Accounts.createUser(userObj);
   }
@@ -105,13 +105,13 @@ export const upgradeToAdmin = new ValidatedMethod({
     /*An admin must be logged in */
     if(!isAdmin()){
       throw new Meteor.Error('Meteor.users.upgradeToAdmin.notAuthorised',
-            'You are not Authorised to take this action');
+      'You are not Authorised to take this action');
     }
 
     /*The user to be upgraded must exist*/
     if(!Meteor.users.findOne({_id:options._id})){
       throw new Meteor.Error('Meteor.users.upgradeToAdmin.userNotFound',
-            'The user was not found.');
+      'The user was not found.');
     }
 
     /*prepare updates object : admin must be in all communities*/
@@ -137,13 +137,13 @@ export const demoteAdmin = new ValidatedMethod({
     /*An admin must be logged in */
     if(!isAdmin()){
       throw new Meteor.Error('Meteor.users.demoteAdmin.notAuthorised',
-            'You are not Authorised to take this action');
+      'You are not Authorised to take this action');
     }
 
     /*Target user must exist*/
     if(!Meteor.users.findOne({_id:options._id})){
       throw new Meteor.Error('Meteor.users.demoteAdmin.userNotFound',
-            'The user was not found.');
+      'The user was not found.');
     }
 
     Meteor.users.update({_id:options._id},{$set:{isAdmin:false}});
@@ -162,12 +162,12 @@ export const banUser=new ValidatedMethod({
     /*User must be an admin*/
     if(!isAdmin()){
       throw new Meteor.Error('Meteor.users.banUser.notAuthorised',
-            'You are not Authorised to take this action');
+      'You are not Authorised to take this action');
     }
     /*Target user must exist*/
     if(!Meteor.users.findOne({_id:options._id})){
       throw new Meteor.Error('Meteor.users.banUser.userNotFound',
-            'The user was not found.');
+      'The user was not found.');
     }
 
     Meteor.users.update({_id:options._id},{$set:{isBanned:true}});
@@ -187,13 +187,13 @@ export const unBanUser=new ValidatedMethod({
     /*User must be an admin*/
     if(!isAdmin()){
       throw new Meteor.Error('Meteor.users.unBanUser.notAuthorised',
-            'You are not Authorised to take this action');
+      'You are not Authorised to take this action');
     }
 
     /*Target user must exist*/
     if(!Meteor.users.findOne({_id:options._id})){
       throw new Meteor.Error('Meteor.users.unBanUser.userNotFound',
-            'The user was not found.');
+      'The user was not found.');
     }
 
     Meteor.users.update({_id:options._id},{$set:{isBanned:false}});

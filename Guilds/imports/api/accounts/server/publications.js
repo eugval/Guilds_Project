@@ -1,6 +1,6 @@
 Meteor.publish(null,function(){
 
- if(!this.userId){ return null;}
+  if(!this.userId){ return null;}
 
   const options = {
     fields: { isAdmin: 1, communities:1, isBanned:1 }
@@ -25,7 +25,7 @@ Meteor.publish('Meteor.users.Admins',function(){
 
 Meteor.publish("Meteor.users.userSearch",function(searchValue){
   const options={
-        fields:{username:1,isBanned:1,isAdmin:1,communities:1}
+    fields:{username:1,isBanned:1,isAdmin:1,communities:1}
   }
 
   if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
@@ -44,8 +44,8 @@ Meteor.publish("Meteor.users.userSearch",function(searchValue){
 
 Meteor.publish("Meteor.users.OneUser",function(username){
   const options={
-        fields:{username:1}
-        }
+    fields:{username:1}
+  }
   if(!this.userId || !Meteor.users.findOne({_id:this.userId}).isAdmin){
     return null;
   }
@@ -53,4 +53,4 @@ Meteor.publish("Meteor.users.OneUser",function(username){
     return null;
   }
   return Meteor.users.find({username});
-  });
+});

@@ -3,14 +3,14 @@ import {demoteAdmin} from '/imports/api/accounts/methods.js';
 Template.adminList.onCreated(function(){
 
   this.autorun(()=>{
- this.subscribe('Meteor.users.Admins');
+    this.subscribe('Meteor.users.Admins');
   });
 });
 
 Template.adminList.helpers({
-admins(){
- return Meteor.users.find({isAdmin:true});
-}
+  admins(){
+    return Meteor.users.find({isAdmin:true});
+  }
 });
 
 Template.adminList.events({

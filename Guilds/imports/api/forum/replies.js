@@ -30,7 +30,7 @@ Schemas.Replies.collectionSchema = new SimpleSchema({
     type:String,
     label:"Author's Name",
     custom:function(){
-        /*The author name must be the username of the author's user object*/
+      /*The author name must be the username of the author's user object*/
       if(Meteor.isServer){
         const ID = this.field('author').value;
         const user = Meteor.users.findOne({_id:ID});
@@ -61,17 +61,17 @@ Replies.attachSchema(Schemas.Replies.collectionSchema);
 *These schemas have the same name as the method they are used in
 */
 
- Schemas.Replies.insertReply= new SimpleSchema({
-   thread:{
-     type:String,
-     label:"Thread",
-   },
-   message:{
-     type:String,
-     label:"Message",
-   }
+Schemas.Replies.insertReply= new SimpleSchema({
+  thread:{
+    type:String,
+    label:"Thread",
+  },
+  message:{
+    type:String,
+    label:"Message",
+  }
 
- });
+});
 
 Schemas.Replies.editReply = new SimpleSchema({
   _id:{

@@ -25,4 +25,4 @@ Template.userMessageList.events({
       $(event.target).addClass('unfolding-message');
     }
   },
-})
+});

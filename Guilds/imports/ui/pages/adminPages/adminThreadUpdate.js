@@ -9,7 +9,7 @@ Template.adminThreadUpdate.onCreated(function(){
   const threadID = FlowRouter.getParam('threadID');
   this.formErrorMessage = new ReactiveVar('');
   this.autorun(()=>{
-  this.subscribe('Thread.adminOne',{_id:threadID});
+    this.subscribe('Thread.adminOne',{_id:threadID});
   });
 });
 
@@ -32,9 +32,9 @@ Template.adminThreadUpdate.helpers({
 Template.adminThreadUpdate.events({
   'submit #adminThreadUpdateForm':function(event){
     event.preventDefault();
-        const self=Template.instance();
-      $('.insertThreadErrorBox').addClass('hidden');
-      const threadID = FlowRouter.getParam('threadID');
+    const self=Template.instance();
+    $('.insertThreadErrorBox').addClass('hidden');
+    const threadID = FlowRouter.getParam('threadID');
     let updateObj={_id:threadID, update:{}};
     updateObj.update.title =$('#adminThreadUpdateForm input[name=editThreadTitle]').val();
     updateObj.update.community =$('#adminThreadUpdateForm input[name=editThreadCommunity]').val();
@@ -79,16 +79,16 @@ Template.descEditor.onDestroyed(function(){
 
 Template.attrAdminThreadUpdate.onRendered(function(){
 
-    if(this.data.pinned){
-      $('#adminThreadUpdateForm input[name=pinned]').prop('checked', true);
-    }
-    if(this.data.locked){
-      $('#adminThreadUpdateForm input[name=locked]').prop('checked', true);
-    }
+  if(this.data.pinned){
+    $('#adminThreadUpdateForm input[name=pinned]').prop('checked', true);
+  }
+  if(this.data.locked){
+    $('#adminThreadUpdateForm input[name=locked]').prop('checked', true);
+  }
 
-    if(this.data.featured){
-      $('#adminThreadUpdateForm input[name=featured]').prop('checked', true);
-    }
+  if(this.data.featured){
+    $('#adminThreadUpdateForm input[name=featured]').prop('checked', true);
+  }
 
 
 });

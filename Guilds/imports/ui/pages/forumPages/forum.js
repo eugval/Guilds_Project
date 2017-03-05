@@ -1,5 +1,5 @@
 import './forum.html';
-import '/imports/ui/components/forumComponents/forumThread.js'; //the forumThread template is used hence loaded
+import '/imports/ui/components/forumComponents/forumThread.js';
 import '/imports/ui/components/accountComponents/signInUpForm.js';
 import '/imports/ui/components/accountComponents/verticalUserOptions.js';
 import {Threads} from '/imports/api/forum/threads.js';
@@ -53,16 +53,7 @@ Template.forum.helpers({
   },
   wisdomFeatured(){
     return Threads.find({featured:true,community:"Wisdom"});
-  },/*
-  welcomeMessage(){
-    const community= FlowRouter.getParam('community');
-    let message ="Welcome to the";
-
-    return message+ Communities[community] + " Community";
   },
-  inCommunity(){
-    return inCommunity();
-  }*/
 });
 
 
@@ -77,8 +68,8 @@ Template.forum.events({
   'click .add-thread':function(e){
     e.preventDefault();
     if(!Meteor.userId()){
-              $('#signInModal .sign-in-warning').removeClass('hidden');
-        $('#signInModal').modal('toggle');
+      $('#signInModal .sign-in-warning').removeClass('hidden');
+      $('#signInModal').modal('toggle');
     }else{
       const community=FlowRouter.getParam('community');
       const params ={community};

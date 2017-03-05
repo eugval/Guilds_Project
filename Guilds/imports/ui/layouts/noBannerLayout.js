@@ -28,22 +28,22 @@ Template.noBannerLayout.helpers({
 
 
 Template.noBannerLayout.events({
-'click #PassionLink':function(event){
-  event.preventDefault();
-  console.log("here");
-  FlowRouter.go("/:community/forum",{community:"Passion"});
-  location.reload(true);
-},
-'click #AdventureLink':function(event){
-  event.preventDefault();
-  FlowRouter.go("/:community/forum",{community:"Adventure"});
-  location.reload(true);
-},
-'click #WisdomLink':function(event){
-  event.preventDefault();
-  FlowRouter.go("/:community/forum",{community:"Wisdom"});
-  location.reload(true);
-},
+  'click #PassionLink':function(event){
+    event.preventDefault();
+    console.log("here");
+    FlowRouter.go("/:community/forum",{community:"Passion"});
+    location.reload(true);
+  },
+  'click #AdventureLink':function(event){
+    event.preventDefault();
+    FlowRouter.go("/:community/forum",{community:"Adventure"});
+    location.reload(true);
+  },
+  'click #WisdomLink':function(event){
+    event.preventDefault();
+    FlowRouter.go("/:community/forum",{community:"Wisdom"});
+    location.reload(true);
+  },
   'click #logOut':function(event){
     event.preventDefault();
     Meteor.logout((error)=>{

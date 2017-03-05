@@ -34,14 +34,14 @@ Template.reply.events({
       Session.set('editingThreadReply',true);
       Template.instance().editing.set(true);
     }
-    //Template.instance().editing.set(true);
+
 
   },
   'click #cancelCommentEdit':function(event){
     event.preventDefault();
     Template.instance().editing.set(false);
     Session.set('editingThreadReply',false);
-          $('#editReplyError').removeClass('hidden');
+    $('#editReplyError').removeClass('hidden');
 
   },
   'click #saveCommentEdit': function(event){
@@ -63,7 +63,7 @@ Template.reply.events({
         $('#editReplyError').removeClass('hidden');
       }else{
         console.log("success");
-            self.editing.set(false);
+        self.editing.set(false);
       }
 
     });

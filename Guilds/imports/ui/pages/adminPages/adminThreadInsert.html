@@ -1,6 +1,6 @@
 <template name="adminThreadInsert">
   {{#if authInProcess}}
-    {{> spinner}}
+  {{> spinner}}
   {{else}}
   {{#if isAdmin}}
   <div class ="row">
@@ -15,7 +15,7 @@
     <div class="col-md-12">
 
       <div class="insertThreadErrorBox hidden">
-            {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+        {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
       </div>
 
 
@@ -32,54 +32,54 @@
 
         </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <label>Which community the post belongs to?</label>
-          <div class="form-group">
-          {{#each communities}}
-          <label class="radio-inline">
-            <input type="radio" name="threadCommunity" value={{this}}> {{this}}
-          </label>
-          {{/each}}
+        <div class="row">
+          <div class="col-md-6">
+            <label>Which community the post belongs to?</label>
+            <div class="form-group">
+              {{#each communities}}
+              <label class="radio-inline">
+                <input type="radio" name="threadCommunity" value={{this}}> {{this}}
+              </label>
+              {{/each}}
             </div>
 
-  </div>
-  <div class="col-md-6">
-    <label>Attributes</label>
+          </div>
+          <div class="col-md-6">
+            <label>Attributes</label>
             <div class="form-group">
 
-            <label class="checkbox-inline">
-              <input type="checkbox" name="pinned"> Pinned?
-            </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="pinned"> Pinned?
+              </label>
 
-            <label class="checkbox-inline">
-              <input type="checkbox" name="locked"> Locked?
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="featured"> Featured?
-            </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="locked"> Locked?
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="featured"> Featured?
+              </label>
             </div>
-  </div>
-</div>
+          </div>
+        </div>
 
 
 
-<label>Author</label>
-<div class ="row">
-<div class ="col-md-6">
-<div class="form-group" >
+        <label>Author</label>
+        <div class ="row">
+          <div class ="col-md-6">
+            <div class="form-group" >
 
-  <label class="checkbox-inline">
-    <input type="checkbox" name="selfAuthor"> Me
-  </label>
-</div>
-  </div>
-<div class ="col-md-6">
-  <label for="existingUserName">An existing user</label>
-  <input type="text" class="form-control"   name = "existingUserName" placeholder="Username" value=''/>
-</div>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="selfAuthor"> Me
+              </label>
+            </div>
+          </div>
+          <div class ="col-md-6">
+            <label for="existingUserName">An existing user</label>
+            <input type="text" class="form-control"   name = "existingUserName" placeholder="Username" value=''/>
+          </div>
 
-</div>
+        </div>
 
         <button type="submit" class="btn btn-primary"> Submit</button>
 
@@ -87,10 +87,10 @@
 
     </div>
   </div>
-{{else}}
-      {{> unAuthorisedAccess}}
-{{/if}}
-{{/if}}
+  {{else}}
+  {{> unAuthorisedAccess}}
+  {{/if}}
+  {{/if}}
 
 
 </template>

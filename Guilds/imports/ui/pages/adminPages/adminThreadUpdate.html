@@ -1,6 +1,6 @@
 <template name="adminThreadUpdate">
   {{#if authInProcess}}
-    {{> spinner}}
+  {{> spinner}}
   {{else}}
   {{#if isAdmin}}
 
@@ -16,7 +16,7 @@
   <form id='adminThreadUpdateForm'>
 
     <div class="insertThreadErrorBox hidden">
-          {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+      {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
     </div>
 
     <div class="form-group">
@@ -57,7 +57,7 @@
   {{/with}}
 
   {{else}}
-        {{> unAuthorisedAccess}}
+  {{> unAuthorisedAccess}}
   {{/if}}
   {{/if}}
 

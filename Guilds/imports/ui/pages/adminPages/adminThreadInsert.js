@@ -8,7 +8,7 @@ import '/imports/ui/pages/helperPages/unAuthorisedAccess.js';
 
 Template.adminThreadInsert.onCreated(function(){
   this.insertObj = new ReactiveVar();
-    this.formErrorMessage = new ReactiveVar('');
+  this.formErrorMessage = new ReactiveVar('');
 });
 
 
@@ -33,7 +33,7 @@ Template.adminThreadInsert.events({
   'submit #adminThreadInsertForm':function(event){
     event.preventDefault();
     const self=Template.instance();
-        $('.insertThreadErrorBox').addClass('hidden');
+    $('.insertThreadErrorBox').addClass('hidden');
     let insertObj ={};
 
     insertObj.title= $('#adminThreadInsertForm input[name=addThreadTitle]').val();

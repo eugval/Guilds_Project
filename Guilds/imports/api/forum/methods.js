@@ -143,17 +143,17 @@ export const adminUpdateThread =new ValidatedMethod({
       'The thread was not found.');
     }
 
-if(Meteor.isServer){
-    /*If author name is provided also update the author*/
-    if(!!options.update.authorName){
-      /*If author provided is not a user abort*/
-      const authorUser = Meteor.users.findOne({username:options.update.authorName});
-      if(!authorUser){
-        throw new Meteor.Error('Threads.methods.adminUpdateThread.userNotFound',
-        'The user was not found in the database.');
+    if(Meteor.isServer){
+      /*If author name is provided also update the author*/
+      if(!!options.update.authorName){
+        /*If author provided is not a user abort*/
+        const authorUser = Meteor.users.findOne({username:options.update.authorName});
+        if(!authorUser){
+          throw new Meteor.Error('Threads.methods.adminUpdateThread.userNotFound',
+          'The user was not found in the database.');
+        }
+        options.update.author =authorUser._id;
       }
-      options.update.author =authorUser._id;
-    }
     }
 
     Threads.update(options._id,{$set:options.update});

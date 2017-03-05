@@ -1,22 +1,22 @@
 <template name="adminFeaturedList">
 
 
-<div class="list-group admin-list">
-  {{#each freaturedPosts}}
-  <a class="list-group-item" href={{pathToFeaturedPost}}>
-    <div class="row">
-      <div class="col-lg-8">
-            {{title}} <br />
-            {{authorName}}
+  <div class="list-group admin-list">
+    {{#each freaturedPosts}}
+    <a class="list-group-item" href={{pathToFeaturedPost}}>
+      <div class="row">
+        <div class="col-lg-8">
+          {{title}} <br />
+          {{authorName}}
+        </div>
+        <div class="col-lg-4">
+          <button class="btn btn-sm  btn-warning thread-featured center-block"> unFeature</button>
+        </div>
       </div>
-      <div class="col-lg-4">
-        <button class="btn btn-sm  btn-warning thread-featured center-block"> unFeature</button>
-      </div>
-    </div>
-  </a>
+    </a>
 
 
-  {{/each}}
-</div>
+    {{/each}}
+  </div>
 
 </template>

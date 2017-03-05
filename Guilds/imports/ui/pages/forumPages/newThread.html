@@ -1,4 +1,4 @@
-<!--Create a new  Thread -->
+
 <Template name="newThread">
   <div class ="row">
     <div class="col-md-8 col-md-offset-2 text-center new-thread-banner">
@@ -13,26 +13,26 @@
 
   <div class="row">
     <div class="col-md-8">
-<div class="insertThreadErrorBox hidden">
-      {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
-</div>
+      <div class="insertThreadErrorBox hidden">
+        {{> Template.dynamic template='errorMessageBox' data=errorMessage}}
+      </div>
 
 
       <form id="insertThreadForm" class="form-horizontal">
 
         <div class="form-group">
           <label for="addThreadTitle" class="col-sm-1 control-label">Title</label>
-<div class="col-sm-11">
-  <input type= "text" class="form-control" id="addThreadTitle" name="addThreadTitle" placeholder= "What is the subject of your thread?" />
+          <div class="col-sm-11">
+            <input type= "text" class="form-control" id="addThreadTitle" name="addThreadTitle" placeholder= "What is the subject of your thread?" />
 
-</div>
+          </div>
         </div>
 
 
-<div class="heavy-thread-editor">
-  <div class="addThreadDescription">
-  </div>
-</div>
+        <div class="heavy-thread-editor">
+          <div class="addThreadDescription">
+          </div>
+        </div>
 
         <button type="submit" class="btn btn-default" > Submit</button>
         <button type="button" class= "btn btn-default cancelNewThread"> Cancel</button>
@@ -46,26 +46,26 @@
         <div class="navigation">
 
 
-            {{#if currentUser}}
+          {{#if currentUser}}
           {{> verticalUserOptions}}
-            {{else}}
-            <p class="text-center" style="transform: translateY(-1em);">
-              <strong class="text-danger" >
-                Join to Post in the Community!
-              </strong>
-            </p>
+          {{else}}
+          <p class="text-center" style="transform: translateY(-1em);">
+            <strong class="text-danger" >
+              Join to Post in the Community!
+            </strong>
+          </p>
 
 
-         {{> signInUpForm "sidebar"}}
-            {{/if}}
+          {{> signInUpForm "sidebar"}}
+          {{/if}}
 
 
-  </div>
-</div>
-</div>
-<div class="col-md-4 hidden-xs hidden-sm">
-  <div class="box sidebar sidebar-last">
-    <div class="navigation">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 hidden-xs hidden-sm">
+      <div class="box sidebar sidebar-last">
+        <div class="navigation">
 
           <h5>Related Topics</h5>
           <p>
@@ -73,42 +73,42 @@
           </p>
 
 
-<div class="sidebar-container">
+          <div class="sidebar-container">
 
 
-{{#if relatedTopics.count}}
+            {{#if relatedTopics.count}}
 
-                        <div class="list-group forum-threads">
-          {{#each relatedTopics}}
+            <div class="list-group forum-threads">
+              {{#each relatedTopics}}
 
-          <a class="list-group-item" href="#">
+              <a class="list-group-item" href="#">
 
-            <div class="list-item-element">
-              <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+                <div class="list-item-element">
+                  <img src={{identicon author size='9' scale='3'}} style="border-radius:50% !important" />
+                </div>
+
+                <div class="list-item-element">
+                  <p>
+                    {{title}}<br />
+                    <span class="author-name">{{authorName}}</span>
+                  </p>
+                </div>
+
+
+              </a>
+
+              {{/each}}
             </div>
+            {{else}}
+            <p class="text-center">
+              No Related Posts are found!
+            </p>
+            {{/if}}
 
-            <div class="list-item-element">
-              <p>
-                {{title}}<br />
-                <span class="author-name">{{authorName}}</span>
-              </p>
-            </div>
-
-
-          </a>
-
-          {{/each}}
-</div>
-{{else}}
-<p class="text-center">
-No Related Posts are found!
-</p>
-{{/if}}
-
-</div>
-</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
   </div>
 </Template>

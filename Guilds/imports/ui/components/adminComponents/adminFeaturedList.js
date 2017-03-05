@@ -4,7 +4,7 @@ import {threadFeaturedUpdate} from '/imports/api/forum/methods.js';
 
 Template.adminFeaturedList.onCreated(function(){
   this.autorun(()=>{
- this.subscribe('Threads.Featured',{});
+    this.subscribe('Threads.Featured',{});
   })
 });
 

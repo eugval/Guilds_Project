@@ -1,24 +1,24 @@
 <template name ="verticalUserOptions">
   <div class="userOptions">
-              <a href="#" role="button"  data-toggle="collapse" data-target="#userOptions" aria-expanded="false" aria-controls="userOptions">
-                <img class="center-block" src={{identicon userID size='10' scale='5'}} style="border-radius:50% !important" />
-                <p class="text-center ">
-                  {{currentUserName}}
-                </p>
-              </a>
+    <a href="#" role="button"  data-toggle="collapse" data-target="#userOptions" aria-expanded="false" aria-controls="userOptions">
+      <img class="center-block" src={{identicon userID size='10' scale='5'}} style="border-radius:50% !important" />
+      <p class="text-center ">
+        {{currentUserName}}
+      </p>
+    </a>
 
-              <div class="collapse" id="userOptions">
-                <div class="row">
-                  <div class ="col-md-6 col-md-offset-3">
-                    <div class="list-group ">
-                      <a href ="#" class="list-group-item logOut " >
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-                      </a>
-                    </div>
-                  </div>
-                </div>
+    <div class="collapse" id="userOptions">
+      <div class="row">
+        <div class ="col-md-6 col-md-offset-3">
+          <div class="list-group ">
+            <a href ="#" class="list-group-item logOut " >
+              <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
 
-              </div>
-                    </div>
+    </div>
+  </div>
 
 </template>

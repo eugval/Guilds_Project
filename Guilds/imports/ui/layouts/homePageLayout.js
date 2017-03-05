@@ -9,11 +9,11 @@ import '/imports/ui/components/homePageComponents/featuresModal.js';
 
 
 Template.homePageLayout.onCreated(function(){
-    $('body').addClass('is-loading');
-    this.contactFormErrorMessage= new ReactiveVar('');
-    this.signInFormErrorMessage = new ReactiveVar('');
-    this.signUpFormErrorMessage = new ReactiveVar('');
-    this.featureData = new ReactiveVar({});
+  $('body').addClass('is-loading');
+  this.contactFormErrorMessage= new ReactiveVar('');
+  this.signInFormErrorMessage = new ReactiveVar('');
+  this.signUpFormErrorMessage = new ReactiveVar('');
+  this.featureData = new ReactiveVar({});
 });
 
 Template.homePageLayout.onRendered(function(){
@@ -21,20 +21,20 @@ Template.homePageLayout.onRendered(function(){
   $.getScript("/homePageTemplateFiles/js/5_main.js");
 
 
-if(!!Session.get('section-2')){
+  if(!!Session.get('section-2')){
 
-  window.location.href ="/#section-2";
-}else if(!!Session.get('section-1')){
-window.location.href ="/#section-1";
+    window.location.href ="/#section-2";
+  }else if(!!Session.get('section-1')){
+    window.location.href ="/#section-1";
 
-}
-Session.set('section-2',false);
-Session.set('section-1',false);
+  }
+  Session.set('section-2',false);
+  Session.set('section-1',false);
 });
 
 Template.homePageLayout.helpers({
   forumLink(){
-        const params={community:"Passion"};
+    const params={community:"Passion"};
     return FlowRouter.path('/:community/forum',params);
   },
   contactFormErrorMessage(){
@@ -44,13 +44,22 @@ Template.homePageLayout.helpers({
     return {errorMessage:Template.instance().signInFormErrorMessage.get()};
   },
   signUpFormErrorMessage(){
-      return {errorMessage:Template.instance().signUpFormErrorMessage.get()};
+    return {errorMessage:Template.instance().signUpFormErrorMessage.get()};
   },
   isAdmin(){
     return isAdmin();
   },
   modalText(){
     return Template.instance().featureData.get();
+  },
+  pathForPassion(){
+    return FlowRouter.path('/:community/forum/',{community:"Passion"});
+  },
+  pathForAdventure(){
+    return FlowRouter.path('/:community/forum/',{community:"Adventure"});
+  },
+  pathForWisdom(){
+    return FlowRouter.path('/:community/forum/',{community:"Wisdom"});
   }
 });
 
@@ -59,8 +68,8 @@ Template.homePageLayout.helpers({
 Template.homePageLayout.events({
   'submit #contactForm':function(event){
     event.preventDefault();
-  $('.contactFormErrorBox').addClass('hidden');
-  const self=Template.instance();
+    $('.contactFormErrorBox').addClass('hidden');
+    const self=Template.instance();
     const name = $('#contactFormName').val();
     const email = $('#contactFormEmail').val();
     const message= $('#contactFormMessage').val();
@@ -69,15 +78,15 @@ Template.homePageLayout.events({
       if(error){
         console.log("error");
         console.log(error);
-      self.contactFormErrorMessage.set(error.reason);
+        self.contactFormErrorMessage.set(error.reason);
         console.log("here");
-         $('.contactFormErrorBox').removeClass('hidden');
+        $('.contactFormErrorBox').removeClass('hidden');
       }else{
         console.log("success");
         $(".sent-mark").removeClass("hidden");
         window.setTimeout(function(){
-        $(".sent-mark").addClass("hidden");
-      },2000);
+          $(".sent-mark").addClass("hidden");
+        },2000);
 
         $("#contactForm").trigger('reset');
       }
@@ -96,9 +105,9 @@ Template.homePageLayout.events({
       if(error){
         console.log(error);
         if(error.error===400){
-         self.signInFormErrorMessage.set("Wrong Username or Password");
+          self.signInFormErrorMessage.set("Wrong Username or Password");
         }else{
-        self.signInFormErrorMessage.set(error.reason);
+          self.signInFormErrorMessage.set(error.reason);
         }
         $(".signInFormErrorBox").removeClass('hidden');
       }else{
@@ -110,48 +119,48 @@ Template.homePageLayout.events({
 
 
   },
-    'submit #signUpForm':function(event){
-      event.preventDefault();
-      const self = Template.instance();
-      $(".signUpFormErrorBox").addClass('hidden');
+  'submit #signUpForm':function(event){
+    event.preventDefault();
+    const self = Template.instance();
+    $(".signUpFormErrorBox").addClass('hidden');
 
-      const userObj={}
-      userObj.username = $('#signUpForm input[name=username]').val();
-      userObj.password = $('#signUpForm input[name=password]').val();
-      const confirmPassword =$('#signUpForm input[name=confirmPassword]').val();
+    const userObj={}
+    userObj.username = $('#signUpForm input[name=username]').val();
+    userObj.password = $('#signUpForm input[name=password]').val();
+    const confirmPassword =$('#signUpForm input[name=confirmPassword]').val();
 
-      if(userObj.password !== confirmPassword){
-        self.signUpFormErrorMessage.set("Passwords don't match.");
-        $(".signUpFormErrorBox").removeClass('hidden');
-      }else{
-        signUp.call(userObj,(error)=>{
-          if(error){
-            console.log(error);
+    if(userObj.password !== confirmPassword){
+      self.signUpFormErrorMessage.set("Passwords don't match.");
+      $(".signUpFormErrorBox").removeClass('hidden');
+    }else{
+      signUp.call(userObj,(error)=>{
+        if(error){
+          console.log(error);
           self.signUpFormErrorMessage.set(error.reason);
-            $(".signUpFormErrorBox").removeClass('hidden');
-          }else{
-            console.log("success");
-            Meteor.loginWithPassword(userObj.username,userObj.password,(error)=>{
-              if(error){
-                console.log(error);
-              }else{
-                  $('#signUpForm').trigger('reset');
-                  FlowRouter.go('/:community/forum',{community:"Passion"});
+          $(".signUpFormErrorBox").removeClass('hidden');
+        }else{
+          console.log("success");
+          Meteor.loginWithPassword(userObj.username,userObj.password,(error)=>{
+            if(error){
+              console.log(error);
+            }else{
+              $('#signUpForm').trigger('reset');
+              FlowRouter.go('/:community/forum',{community:"Passion"});
 
-              }
-            });
+            }
+          });
 
 
 
-          }
-        });
-      }
-    },
-    'click .featureDescription':function(event){
-      event.preventDefault();
-      const feature =$(event.target).data("feature");
-      Template.instance().featureData.set(FEATURES[feature]);
-      $('#featuresModal').modal('toggle');
+        }
+      });
     }
+  },
+  'click .featureDescription':function(event){
+    event.preventDefault();
+    const feature =$(event.target).data("feature");
+    Template.instance().featureData.set(FEATURES[feature]);
+    $('#featuresModal').modal('toggle');
+  }
 
 });

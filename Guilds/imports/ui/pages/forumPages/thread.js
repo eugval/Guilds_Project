@@ -28,7 +28,7 @@ Template.thread.onCreated(function(){
 
 Template.thread.helpers({
   threadExists(){
-      const threadID = FlowRouter.getParam('threadID');
+    const threadID = FlowRouter.getParam('threadID');
     return !!Threads.findOne({_id:threadID});
   },
   threadContext(){
@@ -51,8 +51,8 @@ Template.thread.helpers({
     return timeSince(this.createdAt);
   },
   relatedTopics(){
-      Meteor.subscribe('Threads.Related',6,this.title);
-     return Threads.find({_id:{$not:this._id}},{sort:{score:-1}})
+    Meteor.subscribe('Threads.Related',6,this.title);
+    return Threads.find({_id:{$not:this._id}},{sort:{score:-1}})
   },
   replying(){
     return Template.instance().replying.get();

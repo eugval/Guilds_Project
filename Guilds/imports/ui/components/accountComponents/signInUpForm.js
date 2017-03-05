@@ -99,7 +99,7 @@ Template.signInUpForm.events({
             if(error){
               console.log(error);
             }else{
-                $(formID).trigger('reset');
+              $(formID).trigger('reset');
               FlowRouter.reload();
 
               $('#signInModal').modal('hide');

@@ -11,7 +11,7 @@
 
 
 
-        <a class="navbar-brand" href={{homePath}}>MEDIAC</a>
+        <a class="navbar-brand" href={{homePath}}><img src="/Images/helper/LifeInFlow.png" alt="" /></a>
         <ul class="main-nav ">
           <li ><a href="#"  id="PassionLink">Passion </a></li>
           <li><a href="#" id="AdventureLink">Adventure</a></li>
@@ -26,7 +26,7 @@
 
             <ul class="dropdown-menu no-collapse" aria-labelledby="navDropdown">
               <li><a href="#" id="homeAboutLink">About</a></li>
-              <li><a href="#"  id="homeJoinLink">Join the Effort</a></li>
+              <li><a href="#"  id="homeJoinLink">Give us Feedback</a></li>
               {{#if isAdmin}}
               <li><a href="/admin" >Admin Dashboard</a></li>
               {{/if}}
@@ -54,21 +54,21 @@
       </div>
 
 
-  </div>
-
-      <footer id="footer" class="small-footer ">
-        <div class="copyright small-footer-element">
-          <ul class="icons small-footer-element">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-          </ul>
-          <p class="small-footer-element">&copy; MEDIAC. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>.</p>
-        </div>
-      </footer>
     </div>
 
+    <footer id="footer" class="small-footer ">
+      <div class="copyright small-footer-element">
+        <ul class="icons small-footer-element">
+          <li><a href="https://twitter.com/LifeInFlowGroup" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+          <li><a href="https://www.facebook.com/LifeInFlowGroup/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        </ul>
+        <p class="small-footer-element">&copy; LifeInFlow. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>.</p>
+      </div>
+    </footer>
+  </div>
 
-    {{> signInModal}}
+
+  {{> signInModal}}
 
 
 
