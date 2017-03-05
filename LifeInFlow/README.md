@@ -1,4 +1,4 @@
-#Guilds
+#Life In Flow
 
 ##Starting to contribute in the Guilds project:
 Guilds is being built using Meteor. The following are the packages/tools you need to be familiar with in order to contribute:

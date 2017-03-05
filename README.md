@@ -1,2 +1,2 @@
-# Guilds_Project
-CF README in /Guilds
+# Life In Flow
+CF README in /LifeInFlow

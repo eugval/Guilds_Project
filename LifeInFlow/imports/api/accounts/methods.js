@@ -67,7 +67,6 @@ export const leaveCommunity = new ValidatedMethod({
 });
 
 
-
 export const signUp = new ValidatedMethod({
   name:'Meteor.users.signUp',
   validate: new SimpleSchema({
